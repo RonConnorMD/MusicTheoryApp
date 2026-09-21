@@ -3,17 +3,13 @@
 // =====================================================
 
 // ===============================================================
-//
 // Readline
-//
 // ===============================================================
 
 const readline = require("readline");
 
 // ===============================================================
-//
 // Constants
-//
 // ===============================================================
 const LETTERS = [
     "C",
@@ -37,20 +33,17 @@ const NATURAL_PITCHES = {
 };
 
 
-// ===============================================================
-//
-// Score - initial values
-//
-// ===============================================================
 
+// ===============================================================
+// Quiz Settings
+// ===============================================================
+const QUIZ_LENGTH = 10;
 let correctCount = 0;
-
 let totalCount = 0;
+let questionNumber = 1;
 
 //===============================================================
-//
 //  Triads  - definitions
-//
 //===============================================================
 const TRIADS = {
 
@@ -384,9 +377,7 @@ function buildQuestion() {
 }
 
 // ===============================================================
-//
 // Check Answer
-//
 // ===============================================================
 
 function checkAnswer(
@@ -420,9 +411,7 @@ function checkAnswer(
 
 
 // ===============================================================
-//
 // Normalize Note Text
-//
 // ===============================================================
 
 function normalizeNoteText(noteText) {
@@ -447,9 +436,7 @@ function normalizeNoteText(noteText) {
 
 
 // ===============================================================
-//
 // Parse User Answer
-//
 // ===============================================================
 
 function parseAnswer(text) {
@@ -462,9 +449,7 @@ function parseAnswer(text) {
 
 
 // ===============================================================
-//
 // Run Quiz Round
-//
 // ===============================================================
 
 function runQuizRound() {
@@ -488,9 +473,7 @@ function runQuizRound() {
 
 
 // ===============================================================
-//
 // Interactive Quiz Round
-//
 // ===============================================================
 
 function interactiveQuizRound() {
@@ -563,15 +546,76 @@ console.log(
     totalCount
 );
 
-            rl.close();
+            if (
+    questionNumber >= QUIZ_LENGTH
+) {
+
+    console.log();
+
+    console.log(
+        "Quiz Complete!"
+    );
+
+    console.log(
+        "Final Score:",
+        correctCount,
+        "/",
+        totalCount
+    );
+
+    rl.close();
+
+} else {
+
+    questionNumber++;
+
+    askToContinue();
+}
         }
     );
 }
 
 // ===============================================================
-//
+// Ask To Continue
+// ===============================================================
+
+function askToContinue() {
+
+    rl.question(
+
+        "Press Enter for next question or Q to quit: ",
+
+        function(answer) {
+
+            if (
+                answer.trim().toUpperCase() === "Q"
+            ) {
+
+                console.log();
+
+                console.log(
+                    "Final Score:",
+                    correctCount,
+                    "/",
+                    totalCount
+                );
+
+                rl.close();
+
+            } else {
+
+                interactiveQuizRound();
+            }
+        }
+    );
+}
+
+
+
+
+
+// ===============================================================
 // Readline Interface
-//
 // ===============================================================
 
 const rl = readline.createInterface({

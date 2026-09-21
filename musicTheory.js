@@ -366,30 +366,130 @@ function buildQuestion() {
 }
 
 // ===============================================================
+//
+// Check Answer
+//
+// ===============================================================
+
+function checkAnswer(
+    correctAnswer,
+    userAnswer
+) {
+
+    if (
+        correctAnswer.length !==
+        userAnswer.length
+    ) {
+        return false;
+    }
+
+    for (
+        let i = 0;
+        i < correctAnswer.length;
+        i++
+    ) {
+
+        if (
+            correctAnswer[i] !==
+            userAnswer[i]
+        ) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// ===============================================================
+//
+// Parse User Answer
+//
+// ===============================================================
+
+function parseAnswer(text) {
+
+    return text
+        .trim()
+        .split(/\s+/);
+}
+
+
+// ===============================================================
+//
+// Run Quiz Round
+//
+// ===============================================================
+
+function runQuizRound() {
+
+    const q =
+        buildQuestion();
+
+    console.log();
+
+    console.log(
+        "QUESTION:"
+    );
+
+    console.log(
+        q.root,
+        q.type
+    );
+
+    return q;
+}
+
+
+// ===============================================================
 // Test Code
 // ==============================================================
 
 
 
-// ===============================================================
-//
-// Test Build Question
-//
-// ===============================================================
 
-const q =
-    buildQuestion();
+
+// ===============================================================
+//
+// Test Check Answer
+//
+// ===============================================================
 
 console.log();
 
 console.log(
-    "QUESTION:"
+    "Check Answer Tests"
 );
 
 console.log(
-    q.root,
-    q.type
+    checkAnswer(
+        ["C", "E", "G"],
+        ["C", "E", "G"]
+    )
 );
+
+console.log(
+    checkAnswer(
+        ["C", "E", "G"],
+        ["C", "Eb", "G"]
+    )
+);
+
+console.log(
+    checkAnswer(
+        ["C", "E", "G"],
+        ["E", "G", "C"]
+    )
+);
+
+
+// ===============================================================
+//
+// Test Run Quiz Round
+//
+// ===============================================================
+
+const quizQuestion =
+    runQuizRound();
 
 console.log();
 
@@ -398,5 +498,23 @@ console.log(
 );
 
 console.log(
-    q.answer.join(" ")
+    quizQuestion.answer.join(" ")
 );
+// ===============================================================
+//
+// Test Parse Answer
+//
+// ===============================================================
+
+console.log(
+    parseAnswer(
+        "G B D#"
+    )
+);
+
+console.log(
+    parseAnswer(
+        "   G   B   D#   "
+    )
+);
+

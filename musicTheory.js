@@ -37,9 +37,21 @@ const NATURAL_PITCHES = {
 };
 
 
-//_________________________________________________________
+// ===============================================================
+//
+// Score - initial values
+//
+// ===============================================================
+
+let correctCount = 0;
+
+let totalCount = 0;
+
+//===============================================================
+//
 //  Triads  - definitions
-//_________________________________________________________
+//
+//===============================================================
 const TRIADS = {
 
     major: [0, 4, 7],
@@ -520,23 +532,36 @@ function interactiveQuizRound() {
 
             console.log();
 
-            if (correct) {
+            totalCount++;
 
-                console.log(
-                    "Correct!"
-                );
+if (correct) {
 
-            } else {
+    correctCount++;
 
-                console.log(
-                    "Incorrect."
-                );
+    console.log(
+        "Correct!"
+    );
 
-                console.log(
-                    "Correct answer:",
-                    q.answer.join(" ")
-                );
-            }
+} else {
+
+    console.log(
+        "Incorrect."
+    );
+
+    console.log(
+        "Correct answer:",
+        q.answer.join(" ")
+    );
+}
+
+console.log();
+
+console.log(
+    "Score:",
+    correctCount,
+    "/",
+    totalCount
+);
 
             rl.close();
         }

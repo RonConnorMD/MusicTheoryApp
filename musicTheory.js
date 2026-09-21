@@ -2,7 +2,13 @@
 // Music Theory Engine
 // =====================================================
 
+// ===============================================================
+//
+// Readline
+//
+// ===============================================================
 
+const readline = require("readline");
 
 // ===============================================================
 //
@@ -441,80 +447,130 @@ function runQuizRound() {
 
 
 // ===============================================================
+//
+// Interactive Quiz Round
+//
+// ===============================================================
+
+function interactiveQuizRound() {
+
+    const q =
+        buildQuestion();
+
+    console.log();
+
+    console.log(
+        "QUESTION:"
+    );
+
+    console.log(
+        q.root,
+        q.type
+    );
+
+    console.log();
+
+    rl.question(
+
+        "Enter chord: ",
+
+        function(answerText) {
+
+            const userAnswer =
+
+                parseAnswer(
+                    answerText
+                );
+
+            const correct =
+
+                checkAnswer(
+                    q.answer,
+                    userAnswer
+                );
+
+            console.log();
+
+            if (correct) {
+
+                console.log(
+                    "Correct!"
+                );
+
+            } else {
+
+                console.log(
+                    "Incorrect."
+                );
+
+                console.log(
+                    "Correct answer:",
+                    q.answer.join(" ")
+                );
+            }
+
+            rl.close();
+        }
+    );
+}
+
+// ===============================================================
+//
+// Readline Interface
+//
+// ===============================================================
+
+const rl = readline.createInterface({
+
+    input: process.stdin,
+
+    output: process.stdout
+
+});
+
+
+// ===============================================================
+//
+// Test User Input
+//
+// ===============================================================
+
+function testInput() {
+
+    rl.question(
+
+        "What is your name? ",
+
+        function(answer) {
+
+            console.log();
+
+            console.log(
+
+                "Hello",
+
+                answer
+
+            );
+
+            rl.close();
+        }
+    );
+}
+
+
+// ===============================================================
 // Test Code
 // ==============================================================
 
 
-
-
-
 // ===============================================================
 //
-// Test Check Answer
+// Test Interactive Quiz Round
 //
 // ===============================================================
 
-console.log();
-
-console.log(
-    "Check Answer Tests"
-);
-
-console.log(
-    checkAnswer(
-        ["C", "E", "G"],
-        ["C", "E", "G"]
-    )
-);
-
-console.log(
-    checkAnswer(
-        ["C", "E", "G"],
-        ["C", "Eb", "G"]
-    )
-);
-
-console.log(
-    checkAnswer(
-        ["C", "E", "G"],
-        ["E", "G", "C"]
-    )
-);
+interactiveQuizRound();
 
 
-// ===============================================================
-//
-// Test Run Quiz Round
-//
-// ===============================================================
-
-const quizQuestion =
-    runQuizRound();
-
-console.log();
-
-console.log(
-    "ANSWER:"
-);
-
-console.log(
-    quizQuestion.answer.join(" ")
-);
-// ===============================================================
-//
-// Test Parse Answer
-//
-// ===============================================================
-
-console.log(
-    parseAnswer(
-        "G B D#"
-    )
-);
-
-console.log(
-    parseAnswer(
-        "   G   B   D#   "
-    )
-);
 

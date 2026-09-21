@@ -406,6 +406,34 @@ function checkAnswer(
     return true;
 }
 
+
+// ===============================================================
+//
+// Normalize Note Text
+//
+// ===============================================================
+
+function normalizeNoteText(noteText) {
+
+    if (noteText.length === 0) {
+
+        return noteText;
+    }
+
+    const letter =
+
+        noteText[0].toUpperCase();
+
+    const accidental =
+
+        noteText
+            .slice(1)
+            .toLowerCase();
+
+    return letter + accidental;
+}
+
+
 // ===============================================================
 //
 // Parse User Answer
@@ -416,7 +444,8 @@ function parseAnswer(text) {
 
     return text
         .trim()
-        .split(/\s+/);
+        .split(/\s+/)
+        .map(normalizeNoteText);
 }
 
 

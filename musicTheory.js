@@ -43,17 +43,98 @@ let totalCount = 0;
 let questionNumber = 1;
 
 //===============================================================
-//  Triads  - definitions
+//  Chord definitions
 //===============================================================
-const TRIADS = {
+const CHORDS = {
 
-    major: [0, 4, 7],
+    major: [
 
-    minor: [0, 3, 7],
+        {
+            semitones: 0,
+            letterSteps: 0,
+            name: "Root"
+        },
 
-    diminished: [0, 3, 6],
+        {
+            semitones: 4,
+            letterSteps: 2,
+            name: "Major 3rd"
+        },
 
-    augmented: [0, 4, 8]
+        {
+            semitones: 7,
+            letterSteps: 4,
+            name: "Perfect 5th"
+        }
+
+    ],
+
+    minor: [
+
+        {
+            semitones: 0,
+            letterSteps: 0,
+            name: "Root"
+        },
+
+        {
+            semitones: 3,
+            letterSteps: 2,
+            name: "Minor 3rd"
+        },
+
+        {
+            semitones: 7,
+            letterSteps: 4,
+            name: "Perfect 5th"
+        }
+
+    ],
+
+    diminished: [
+
+        {
+            semitones: 0,
+            letterSteps: 0,
+            name: "Root"
+        },
+
+        {
+            semitones: 3,
+            letterSteps: 2,
+            name: "Minor 3rd"
+        },
+
+        {
+            semitones: 6,
+            letterSteps: 4,
+            name: "Diminished 5th"
+        }
+
+    ],
+
+    augmented: [
+
+        {
+            semitones: 0,
+            letterSteps: 0,
+            name: "Root"
+        },
+
+        {
+            semitones: 4,
+            letterSteps: 2,
+            name: "Major 3rd"
+        },
+
+        {
+            semitones: 8,
+            letterSteps: 4,
+            name: "Augmented 5th"
+        }
+
+    ]
+
 };
 
 // ________________________________________________________________
@@ -71,12 +152,8 @@ const ROOTS = [
 //  later we'll add "C#", "Db", "Eb", "F#", "Bb"
 
 
-const TRIAD_TYPES = [
-    "major",
-    "minor",
-    "diminished",
-    "augmented"
-];
+const CHORD_TYPES =
+    Object.keys(CHORDS);
 
 // -----------------------------------------------------
 // Convert text to Note object
@@ -205,53 +282,14 @@ function spellNote(letter, desiredPitch) {
 }
 
 
-// -----------------------------------------------------
-// Build a major triad
-// -----------------------------------------------------
 
-function buildMajorTriad(rootText) {
+// ===============================================================
+// buildChord - build a chord based on input provided
+// ===============================================================
+function buildChord(rootText, chordType) {
 
-    const root = parseNote(rootText);
-
-    const rootPitch = pitchOf(root);
-
-    const thirdPitch =
-        (rootPitch + 4) % 12;
-
-    const fifthPitch =
-        (rootPitch + 7) % 12;
-
-    const thirdLetter =
-        nextLetter(root.letter, 2);
-
-    const fifthLetter =
-        nextLetter(root.letter, 4);
-
-    return [
-
-        root,
-
-        spellNote(
-            thirdLetter,
-            thirdPitch
-        ),
-
-        spellNote(
-            fifthLetter,
-            fifthPitch
-        )
-    ];
-}
-
-
-
-//_________________________________________________________
-//     Build a triad based on provided type
-//_________________________________________________________
-function buildTriad(rootText, triadType) {
-
-    const intervals =
-        TRIADS[triadType];
+    const tones =
+        CHORDS[chordType];
 
     const root =
         parseNote(rootText);
@@ -259,38 +297,37 @@ function buildTriad(rootText, triadType) {
     const rootPitch =
         pitchOf(root);
 
-    const thirdPitch =
-        (rootPitch + intervals[1]) % 12;
+    const chord = [];
 
-    const fifthPitch =
-        (rootPitch + intervals[2]) % 12;
 
-    const thirdLetter =
-        nextLetter(root.letter, 2);
+ for (const tone of tones) {
 
-    const fifthLetter =
-        nextLetter(root.letter, 4);
+    const desiredPitch =
+        (rootPitch + tone.semitones) % 12;
 
-    return [
+    const desiredLetter =
+        nextLetter(
+            root.letter,
+            tone.letterSteps
+        );
 
-        root,
-
+    const note =
         spellNote(
-            thirdLetter,
-            thirdPitch
-        ),
+            desiredLetter,
+            desiredPitch
+        );
+        
+    chord.push(note);   
+}
 
-        spellNote(
-            fifthLetter,
-            fifthPitch
-        )
-    ];
+    return chord;
+
 }
 
 
-
-//    chord to string
-//____________________________________________________________
+// ===============================================================
+// Chord to string
+// ===============================================================
 function chordToString(chord) {
 
     return chord
@@ -298,9 +335,9 @@ function chordToString(chord) {
         .join(" ");
 }
 
-// ________________________________________________________________
-// chord notes    
-// ________________________________________________________________
+// ===============================================================
+// Chord Notes
+// ===============================================================
 function chordNotes(chord) {
 
     return chord.map(
@@ -309,9 +346,9 @@ function chordNotes(chord) {
 }
 
 
-// ________________________________________________________________
-//    random item generator 
-// ________________________________________________________________
+// ===============================================================
+// Random Item Generator
+// ===============================================================
 function randomItem(array) {
 
     return array[
@@ -322,28 +359,13 @@ function randomItem(array) {
 }
 
 
- 
-// ________________________________________________________________
-//     Random triad question
-// ________________________________________________________________
-function randomTriadQuestion() {
-
-    return {
-
-        root:
-            randomItem(ROOTS),
-
-        type:
-            randomItem(TRIAD_TYPES)
-    };
-}
 
 
-// ________________________________________________________________
 
-//     Build Question Object
 
-// ________________________________________________________________
+// ===============================================================
+// Build Question Object
+// ===============================================================
 
 function buildQuestion() {
 
@@ -353,16 +375,16 @@ function buildQuestion() {
 
     const type =
 
-        randomItem(TRIAD_TYPES);
+        randomItem(CHORD_TYPES);
 
     const answer =
 
-    chordNotes(
-        buildTriad(
-            root,
-            type
-        )
-    );
+        chordNotes(
+            buildChord(
+                root,
+                type
+            )
+        );
 
     return {
 
@@ -498,7 +520,7 @@ function interactiveQuizRound() {
 
         "Enter chord: ",
 
-        function(answerText) {
+        function (answerText) {
 
             const userAnswer =
 
@@ -517,60 +539,60 @@ function interactiveQuizRound() {
 
             totalCount++;
 
-if (correct) {
+            if (correct) {
 
-    correctCount++;
+                correctCount++;
 
-    console.log(
-        "Correct!"
-    );
+                console.log(
+                    "Correct!"
+                );
 
-} else {
+            } else {
 
-    console.log(
-        "Incorrect."
-    );
+                console.log(
+                    "Incorrect."
+                );
 
-    console.log(
-        "Correct answer:",
-        q.answer.join(" ")
-    );
-}
+                console.log(
+                    "Correct answer:",
+                    q.answer.join(" ")
+                );
+            }
 
-console.log();
+            console.log();
 
-console.log(
-    "Score:",
-    correctCount,
-    "/",
-    totalCount
-);
+            console.log(
+                "Score:",
+                correctCount,
+                "/",
+                totalCount
+            );
 
             if (
-    questionNumber >= QUIZ_LENGTH
-) {
+                questionNumber >= QUIZ_LENGTH
+            ) {
 
-    console.log();
+                console.log();
 
-    console.log(
-        "Quiz Complete!"
-    );
+                console.log(
+                    "Quiz Complete!"
+                );
 
-    console.log(
-        "Final Score:",
-        correctCount,
-        "/",
-        totalCount
-    );
+                console.log(
+                    "Final Score:",
+                    correctCount,
+                    "/",
+                    totalCount
+                );
 
-    rl.close();
+                rl.close();
 
-} else {
+            } else {
 
-    questionNumber++;
+                questionNumber++;
 
-    askToContinue();
-}
+                askToContinue();
+            }
         }
     );
 }
@@ -585,7 +607,7 @@ function askToContinue() {
 
         "Press Enter for next question or Q to quit: ",
 
-        function(answer) {
+        function (answer) {
 
             if (
                 answer.trim().toUpperCase() === "Q"
@@ -639,7 +661,7 @@ function testInput() {
 
         "What is your name? ",
 
-        function(answer) {
+        function (answer) {
 
             console.log();
 

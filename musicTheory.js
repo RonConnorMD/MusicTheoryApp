@@ -133,7 +133,92 @@ const CHORDS = {
             name: "Augmented 5th"
         }
 
-    ]
+    ],
+
+
+    major7: [
+
+    {
+        semitones: 0,
+        letterSteps: 0,
+        name: "Root"
+    },
+
+    {
+        semitones: 4,
+        letterSteps: 2,
+        name: "Major 3rd"
+    },
+
+    {
+        semitones: 7,
+        letterSteps: 4,
+        name: "Perfect 5th"
+    },
+
+    {
+        semitones: 11,
+        letterSteps: 6,
+        name: "Major 7th"
+    }
+
+],
+
+dominant7: [
+
+    {
+        semitones: 0,
+        letterSteps: 0,
+        name: "Root"
+    },
+
+    {
+        semitones: 4,
+        letterSteps: 2,
+        name: "Major 3rd"
+    },
+
+    {
+        semitones: 7,
+        letterSteps: 4,
+        name: "Perfect 5th"
+    },
+
+    {
+        semitones: 10,
+        letterSteps: 6,
+        name: "Minor 7th"
+    }
+
+],
+
+minor7: [
+
+    {
+        semitones: 0,
+        letterSteps: 0,
+        name: "Root"
+    },
+
+    {
+        semitones: 3,
+        letterSteps: 2,
+        name: "Minor 3rd"
+    },
+
+    {
+        semitones: 7,
+        letterSteps: 4,
+        name: "Perfect 5th"
+    },
+
+    {
+        semitones: 10,
+        letterSteps: 6,
+        name: "Minor 7th"
+    }
+
+],
 
 };
 
@@ -316,7 +401,7 @@ function buildChord(rootText, chordType) {
             desiredLetter,
             desiredPitch
         );
-        
+
     chord.push(note);   
 }
 
@@ -680,17 +765,12 @@ function testInput() {
 
 
 // ===============================================================
-// Test Code
-// ==============================================================
-
-
+// Main Program
 // ===============================================================
-//
-// Test Interactive Quiz Round
-//
-// ===============================================================
-
 interactiveQuizRound();
 
 
+// ===============================================================
+// Test Code
+// ==============================================================
 

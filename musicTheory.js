@@ -221,10 +221,7 @@ minor7: [
 ],
 
 
-
-
 halfDiminished7: [
-
     {
         semitones: 0,
         letterSteps: 0,
@@ -250,7 +247,6 @@ halfDiminished7: [
     }
 
 ],
-
 
 diminished7: [
 
@@ -278,12 +274,209 @@ diminished7: [
         name: "Diminished 7th"
     }
 
-]
+],
+
+    major9: [
+
+        {
+            semitones: 0,
+            letterSteps: 0,
+            name: "Root"
+        },
+
+        {
+            semitones: 4,
+            letterSteps: 2,
+            name: "Major 3rd"
+        },
+
+        {
+            semitones: 7,
+            letterSteps: 4,
+            name: "Perfect 5th"
+        },
+
+        {
+            semitones: 11,
+            letterSteps: 6,
+            name: "Major 7th"
+        },
+
+        {
+            semitones: 14,
+            letterSteps: 8,
+            name: "Major 9th"
+        }
+
+    ],
+
+    dominant9: [
+
+        {
+            semitones: 0,
+            letterSteps: 0,
+            name: "Root"
+        },
+
+        {
+            semitones: 4,
+            letterSteps: 2,
+            name: "Major 3rd"
+        },
+
+        {
+            semitones: 7,
+            letterSteps: 4,
+            name: "Perfect 5th"
+        },
+
+        {
+            semitones: 10,
+            letterSteps: 6,
+            name: "Minor 7th"
+        },
+
+        {
+            semitones: 14,
+            letterSteps: 8,
+            name: "Major 9th"
+        }
+
+    ],
+
+    minor9: [
+
+        {
+            semitones: 0,
+            letterSteps: 0,
+            name: "Root"
+        },
+
+        {
+            semitones: 3,
+            letterSteps: 2,
+            name: "Minor 3rd"
+        },
+
+        {
+            semitones: 7,
+            letterSteps: 4,
+            name: "Perfect 5th"
+        },
+
+        {
+            semitones: 10,
+            letterSteps: 6,
+            name: "Minor 7th"
+        },
+
+        {
+            semitones: 14,
+            letterSteps: 8,
+            name: "Major 9th"
+        }
+
+    ],
+
+    dominant7b9: [
+
+        {
+            semitones: 0,
+            letterSteps: 0,
+            name: "Root"
+        },
+
+        {
+            semitones: 4,
+            letterSteps: 2,
+            name: "Major 3rd"
+        },
+
+        {
+            semitones: 7,
+            letterSteps: 4,
+            name: "Perfect 5th"
+        },
+
+        {
+            semitones: 10,
+            letterSteps: 6,
+            name: "Minor 7th"
+        },
+
+        {
+            semitones: 13,
+            letterSteps: 8,
+            name: "Flat 9th"
+        }
+
+    ],
+
+    dominant7sharp9: [
+
+        {
+            semitones: 0,
+            letterSteps: 0,
+            name: "Root"
+        },
+
+        {
+            semitones: 4,
+            letterSteps: 2,
+            name: "Major 3rd"
+        },
+
+        {
+            semitones: 7,
+            letterSteps: 4,
+            name: "Perfect 5th"
+        },
+
+        {
+            semitones: 10,
+            letterSteps: 6,
+            name: "Minor 7th"
+        },
+
+        {
+            semitones: 15,
+            letterSteps: 8,
+            name: "Sharp 9th"
+        }
+
+    ]
+};
 // ===============================================================
 // End of chord definitions
 // ===============================================================
 
+
+// ===============================================================
+// Chord symbol definitions
+// ===============================================================
+const CHORD_SYMBOLS = {
+
+    major: "",
+    minor: "m",
+
+    diminished: "dim",
+    augmented: "aug",
+
+    major7: "maj7",
+    dominant7: "7",
+    minor7: "m7",
+
+    halfDiminished7: "m7b5",
+    diminished7: "dim7",
+
+    major9: "maj9",
+    dominant9: "9",
+    minor9: "m9",
+
+    dominant7b9: "7b9",
+    dominant7sharp9: "7#9"
 };
+
 
 // ===============================================================
 // Roots
@@ -653,12 +846,25 @@ function runQuizRound() {
         "QUESTION:"
     );
 
-    console.log(
-        q.root,
-        q.type
+      console.log(
+        chordSymbol(
+            q.root,
+            q.type
+        )
     );
 
     return q;
+}
+
+// ===============================================================
+// Chord Symbol Display
+// ===============================================================
+function chordSymbol(root, chordType) {
+
+    return (
+        root +
+        CHORD_SYMBOLS[chordType]
+    );
 }
 
 
@@ -677,10 +883,12 @@ function interactiveQuizRound() {
         "QUESTION:"
     );
 
-    console.log(
+console.log(
+    chordSymbol(
         q.root,
         q.type
-    );
+    )
+);
 
     console.log();
 

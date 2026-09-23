@@ -220,6 +220,9 @@ minor7: [
 
 ],
 
+
+
+
 halfDiminished7: [
 
     {
@@ -248,88 +251,7 @@ halfDiminished7: [
 
 ],
 
-diminished7: [
 
-    {
-        semitones: 0,
-        letterSteps: 0,
-        name: "Root"
-    },
-
-    {
-        semitones: 3,
-        letterSteps: 2,
-        name: "Minor 3rd"
-    },
-
-    {
-        semitones: 6,
-        letterSteps: 4,
-        name: "Diminished 5th"
-    },
-
-    {
-        semitones: 9,
-        letterSteps: 6,
-        name: "Diminished 7th"
-    }
-
-],
-halfDiminished7: [
-
-    {
-        semitones: 0,
-        letterSteps: 0,
-        name: "Root"
-    },
-
-    {
-        semitones: 3,
-        letterSteps: 2,
-        name: "Minor 3rd"
-    },
-
-    {
-        semitones: 6,
-        letterSteps: 4,
-        name: "Diminished 5th"
-    },
-
-    {
-        semitones: 10,
-        letterSteps: 6,
-        name: "Minor 7th"
-    }
-
-],
-
-diminished7: [
-
-    {
-        semitones: 0,
-        letterSteps: 0,
-        name: "Root"
-    },
-
-    {
-        semitones: 3,
-        letterSteps: 2,
-        name: "Minor 3rd"
-    },
-
-    {
-        semitones: 6,
-        letterSteps: 4,
-        name: "Diminished 5th"
-    },
-
-    {
-        semitones: 9,
-        letterSteps: 6,
-        name: "Diminished 7th"
-    }
-
-],
 diminished7: [
 
     {

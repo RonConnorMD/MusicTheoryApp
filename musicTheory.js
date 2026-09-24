@@ -485,29 +485,19 @@ const ROOTS = [
     "C",
     "C#",
     "Db",
-
     "D",
-
     "D#",
     "Eb",
-
     "E",
-
     "F",
-
     "F#",
     "Gb",
-
     "G",
-
     "G#",
     "Ab",
-
     "A",
-
     "A#",
     "Bb",
-
     "B"
 ];
 
@@ -969,6 +959,198 @@ function interactiveReverseQuizRound() {
 
 
 // ===============================================================
+// Parse Chord Name
+// ===============================================================
+function parseChordName(chordName) {
+
+    chordName = chordName.trim();
+
+    const match =
+        chordName.match(
+            /^([A-G][b#]?)(.*)$/
+        );
+
+    if (!match) {
+
+        throw new Error(
+            "Invalid chord name"
+        );
+    }
+
+    const root =
+        match[1];
+
+    const suffix =
+        match[2];
+
+    const suffixMap = {
+
+        "": "major",
+
+        "m": "minor",
+
+        "dim": "diminished",
+
+        "aug": "augmented",
+
+        "maj7": "major7",
+
+        "7": "dominant7",
+
+        "m7": "minor7",
+
+        "m7b5":
+            "halfDiminished7",
+
+        "dim7":
+            "diminished7",
+
+        "maj9":
+            "major9",
+
+        "9":
+            "dominant9",
+
+        "m9":
+            "minor9",
+
+        "7b9":
+            "dominant7b9",
+
+        "7#9":
+            "dominant7sharp9"
+    };
+
+    const type =
+        suffixMap[suffix];
+
+    if (!type) {
+
+        throw new Error(
+            "Unknown chord type"
+        );
+    }
+
+    return {
+
+        root: root,
+
+        type: type
+    };
+}
+
+// ===============================================================
+// Chord Lookup Mode
+// ===============================================================
+
+function chordLookupMode() {
+
+    console.log();
+    console.log("CHORD LOOKUP MODE");
+    console.log();
+
+    rl.question(
+
+        "Enter chord name: ",
+
+        function (chordName) {
+
+            try {
+
+                const chord =
+                    parseChordName(
+                        chordName
+                    );
+
+                const notes =
+                    buildChord(
+                        chord.root,
+                        chord.type
+                    );
+
+                console.log();
+
+
+                console.log(
+                    chordName +
+                     " = " +
+                    notes.map(noteToString).join(" ")
+                );  
+
+                console.log();
+
+            } catch (error) {
+
+                console.log();
+                console.log(
+                    "Unknown chord."
+                );
+                console.log();
+            }
+
+            showMainMenu();
+        }
+    );
+}
+
+// ===============================================================
+// Main Menu
+// ===============================================================
+
+function showMainMenu() {
+
+    console.log();
+    console.log("1 - Quiz");
+    console.log("2 - Reverse Quiz");
+    console.log("3 - Chord Lookup");
+    console.log("Q - Quit");
+    console.log();
+
+    rl.question(
+
+        "Select option: ",
+
+        function (answer) {
+
+            answer =
+                answer.trim()
+                .toUpperCase();
+
+            if (answer === "1") {
+
+                interactiveQuizRound();
+
+            } else if (
+                answer === "2"
+            ) {
+
+                interactiveReverseQuizRound();
+
+            } else if (
+                answer === "3"
+            ) {
+
+                chordLookupMode();
+
+            } else if (
+                answer === "Q"
+            ) {
+
+                rl.close();
+
+            } else {
+
+                console.log(
+                    "Invalid choice."
+                );
+
+                showMainMenu();
+            }
+        }
+    );
+}
+
+// ===============================================================
 // Chord Symbol Display
 // ===============================================================
 function chordSymbol(root, chordType) {
@@ -1171,7 +1353,7 @@ function testInput() {
 // Main Program
 // ===============================================================
 
-interactiveReverseQuizRound();
+showMainMenu();
 
 
 // ===============================================================

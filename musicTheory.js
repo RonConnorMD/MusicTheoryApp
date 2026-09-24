@@ -185,9 +185,45 @@ const ROOTS = [
 const CHORD_TYPES =
     Object.keys(CHORDS);
 
-// -----------------------------------------------------
-// Convert text to Note object
-// -----------------------------------------------------
+ // ===============================================================
+// Quiz Levels
+// ===============================================================
+
+const QUIZ_LEVELS = {
+
+    beginner: [
+        "major",
+        "minor"
+    ],
+    intermediate: [
+        "major",
+        "minor",
+        "diminished",
+        "augmented",
+        "major7",
+        "dominant7",
+        "minor7"
+    ],
+    advanced:
+        CHORD_TYPES
+};
+
+
+
+
+
+// ===============================================================
+// Current Quiz Settings
+// ===============================================================
+
+let currentChordTypes =
+
+    QUIZ_LEVELS.advanced;   
+
+
+// ===============================================================
+// Convert text to note object
+// ===============================================================
 
 function parseNote(noteText) {
 
@@ -405,7 +441,7 @@ function buildQuestion() {
 
     const type =
 
-        randomItem(CHORD_TYPES);
+        randomItem(currentChordTypes);
 
     const answer =
 

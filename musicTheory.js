@@ -43,407 +43,108 @@ let totalCount = 0;
 let questionNumber = 1;
 
 //===============================================================
-//  Chord definitions
+// Chord definitions
 //===============================================================
+
 const CHORDS = {
 
     major: [
-
-        {
-            semitones: 0,
-            letterSteps: 0,
-            name: "Root"
-        },
-
-        {
-            semitones: 4,
-            letterSteps: 2,
-            name: "Major 3rd"
-        },
-
-        {
-            semitones: 7,
-            letterSteps: 4,
-            name: "Perfect 5th"
-        }
-
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" }
     ],
 
     minor: [
-
-        {
-            semitones: 0,
-            letterSteps: 0,
-            name: "Root"
-        },
-
-        {
-            semitones: 3,
-            letterSteps: 2,
-            name: "Minor 3rd"
-        },
-
-        {
-            semitones: 7,
-            letterSteps: 4,
-            name: "Perfect 5th"
-        }
-
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" }
     ],
 
     diminished: [
-
-        {
-            semitones: 0,
-            letterSteps: 0,
-            name: "Root"
-        },
-
-        {
-            semitones: 3,
-            letterSteps: 2,
-            name: "Minor 3rd"
-        },
-
-        {
-            semitones: 6,
-            letterSteps: 4,
-            name: "Diminished 5th"
-        }
-
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
+        { semitones: 6, letterSteps: 4, name: "Diminished 5th" }
     ],
 
     augmented: [
-
-        {
-            semitones: 0,
-            letterSteps: 0,
-            name: "Root"
-        },
-
-        {
-            semitones: 4,
-            letterSteps: 2,
-            name: "Major 3rd"
-        },
-
-        {
-            semitones: 8,
-            letterSteps: 4,
-            name: "Augmented 5th"
-        }
-
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
+        { semitones: 8, letterSteps: 4, name: "Augmented 5th" }
     ],
 
-
     major7: [
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
+        { semitones: 11, letterSteps: 6, name: "Major 7th" }
+    ],
 
-    {
-        semitones: 0,
-        letterSteps: 0,
-        name: "Root"
-    },
+    dominant7: [
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, name: "Minor 7th" }
+    ],
 
-    {
-        semitones: 4,
-        letterSteps: 2,
-        name: "Major 3rd"
-    },
+    minor7: [
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, name: "Minor 7th" }
+    ],
 
-    {
-        semitones: 7,
-        letterSteps: 4,
-        name: "Perfect 5th"
-    },
+    halfDiminished7: [
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
+        { semitones: 6, letterSteps: 4, name: "Diminished 5th" },
+        { semitones: 10, letterSteps: 6, name: "Minor 7th" }
+    ],
 
-    {
-        semitones: 11,
-        letterSteps: 6,
-        name: "Major 7th"
-    }
-
-],
-
-dominant7: [
-
-    {
-        semitones: 0,
-        letterSteps: 0,
-        name: "Root"
-    },
-
-    {
-        semitones: 4,
-        letterSteps: 2,
-        name: "Major 3rd"
-    },
-
-    {
-        semitones: 7,
-        letterSteps: 4,
-        name: "Perfect 5th"
-    },
-
-    {
-        semitones: 10,
-        letterSteps: 6,
-        name: "Minor 7th"
-    }
-
-],
-
-minor7: [
-
-    {
-        semitones: 0,
-        letterSteps: 0,
-        name: "Root"
-    },
-
-    {
-        semitones: 3,
-        letterSteps: 2,
-        name: "Minor 3rd"
-    },
-
-    {
-        semitones: 7,
-        letterSteps: 4,
-        name: "Perfect 5th"
-    },
-
-    {
-        semitones: 10,
-        letterSteps: 6,
-        name: "Minor 7th"
-    }
-
-],
-
-
-halfDiminished7: [
-    {
-        semitones: 0,
-        letterSteps: 0,
-        name: "Root"
-    },
-
-    {
-        semitones: 3,
-        letterSteps: 2,
-        name: "Minor 3rd"
-    },
-
-    {
-        semitones: 6,
-        letterSteps: 4,
-        name: "Diminished 5th"
-    },
-
-    {
-        semitones: 10,
-        letterSteps: 6,
-        name: "Minor 7th"
-    }
-
-],
-
-diminished7: [
-
-    {
-        semitones: 0,
-        letterSteps: 0,
-        name: "Root"
-    },
-
-    {
-        semitones: 3,
-        letterSteps: 2,
-        name: "Minor 3rd"
-    },
-
-    {
-        semitones: 6,
-        letterSteps: 4,
-        name: "Diminished 5th"
-    },
-
-    {
-        semitones: 9,
-        letterSteps: 6,
-        name: "Diminished 7th"
-    }
-
-],
+    diminished7: [
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
+        { semitones: 6, letterSteps: 4, name: "Diminished 5th" },
+        { semitones: 9, letterSteps: 6, name: "Diminished 7th" }
+    ],
 
     major9: [
-
-        {
-            semitones: 0,
-            letterSteps: 0,
-            name: "Root"
-        },
-
-        {
-            semitones: 4,
-            letterSteps: 2,
-            name: "Major 3rd"
-        },
-
-        {
-            semitones: 7,
-            letterSteps: 4,
-            name: "Perfect 5th"
-        },
-
-        {
-            semitones: 11,
-            letterSteps: 6,
-            name: "Major 7th"
-        },
-
-        {
-            semitones: 14,
-            letterSteps: 8,
-            name: "Major 9th"
-        }
-
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
+        { semitones: 11, letterSteps: 6, name: "Major 7th" },
+        { semitones: 14, letterSteps: 8, name: "Major 9th" }
     ],
 
     dominant9: [
-
-        {
-            semitones: 0,
-            letterSteps: 0,
-            name: "Root"
-        },
-
-        {
-            semitones: 4,
-            letterSteps: 2,
-            name: "Major 3rd"
-        },
-
-        {
-            semitones: 7,
-            letterSteps: 4,
-            name: "Perfect 5th"
-        },
-
-        {
-            semitones: 10,
-            letterSteps: 6,
-            name: "Minor 7th"
-        },
-
-        {
-            semitones: 14,
-            letterSteps: 8,
-            name: "Major 9th"
-        }
-
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, name: "Minor 7th" },
+        { semitones: 14, letterSteps: 8, name: "Major 9th" }
     ],
 
     minor9: [
-
-        {
-            semitones: 0,
-            letterSteps: 0,
-            name: "Root"
-        },
-
-        {
-            semitones: 3,
-            letterSteps: 2,
-            name: "Minor 3rd"
-        },
-
-        {
-            semitones: 7,
-            letterSteps: 4,
-            name: "Perfect 5th"
-        },
-
-        {
-            semitones: 10,
-            letterSteps: 6,
-            name: "Minor 7th"
-        },
-
-        {
-            semitones: 14,
-            letterSteps: 8,
-            name: "Major 9th"
-        }
-
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, name: "Minor 7th" },
+        { semitones: 14, letterSteps: 8, name: "Major 9th" }
     ],
 
     dominant7b9: [
-
-        {
-            semitones: 0,
-            letterSteps: 0,
-            name: "Root"
-        },
-
-        {
-            semitones: 4,
-            letterSteps: 2,
-            name: "Major 3rd"
-        },
-
-        {
-            semitones: 7,
-            letterSteps: 4,
-            name: "Perfect 5th"
-        },
-
-        {
-            semitones: 10,
-            letterSteps: 6,
-            name: "Minor 7th"
-        },
-
-        {
-            semitones: 13,
-            letterSteps: 8,
-            name: "Flat 9th"
-        }
-
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, name: "Minor 7th" },
+        { semitones: 13, letterSteps: 8, name: "Flat 9th" }
     ],
 
     dominant7sharp9: [
-
-        {
-            semitones: 0,
-            letterSteps: 0,
-            name: "Root"
-        },
-
-        {
-            semitones: 4,
-            letterSteps: 2,
-            name: "Major 3rd"
-        },
-
-        {
-            semitones: 7,
-            letterSteps: 4,
-            name: "Perfect 5th"
-        },
-
-        {
-            semitones: 10,
-            letterSteps: 6,
-            name: "Minor 7th"
-        },
-
-        {
-            semitones: 15,
-            letterSteps: 8,
-            name: "Sharp 9th"
-        }
-
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, name: "Minor 7th" },
+        { semitones: 15, letterSteps: 8, name: "Sharp 9th" }
     ]
 };
 // ===============================================================

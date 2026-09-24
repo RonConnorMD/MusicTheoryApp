@@ -63,7 +63,24 @@ const CHORDS = {
         { semitones: 4, letterSteps: 2, name: "Major 3rd" },
         { semitones: 8, letterSteps: 4, name: "Augmented 5th" }
     ],
+    sus2: [
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 2, letterSteps: 1, name: "Major 2nd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" }
+    ],
 
+    sus4: [
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 5, letterSteps: 3, name: "Perfect 4th" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" }
+    ],
+
+    add9: [
+        { semitones: 0, letterSteps: 0, name: "Root" },
+        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
+        { semitones: 14, letterSteps: 8, name: "Major 9th" }
+    ],
     major7: [
         { semitones: 0, letterSteps: 0, name: "Root" },
         { semitones: 4, letterSteps: 2, name: "Major 3rd" },
@@ -155,6 +172,10 @@ const CHORD_SYMBOLS = {
     diminished: "dim",
     augmented: "aug",
 
+    sus2: "sus2",
+    sus4: "sus4",
+    add9: "add9",
+
     major7: "maj7",
     dominant7: "7",
     minor7: "m7",
@@ -168,6 +189,7 @@ const CHORD_SYMBOLS = {
 
     dominant7b9: "7b9",
     dominant7sharp9: "7#9"
+
 };
 
 
@@ -196,10 +218,16 @@ const QUIZ_LEVELS = {
         "minor"
     ],
     intermediate: [
+
         "major",
         "minor",
         "diminished",
         "augmented",
+
+        "sus2",
+        "sus4",
+        "add9",
+
         "major7",
         "dominant7",
         "minor7"
@@ -701,39 +729,27 @@ function parseChordName(chordName) {
     const suffixMap = {
 
         "": "major",
-
         "m": "minor",
-
         "dim": "diminished",
-
         "aug": "augmented",
 
+        "sus2": "sus2",
+        "sus4": "sus4",
+        "add9": "add9",
+
         "maj7": "major7",
-
         "7": "dominant7",
-
         "m7": "minor7",
+        "m7b5": "halfDiminished7",
+        "dim7": "diminished7",
 
-        "m7b5":
-            "halfDiminished7",
+        "maj9": "major9",
+        "9": "dominant9",
+        "m9": "minor9",
 
-        "dim7":
-            "diminished7",
+        "7b9": "dominant7b9",
+        "7#9": "dominant7sharp9"
 
-        "maj9":
-            "major9",
-
-        "9":
-            "dominant9",
-
-        "m9":
-            "minor9",
-
-        "7b9":
-            "dominant7b9",
-
-        "7#9":
-            "dominant7sharp9"
     };
 
     const type =

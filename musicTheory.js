@@ -185,7 +185,7 @@ const ROOTS = [
 const CHORD_TYPES =
     Object.keys(CHORDS);
 
- // ===============================================================
+// ===============================================================
 // Quiz Levels
 // ===============================================================
 
@@ -218,7 +218,7 @@ const QUIZ_LEVELS = {
 
 let currentChordTypes =
 
-    QUIZ_LEVELS.advanced;   
+    QUIZ_LEVELS.advanced;
 
 
 // ===============================================================
@@ -366,25 +366,25 @@ function buildChord(rootText, chordType) {
     const chord = [];
 
 
- for (const tone of tones) {
+    for (const tone of tones) {
 
-    const desiredPitch =
-        (rootPitch + tone.semitones) % 12;
+        const desiredPitch =
+            (rootPitch + tone.semitones) % 12;
 
-    const desiredLetter =
-        nextLetter(
-            root.letter,
-            tone.letterSteps
-        );
+        const desiredLetter =
+            nextLetter(
+                root.letter,
+                tone.letterSteps
+            );
 
-    const note =
-        spellNote(
-            desiredLetter,
-            desiredPitch
-        );
+        const note =
+            spellNote(
+                desiredLetter,
+                desiredPitch
+            );
 
-    chord.push(note);   
-}
+        chord.push(note);
+    }
 
     return chord;
 
@@ -575,7 +575,7 @@ function runQuizRound() {
         "QUESTION:"
     );
 
-      console.log(
+    console.log(
         chordSymbol(
             q.root,
             q.type
@@ -788,9 +788,9 @@ function chordLookupMode() {
 
                 console.log(
                     chordName +
-                     " = " +
+                    " = " +
                     notes.map(noteToString).join(" ")
-                );  
+                );
 
                 console.log();
 
@@ -829,18 +829,21 @@ function showMainMenu() {
 
             answer =
                 answer.trim()
-                .toUpperCase();
+                    .toUpperCase();
 
             if (answer === "1") {
 
-                interactiveQuizRound();
+                chooseDifficulty(
+                    interactiveQuizRound
+                );
 
             } else if (
                 answer === "2"
             ) {
 
-                interactiveReverseQuizRound();
-
+                chooseDifficulty(
+                    interactiveReverseQuizRound
+                );
             } else if (
                 answer === "3"
             ) {
@@ -892,12 +895,12 @@ function interactiveQuizRound() {
         "QUESTION:"
     );
 
-console.log(
-    chordSymbol(
-        q.root,
-        q.type
-    )
-);
+    console.log(
+        chordSymbol(
+            q.root,
+            q.type
+        )
+    );
 
     console.log();
 
@@ -1063,9 +1066,86 @@ function testInput() {
     );
 }
 
+// ===============================================================
+// Choose Difficulty
+// ===============================================================
+
+function chooseDifficulty(callback) {
+
+    console.log();
+
+    console.log(
+        "Choose Difficulty"
+    );
+
+    console.log();
+
+    console.log(
+        "1 - Beginner"
+    );
+
+    console.log(
+        "2 - Intermediate"
+    );
+
+    console.log(
+        "3 - Advanced"
+    );
+
+    console.log();
+
+    rl.question(
+
+        "Select option: ",
+
+        function (choice) {
+
+            switch (choice) {
+
+                case "1":
+
+                    currentChordTypes =
+                        QUIZ_LEVELS.beginner;
+
+                    break;
+
+                case "2":
+
+                    currentChordTypes =
+                        QUIZ_LEVELS.intermediate;
+
+                    break;
+
+                case "3":
+
+                    currentChordTypes =
+                        QUIZ_LEVELS.advanced;
+
+                    break;
+
+                default:
+
+                    console.log();
+
+                    console.log(
+                        "Invalid selection."
+                    );
+
+                    chooseDifficulty(
+                        callback
+                    );
+
+                    return;
+            }
+
+            callback();
+        }
+    );
+}
+
 
 // ===============================================================
-// Main Program
+// Main Program    ---    main menu
 // ===============================================================
 
 showMainMenu();

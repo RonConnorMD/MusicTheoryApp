@@ -823,11 +823,43 @@ function chordLookupMode() {
 
                 console.log();
 
+                console.log(
+                    "Chord: " +
+                    chordName
+                );
+
+                console.log();
 
                 console.log(
-                    chordName +
-                    " = " +
+                    "Notes:"
+                );
+
+                console.log(
                     notes.map(noteToString).join(" ")
+                );
+
+                console.log();
+
+                console.log(
+                    "Formula:"
+                );
+
+                console.log(
+                    chordDegrees(
+                        chord.type
+                    )
+                );
+
+                console.log();
+
+                console.log(
+                    "Intervals:"
+                );
+
+                console.log(
+                    chordIntervals(
+                        chord.type
+                    )
                 );
 
                 console.log();

@@ -37,123 +37,124 @@ let questionNumber = 1;
 //===============================================================
 // Chord definitions
 //===============================================================
-
 const CHORDS = {
 
     major: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" }
     ],
 
     minor: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" }
     ],
 
     diminished: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
-        { semitones: 6, letterSteps: 4, name: "Diminished 5th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+        { semitones: 6, letterSteps: 4, degree: "b5", interval: "Diminished 5th" }
     ],
 
     augmented: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
-        { semitones: 8, letterSteps: 4, name: "Augmented 5th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+        { semitones: 8, letterSteps: 4, degree: "#5", interval: "Augmented 5th" }
     ],
+
     sus2: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 2, letterSteps: 1, name: "Major 2nd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 2, letterSteps: 1, degree: "2", interval: "Major 2nd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" }
     ],
 
     sus4: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 5, letterSteps: 3, name: "Perfect 4th" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 5, letterSteps: 3, degree: "4", interval: "Perfect 4th" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" }
     ],
 
     add9: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
-        { semitones: 14, letterSteps: 8, name: "Major 9th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+        { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" }
     ],
+
     major7: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
-        { semitones: 11, letterSteps: 6, name: "Major 7th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+        { semitones: 11, letterSteps: 6, degree: "7", interval: "Major 7th" }
     ],
 
     dominant7: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, name: "Minor 7th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" }
     ],
 
     minor7: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, name: "Minor 7th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" }
     ],
 
     halfDiminished7: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
-        { semitones: 6, letterSteps: 4, name: "Diminished 5th" },
-        { semitones: 10, letterSteps: 6, name: "Minor 7th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+        { semitones: 6, letterSteps: 4, degree: "b5", interval: "Diminished 5th" },
+        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" }
     ],
 
     diminished7: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
-        { semitones: 6, letterSteps: 4, name: "Diminished 5th" },
-        { semitones: 9, letterSteps: 6, name: "Diminished 7th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+        { semitones: 6, letterSteps: 4, degree: "b5", interval: "Diminished 5th" },
+        { semitones: 9, letterSteps: 6, degree: "bb7", interval: "Diminished 7th" }
     ],
 
     major9: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
-        { semitones: 11, letterSteps: 6, name: "Major 7th" },
-        { semitones: 14, letterSteps: 8, name: "Major 9th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+        { semitones: 11, letterSteps: 6, degree: "7", interval: "Major 7th" },
+        { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" }
     ],
 
     dominant9: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, name: "Minor 7th" },
-        { semitones: 14, letterSteps: 8, name: "Major 9th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+        { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" }
     ],
 
     minor9: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 3, letterSteps: 2, name: "Minor 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, name: "Minor 7th" },
-        { semitones: 14, letterSteps: 8, name: "Major 9th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+        { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" }
     ],
 
     dominant7b9: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, name: "Minor 7th" },
-        { semitones: 13, letterSteps: 8, name: "Flat 9th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+        { semitones: 13, letterSteps: 8, degree: "b9", interval: "Flat 9th" }
     ],
 
     dominant7sharp9: [
-        { semitones: 0, letterSteps: 0, name: "Root" },
-        { semitones: 4, letterSteps: 2, name: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, name: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, name: "Minor 7th" },
-        { semitones: 15, letterSteps: 8, name: "Sharp 9th" }
+        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+        { semitones: 15, letterSteps: 8, degree: "#9", interval: "Sharp 9th" }
     ]
 };
 // ===============================================================

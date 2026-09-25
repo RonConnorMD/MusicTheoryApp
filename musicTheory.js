@@ -419,6 +419,27 @@ function buildChord(rootText, chordType) {
 
 }
 
+// ===============================================================
+// Chord Degree Display
+// ===============================================================
+
+function chordDegrees(chordType) {
+
+    return CHORDS[chordType]
+        .map(tone => tone.degree)
+        .join(" ");
+}
+
+// ===============================================================
+// Chord Interval Display
+// ===============================================================
+
+function chordIntervals(chordType) {
+
+    return CHORDS[chordType]
+        .map(tone => tone.interval)
+        .join(", ");
+}
 
 // ===============================================================
 // Chord to string

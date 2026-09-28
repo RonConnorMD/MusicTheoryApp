@@ -16,17 +16,25 @@ ROOTS.forEach(root => {
     button.textContent = root;
 
     button.addEventListener(
-        "click",
-        function () {
+    "click",
+    function () {
 
-            selectedRoot = root;
+        document
+            .querySelectorAll("#rootButtons button")
+            .forEach(btn =>
+                btn.classList.remove("selected")
+            );
 
-            document
-                .getElementById("result")
-                .textContent =
-                "Root: " + root;
-        }
-    );
+        button.classList.add("selected");
+
+        selectedRoot = root;
+
+        document
+            .getElementById("result")
+            .textContent =
+            "Root: " + root;
+    }
+);
 
     rootContainer.appendChild(button);
 });
@@ -49,24 +57,34 @@ const chordContainer =
 
     button.addEventListener(
         "click",
-        function () {
+       function () {
 
-            selectedChordType = type;
+    document
+        .querySelectorAll("#chordButtons button")
+        .forEach(btn =>
+            btn.classList.remove("selected")
+        );
 
-            document
-                .getElementById("result")
-                .textContent =
-                "Root: " +
-                selectedRoot +
-                "   Type: " +
-                selectedChordType;
-        }
+    button.classList.add("selected");
+
+    selectedChordType = type;
+
+    document
+        .getElementById("result")
+        .textContent =
+        "Root: " +
+        selectedRoot +
+        "   Type: " +
+        selectedChordType;
+}
     );
 
     chordContainer.appendChild(button);
 });
 
-//====================================================
+//===================================================================
+//     Lookup button
+//===================================================================
 document
     .getElementById("lookupBtn")
     .addEventListener(
@@ -82,9 +100,38 @@ document
             const notes =
                 chordToString(chord);
 
+            const symbol =
+                chordSymbol(
+                    selectedRoot,
+                    selectedChordType
+                );
+
+            const degrees =
+                chordDegrees(
+                    selectedChordType
+                );
+
+            const intervals =
+                chordIntervals(
+                    selectedChordType
+                );
+
             document
                 .getElementById("result")
-                .textContent =
-                notes;
+                .innerHTML =
+
+                "<h3>Chord: " + symbol + "</h3>" +
+
+                "<p><strong>Notes:</strong><br>" +
+                notes +
+                "</p>" +
+
+                "<p><strong>Formula:</strong><br>" +
+                degrees +
+                "</p>" +
+
+                "<p><strong>Intervals:</strong><br>" +
+                intervals +
+                "</p>";
         }
     );

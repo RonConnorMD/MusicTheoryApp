@@ -13,6 +13,15 @@ const notes = [
     "B"
 ];
 
+const letters = [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "A",
+    "B"
+];
 const majorPattern = [2, 2, 1, 2, 2, 2, 1];
 
 const rootSelect = document.getElementById("root");

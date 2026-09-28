@@ -1,20 +1,6 @@
-const ROOTS = [
-    "C", "C#", "Db",
-    "D", "D#", "Eb",
-    "E",
-    "F", "F#", "Gb",
-    "G", "G#", "Ab",
-    "A", "A#", "Bb",
-    "B"
-];
 
-const CHORD_TYPES = [
-    "major",
-    "minor",
-    "major7",
-    "dominant7",
-    "minor7"
-];
+
+
 
 let selectedRoot = null;
 let selectedChordType = null;
@@ -48,7 +34,13 @@ ROOTS.forEach(root => {
 const chordContainer =
     document.getElementById("chordButtons");
 
-CHORD_TYPES.forEach(type => {
+[
+    "major",
+    "minor",
+    "major7",
+    "dominant7",
+    "minor7"
+].forEach(type => {
 
     const button =
         document.createElement("button");
@@ -81,11 +73,18 @@ document
         "click",
         function () {
 
+            const chord =
+                buildChord(
+                    selectedRoot,
+                    selectedChordType
+                );
+
+            const notes =
+                chordToString(chord);
+
             document
                 .getElementById("result")
                 .textContent =
-                selectedRoot +
-                " " +
-                selectedChordType;
+                notes;
         }
     );

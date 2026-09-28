@@ -40,14 +40,45 @@ ROOTS.forEach(root => {
 });
 
 const chordContainer =
+
     document.getElementById("chordButtons");
 
 [
+
     "major",
+
     "minor",
+
+    "diminished",
+
+    "augmented",
+
+    "sus2",
+
+    "sus4",
+
+    "add9",
+
     "major7",
+
     "dominant7",
-    "minor7"
+
+    "minor7",
+
+    "halfDiminished7",
+
+    "diminished7",
+
+    "major9",
+
+    "dominant9",
+
+    "minor9",
+
+    "dominant7b9",
+
+    "dominant7sharp9"
+
 ].forEach(type => {
 
     const button =

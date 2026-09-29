@@ -5,6 +5,23 @@
 let selectedRoot = null;
 let selectedChordType = null;
 
+const DISPLAY_NAMES = {
+
+    major: "Major", minor: "Minor",
+
+    diminished: "Dim", augmented: "Aug",
+
+    sus2: "Sus2", sus4: "Sus4", add9: "Add9",
+
+    major7: "Maj7", dominant7: "7", minor7: "m7",
+
+    halfDiminished7: "ø7", diminished7: "dim7",
+
+    major9: "Maj9", dominant9: "9", minor9: "m9",
+
+    dominant7b9: "7♭9", dominant7sharp9: "7♯9"
+};
+
 const rootContainer =
     document.getElementById("rootButtons");
 
@@ -40,7 +57,6 @@ ROOTS.forEach(root => {
 });
 const chordContainer =
     document.getElementById("chordButtons");
-
 [
     "major", "minor",
     "diminished", "augmented",
@@ -59,7 +75,8 @@ const chordContainer =
     const button =
         document.createElement("button");
 
-    button.textContent = type;
+    button.textContent =
+    DISPLAY_NAMES[type];
 
     button.addEventListener(
         "click",

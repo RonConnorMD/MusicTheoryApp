@@ -4,6 +4,8 @@
 
 let selectedRoot = null;
 let selectedChordType = null;
+let currentQuestion = null;
+let userAnswer = [];
 
 const DISPLAY_NAMES = {
 
@@ -176,8 +178,17 @@ document
         "click",
         function () {
 
-            const q =
+            currentQuestion =
                 buildQuestion();
+
+            const q =
+                currentQuestion;
+
+            userAnswer = [];
+
+            document
+                .getElementById("selectedNotes")
+                .textContent = "";
 
             const answerCount =
                 q.answer.length;
@@ -200,4 +211,88 @@ document
                 " notes</p>";
         }
     );
+// ===================================================
+// Quiz Note Buttons
+// ===================================================
 
+const quizNoteContainer =
+    document.getElementById(
+        "quizNoteButtons"
+    );
+
+ROOTS.forEach(note => {
+
+    const button =
+        document.createElement(
+            "button"
+        );
+
+    button.textContent =
+        prettyMusic(note);
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            userAnswer.push(note);
+
+            document
+                .getElementById(
+                    "selectedNotes"
+                )
+                .textContent =
+                prettyMusic(
+                    userAnswer.join(" ")
+                );
+        }
+    );
+
+    quizNoteContainer
+        .appendChild(button);
+});
+
+// ===================================================
+// Check Answer
+// ===================================================
+
+document
+    .getElementById("checkAnswerBtn")
+    .addEventListener(
+        "click",
+        function () {
+
+            const correct =
+                checkAnswer(
+                    currentQuestion.answer,
+                    userAnswer
+                );
+
+            if (correct) {
+
+                document
+                    .getElementById(
+                        "quizFeedback"
+                    )
+                    .innerHTML =
+                    "<h3>Correct!</h3>";
+
+            } else {
+
+                document
+                    .getElementById(
+                        "quizFeedback"
+                    )
+                    .innerHTML =
+
+                    "<h3>Incorrect</h3>" +
+
+                    "<p>Correct Answer:<br>" +
+
+                    prettyMusic(
+                        currentQuestion.answer.join(" ")
+                    ) +
+
+                    "</p>";
+            }
+        }
+    );

@@ -140,9 +140,7 @@ document
     document.getElementById("selectedNotes").textContent = "";
 
     document.getElementById("quizStatus").textContent =
-      "0 of " +
-      q.answer.length +
-      " notes selected";
+      "0 of " + q.answer.length + " notes selected";
 
     const answerCount = q.answer.length;
 
@@ -154,7 +152,6 @@ document
       answerCount +
       " notes</p>";
   });
-
 
 // ===================================================
 // Quiz Note Buttons
@@ -173,7 +170,6 @@ ROOTS.forEach((note) => {
     }
     userAnswer.push(note);
 
-   
     document.getElementById("selectedNotes").textContent = prettyMusic(
       userAnswer.join(" "),
     );
@@ -188,7 +184,6 @@ ROOTS.forEach((note) => {
   quizNoteContainer.appendChild(button);
 });
 
-
 // ===================================================
 // Check Answer
 // ===================================================
@@ -199,11 +194,15 @@ document
     const correct = checkAnswer(currentQuestion.answer, userAnswer);
 
     if (correct) {
-      document.getElementById("quizFeedback").innerHTML = "<h3>Correct!</h3>";
+      document.getElementById("quizFeedback").innerHTML =
+        "<h3>✅ Correct!</h3>";
     } else {
       document.getElementById("quizFeedback").innerHTML =
-        "<h3>Incorrect</h3>" +
-        "<p>Correct Answer:<br>" +
+        "<h3>❌ Incorrect</h3>" +
+        "<p><strong>Your Answer:</strong><br>" +
+        prettyMusic(userAnswer.join(" ")) +
+        "</p>" +
+        "<p><strong>Correct Answer:</strong><br>" +
         prettyMusic(currentQuestion.answer.join(" ")) +
         "</p>";
     }

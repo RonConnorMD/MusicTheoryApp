@@ -2,6 +2,13 @@ let selectedRoot = null;
 let selectedChordType = null;
 let currentQuestion = null;
 let userAnswer = [];
+let questionsAsked = 0;
+let questionsCorrect = 0;
+
+function updateScoreBoard() {
+  document.getElementById("scoreBoard").textContent =
+    "Score: " + questionsCorrect + " / " + questionsAsked;
+}
 
 const DISPLAY_NAMES = {
   major: "Major",
@@ -195,8 +202,9 @@ document
   .getElementById("checkAnswerBtn")
   .addEventListener("click", function () {
     const correct = checkAnswer(currentQuestion.answer, userAnswer);
-
+    questionsAsked++;
     if (correct) {
+      questionsCorrect++;
       document.getElementById("quizFeedback").innerHTML =
         "<h3>✅ Correct!</h3>";
     } else {
@@ -209,6 +217,8 @@ document
         prettyMusic(currentQuestion.answer.join(" ")) +
         "</p>";
     }
+    document.getElementById("checkAnswerBtn").disabled = true;
+    updateScoreBoard();
   });
 
 // ===================================================

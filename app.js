@@ -235,3 +235,41 @@ document
     document.getElementById("quizFeedback").textContent = "";
     document.getElementById("checkAnswerBtn").disabled = true;
   });
+
+// ===================================================
+// Quiz Filter Groups
+// ===================================================
+
+function setupGroupCheckbox(groupId, memberClass) {
+  const groupCheckbox = document.getElementById(groupId);
+
+  const members = document.querySelectorAll("." + memberClass);
+
+  // Group checkbox controls members
+
+  groupCheckbox.addEventListener("change", function () {
+    members.forEach(function (member) {
+      member.checked = groupCheckbox.checked;
+    });
+  });
+
+  // Members update group checkbox
+
+  members.forEach(function (member) {
+    member.addEventListener("change", function () {
+      const allChecked = [...members].every((checkbox) => checkbox.checked);
+
+      groupCheckbox.checked = allChecked;
+    });
+  });
+}
+// ===================================================
+// Establish chord groups
+// ===================================================
+setupGroupCheckbox("triadsGroup", "triadChord");
+
+setupGroupCheckbox("suspendedGroup", "suspendedChord");
+
+setupGroupCheckbox("seventhGroup", "seventhChord");
+
+setupGroupCheckbox("ninthGroup", "ninthChord");

@@ -20,3 +20,9 @@ button {
   padding: 15px;
   border-radius: 8px;
 }
+
+.toggle-arrow {
+  cursor: pointer;
+  margin-right: 8px;
+  user-select: none;
+}

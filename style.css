@@ -26,3 +26,19 @@ button {
   margin-right: 8px;
   user-select: none;
 }
+.note-pill {
+  display: inline-block;
+  padding: 8px 14px;
+  margin: 4px;
+  border: 1px solid #888;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+.note-pill {
+  cursor: pointer;
+}
+
+.note-pill:hover {
+  transform: scale(1.05);
+}

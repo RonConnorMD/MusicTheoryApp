@@ -147,13 +147,19 @@ function getSelectedChordTypes() {
 
 function buildFilteredQuestion() {
   const selectedTypes = getSelectedChordTypes();
+  const selectedRoots = getSelectedRoots();
 
   if (selectedTypes.length === 0) {
     alert("Please select at least one chord type.");
     return null;
   }
 
-  const root = randomItem(ROOTS);
+  if (selectedRoots.length === 0) {
+    alert("Please select at least one root.");
+    return null;
+  }
+
+  const root = randomItem(selectedRoots);
 
   const type = randomItem(selectedTypes);
 
@@ -183,7 +189,7 @@ document
 
     document.getElementById("quizFeedback").textContent = "";
     document.getElementById("checkAnswerBtn").disabled = true;
-    document.getElementById("selectedNotes").textContent = "";
+    displaySelectedNotes();
 
     document.getElementById("quizStatus").textContent =
       "0 of " + q.answer.length + " notes selected";
@@ -216,9 +222,7 @@ ROOTS.forEach((note) => {
     }
     userAnswer.push(note);
 
-    document.getElementById("selectedNotes").textContent = prettyMusic(
-      userAnswer.join(" "),
-    );
+    displaySelectedNotes();
 
     document.getElementById("quizStatus").textContent =
       userAnswer.length +
@@ -269,12 +273,57 @@ document
   .addEventListener("click", function () {
     userAnswer = [];
 
-    document.getElementById("selectedNotes").textContent = "";
+    displaySelectedNotes();
 
     document.getElementById("quizFeedback").textContent = "";
     document.getElementById("checkAnswerBtn").disabled = true;
   });
 
+// ===================================================
+// Get Selected Roots
+// ===================================================
+
+function getSelectedRoots() {
+  const selectedRoots = [];
+
+  document
+    .querySelectorAll("#rootFilters input[type='checkbox']")
+    .forEach(function (checkbox) {
+      if (checkbox.checked && checkbox.value) {
+        selectedRoots.push(checkbox.value);
+      }
+    });
+
+  return selectedRoots;
+}
+
+// ===================================================
+// Display Selected Notes
+// ===================================================
+
+function displaySelectedNotes() {
+  const container = document.getElementById("selectedNotes");
+
+  container.innerHTML = "";
+
+  userAnswer.forEach(function (note) {
+    const span = document.createElement("span");
+
+    span.className = "note-pill";
+
+    span.textContent = prettyMusic(note);
+
+    container.appendChild(span);
+  });
+}
+
+// ===================================================
+// Quiz Filter Groups
+// ===================================================
+
+function setupGroupCheckbox(groupId, memberClass) {
+  const groupCheckbox = document.getElementById(groupId);
+}
 // ===================================================
 // Quiz Filter Groups
 // ===================================================
@@ -312,3 +361,15 @@ setupGroupCheckbox("suspendedGroup", "suspendedChord");
 setupGroupCheckbox("seventhGroup", "seventhChord");
 
 setupGroupCheckbox("ninthGroup", "ninthChord");
+
+// ===================================================
+// Root Filter Group Checkboxes
+// Synchronize group checkboxes with all root
+// checkboxes in the corresponding category.
+// ===================================================
+
+setupGroupCheckbox("naturalRootsGroup", "naturalRoot");
+
+setupGroupCheckbox("sharpRootsGroup", "sharpRoot");
+
+setupGroupCheckbox("flatRootsGroup", "flatRoot");

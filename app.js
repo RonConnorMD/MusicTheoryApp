@@ -130,14 +130,53 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
 });
 
 // ===================================================
+// Selected Quiz Chord Types
+// ===================================================
+
+function getSelectedChordTypes() {
+  return [
+    ...document.querySelectorAll(
+      "#quizFilters input[type='checkbox'][value]:checked",
+    ),
+  ].map((checkbox) => checkbox.value);
+}
+
+// ===================================================
+// Build Filtered Question
+// ===================================================
+
+function buildFilteredQuestion() {
+  const selectedTypes = getSelectedChordTypes();
+
+  if (selectedTypes.length === 0) {
+    alert("Please select at least one chord type.");
+    return null;
+  }
+
+  const root = randomItem(ROOTS);
+
+  const type = randomItem(selectedTypes);
+
+  const answer = chordNotes(buildChord(root, type));
+
+  return {
+    root,
+    type,
+    answer,
+  };
+}
+
+// ===================================================
 // Quiz Mode
 // ===================================================
 
 document
   .getElementById("newQuestionBtn")
   .addEventListener("click", function () {
-    currentQuestion = buildQuestion();
-
+    currentQuestion = buildFilteredQuestion();
+    if (!currentQuestion) {
+      return;
+    }
     const q = currentQuestion;
 
     userAnswer = [];

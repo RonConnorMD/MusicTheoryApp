@@ -76,7 +76,7 @@ const chordContainer =
         document.createElement("button");
 
     button.textContent =
-    DISPLAY_NAMES[type];
+        DISPLAY_NAMES[type];
 
     button.addEventListener(
         "click",
@@ -106,62 +106,92 @@ const chordContainer =
 
 });
 
-        //===================================================================
-        //     Lookup button
-        //===================================================================
-        document
-            .getElementById("lookupBtn")
-            .addEventListener(
-                "click",
-                function () {
+//===================================================================
+//     Lookup button
+//===================================================================
+document
+    .getElementById("lookupBtn")
+    .addEventListener(
+        "click",
+        function () {
 
-                    const chord =
-                        buildChord(
-                            selectedRoot,
-                            selectedChordType
-                        );
+            const chord =
+                buildChord(
+                    selectedRoot,
+                    selectedChordType
+                );
 
-                    const notes =
-                        chordToString(chord);
+            const notes =
+                chordToString(chord);
 
-                    const prettyNotes =
-                        prettyMusic(notes);
+            const prettyNotes =
+                prettyMusic(notes);
 
-                    const symbol =
-                        chordSymbol(
-                            selectedRoot,
-                            selectedChordType
-                        );
+            const symbol =
+                chordSymbol(
+                    selectedRoot,
+                    selectedChordType
+                );
 
-                    const prettySymbol =
-                        prettyMusic(symbol);
+            const prettySymbol =
+                prettyMusic(symbol);
 
-                    const degrees =
-                        chordDegrees(
-                            selectedChordType
-                        );
+            const degrees =
+                chordDegrees(
+                    selectedChordType
+                );
 
-                    const intervals =
-                        chordIntervals(
-                            selectedChordType
-                        );
+            const intervals =
+                chordIntervals(
+                    selectedChordType
+                );
 
-                    document
-                        .getElementById("result")
-                        .innerHTML =
+            document
+                .getElementById("result")
+                .innerHTML =
 
-                        "<h3>Chord: " + prettySymbol + "</h3>" +
+                "<h3>Chord: " + prettySymbol + "</h3>" +
 
-                        "<p><strong>Notes:</strong><br>" +
-                        prettyNotes +
-                        "</p>" +
+                "<p><strong>Notes:</strong><br>" +
+                prettyNotes +
+                "</p>" +
 
-                        "<p><strong>Formula:</strong><br>" +
-                        degrees +
-                        "</p>" +
+                "<p><strong>Formula:</strong><br>" +
+                degrees +
+                "</p>" +
 
-                        "<p><strong>Intervals:</strong><br>" +
-                        intervals +
-                        "</p>";
-                }
-            );
+                "<p><strong>Intervals:</strong><br>" +
+                intervals +
+                "</p>";
+        }
+    );
+
+// ===================================================
+// Quiz Mode
+// ===================================================
+
+document
+    .getElementById("newQuestionBtn")
+    .addEventListener(
+        "click",
+        function () {
+
+            const q =
+                buildQuestion();
+
+            document
+                .getElementById("quizQuestion")
+                .innerHTML =
+
+                "<h3>" +
+                prettyMusic(
+                    chordSymbol(
+                        q.root,
+                        q.type
+                    )
+                ) +
+                "</h3>";
+        }
+    );
+
+    

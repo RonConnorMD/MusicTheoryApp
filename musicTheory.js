@@ -965,6 +965,7 @@ function prettyMusic(text) {
 
 function interactiveQuizRound() {
 
+    
     const q =
         buildQuestion();
 

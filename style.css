@@ -1,9 +1,22 @@
 button {
-    margin: 4px;
-    padding: 8px 12px;
+  margin: 4px;
+  padding: 8px 12px;
 }
 
 .selected {
-    background-color: lightblue;
-    border: 2px solid blue;
+  background-color: lightblue;
+  border: 2px solid blue;
+}
+
+#quizFilters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.filterGroup {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
 }

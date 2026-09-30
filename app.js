@@ -136,7 +136,7 @@ document
     userAnswer = [];
 
     document.getElementById("quizFeedback").textContent = "";
-
+    document.getElementById("checkAnswerBtn").disabled = true;
     document.getElementById("selectedNotes").textContent = "";
 
     document.getElementById("quizStatus").textContent =
@@ -179,6 +179,9 @@ ROOTS.forEach((note) => {
       " of " +
       currentQuestion.answer.length +
       " notes selected";
+    if (userAnswer.length === currentQuestion.answer.length) {
+      document.getElementById("checkAnswerBtn").disabled = false;
+    }
   });
 
   quizNoteContainer.appendChild(button);
@@ -220,4 +223,5 @@ document
     document.getElementById("selectedNotes").textContent = "";
 
     document.getElementById("quizFeedback").textContent = "";
+    document.getElementById("checkAnswerBtn").disabled = true;
   });

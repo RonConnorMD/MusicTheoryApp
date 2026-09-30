@@ -1,330 +1,224 @@
-
-
-
-
 let selectedRoot = null;
 let selectedChordType = null;
 let currentQuestion = null;
 let userAnswer = [];
 
 const DISPLAY_NAMES = {
-
-    major: "Major", minor: "Minor",
-
-    diminished: "Dim", augmented: "Aug",
-
-    sus2: "Sus2", sus4: "Sus4", add9: "Add9",
-
-    major7: "Maj7", dominant7: "7", minor7: "m7",
-
-    halfDiminished7: "ø7", diminished7: "dim7",
-
-    major9: "Maj9", dominant9: "9", minor9: "m9",
-
-    dominant7b9: "7♭9", dominant7sharp9: "7♯9"
+  major: "Major",
+  minor: "Minor",
+  diminished: "Dim",
+  augmented: "Aug",
+  sus2: "Sus2",
+  sus4: "Sus4",
+  add9: "Add9",
+  major7: "Maj7",
+  dominant7: "7",
+  minor7: "m7",
+  halfDiminished7: "ø7",
+  diminished7: "dim7",
+  major9: "Maj9",
+  dominant9: "9",
+  minor9: "m9",
+  dominant7b9: "7♭9",
+  dominant7sharp9: "7♯9",
 };
 
-const rootContainer =
-    document.getElementById("rootButtons");
+const rootContainer = document.getElementById("rootButtons");
 
-ROOTS.forEach(root => {
+ROOTS.forEach((root) => {
+  const button = document.createElement("button");
 
-    const button =
-        document.createElement("button");
+  button.textContent = root;
 
-    button.textContent = root;
+  button.addEventListener("click", function () {
+    document
+      .querySelectorAll("#rootButtons button")
+      .forEach((btn) => btn.classList.remove("selected"));
 
-    button.addEventListener(
-        "click",
-        function () {
+    button.classList.add("selected");
 
-            document
-                .querySelectorAll("#rootButtons button")
-                .forEach(btn =>
-                    btn.classList.remove("selected")
-                );
+    selectedRoot = root;
 
-            button.classList.add("selected");
+    document.getElementById("result").textContent = "Root: " + root;
+  });
 
-            selectedRoot = root;
-
-            document
-                .getElementById("result")
-                .textContent =
-                "Root: " + root;
-        }
-    );
-
-    rootContainer.appendChild(button);
+  rootContainer.appendChild(button);
 });
-const chordContainer =
-    document.getElementById("chordButtons");
+const chordContainer = document.getElementById("chordButtons");
 [
-    "major", "minor",
-    "diminished", "augmented",
+  "major",
+  "minor",
+  "diminished",
+  "augmented",
 
-    "sus2", "sus4", "add9",
+  "sus2",
+  "sus4",
+  "add9",
 
-    "major7", "dominant7", "minor7",
+  "major7",
+  "dominant7",
+  "minor7",
 
-    "halfDiminished7", "diminished7",
+  "halfDiminished7",
+  "diminished7",
 
-    "major9", "dominant9", "minor9",
+  "major9",
+  "dominant9",
+  "minor9",
 
-    "dominant7b9", "dominant7sharp9"
-].forEach(type => {
+  "dominant7b9",
+  "dominant7sharp9",
+].forEach((type) => {
+  const button = document.createElement("button");
 
-    const button =
-        document.createElement("button");
+  button.textContent = DISPLAY_NAMES[type];
 
-    button.textContent =
-        DISPLAY_NAMES[type];
+  button.addEventListener("click", function () {
+    document
+      .querySelectorAll("#chordButtons button")
+      .forEach((btn) => btn.classList.remove("selected"));
 
-    button.addEventListener(
-        "click",
-        function () {
+    button.classList.add("selected");
 
-            document
-                .querySelectorAll("#chordButtons button")
-                .forEach(btn =>
-                    btn.classList.remove("selected")
-                );
+    selectedChordType = type;
 
-            button.classList.add("selected");
+    document.getElementById("result").textContent =
+      "Root: " + selectedRoot + "   Type: " + selectedChordType;
+  });
 
-            selectedChordType = type;
-
-            document
-                .getElementById("result")
-                .textContent =
-                "Root: " +
-                selectedRoot +
-                "   Type: " +
-                selectedChordType;
-        }
-    );
-
-    chordContainer.appendChild(button);
-
+  chordContainer.appendChild(button);
 });
 
 //===================================================================
 //     Lookup button
 //===================================================================
-document
-    .getElementById("lookupBtn")
-    .addEventListener(
-        "click",
-        function () {
+document.getElementById("lookupBtn").addEventListener("click", function () {
+  const chord = buildChord(selectedRoot, selectedChordType);
 
-            const chord =
-                buildChord(
-                    selectedRoot,
-                    selectedChordType
-                );
+  const notes = chordToString(chord);
 
-            const notes =
-                chordToString(chord);
+  const prettyNotes = prettyMusic(notes);
 
-            const prettyNotes =
-                prettyMusic(notes);
+  const symbol = chordSymbol(selectedRoot, selectedChordType);
 
-            const symbol =
-                chordSymbol(
-                    selectedRoot,
-                    selectedChordType
-                );
+  const prettySymbol = prettyMusic(symbol);
 
-            const prettySymbol =
-                prettyMusic(symbol);
+  const degrees = chordDegrees(selectedChordType);
 
-            const degrees =
-                chordDegrees(
-                    selectedChordType
-                );
+  const intervals = chordIntervals(selectedChordType);
 
-            const intervals =
-                chordIntervals(
-                    selectedChordType
-                );
-
-            document
-                .getElementById("result")
-                .innerHTML =
-
-                "<h3>Chord: " + prettySymbol + "</h3>" +
-
-                "<p><strong>Notes:</strong><br>" +
-                prettyNotes +
-                "</p>" +
-
-                "<p><strong>Formula:</strong><br>" +
-                degrees +
-                "</p>" +
-
-                "<p><strong>Intervals:</strong><br>" +
-                intervals +
-                "</p>";
-        }
-    );
+  document.getElementById("result").innerHTML =
+    "<h3>Chord: " +
+    prettySymbol +
+    "</h3>" +
+    "<p><strong>Notes:</strong><br>" +
+    prettyNotes +
+    "</p>" +
+    "<p><strong>Formula:</strong><br>" +
+    degrees +
+    "</p>" +
+    "<p><strong>Intervals:</strong><br>" +
+    intervals +
+    "</p>";
+});
 
 // ===================================================
 // Quiz Mode
 // ===================================================
 
 document
-    .getElementById("newQuestionBtn")
-    .addEventListener(
-        "click",
-        function () {
+  .getElementById("newQuestionBtn")
+  .addEventListener("click", function () {
+    currentQuestion = buildQuestion();
 
-            currentQuestion =
-                buildQuestion();
+    const q = currentQuestion;
 
-            const q =
-                currentQuestion;
+    userAnswer = [];
 
-            userAnswer = [];
-            
-            document
-                .getElementById(
-                    "quizFeedback"
-                )
-                .textContent = "";
+    document.getElementById("quizFeedback").textContent = "";
 
-            document
-                .getElementById("selectedNotes")
-                .textContent = "";
+    document.getElementById("selectedNotes").textContent = "";
 
-            const answerCount =
-                q.answer.length;
+    document.getElementById("quizStatus").textContent =
+      "0 of " +
+      q.answer.length +
+      " notes selected";
 
-            document
-                .getElementById("quizQuestion")
-                .innerHTML =
+    const answerCount = q.answer.length;
 
-                "<h3>" +
-                prettyMusic(
-                    chordSymbol(
-                        q.root,
-                        q.type
-                    )
-                ) +
-                "</h3>" +
+    document.getElementById("quizQuestion").innerHTML =
+      "<h3>" +
+      prettyMusic(chordSymbol(q.root, q.type)) +
+      "</h3>" +
+      "<p>Enter " +
+      answerCount +
+      " notes</p>";
+  });
 
-                "<p>Enter " +
-                answerCount +
-                " notes</p>";
-        }
-    );
+
 // ===================================================
 // Quiz Note Buttons
 // ===================================================
 
-const quizNoteContainer =
-    document.getElementById(
-        "quizNoteButtons"
+const quizNoteContainer = document.getElementById("quizNoteButtons");
+
+ROOTS.forEach((note) => {
+  const button = document.createElement("button");
+
+  button.textContent = prettyMusic(note);
+
+  button.addEventListener("click", function () {
+    if (userAnswer.length >= currentQuestion.answer.length) {
+      return;
+    }
+    userAnswer.push(note);
+
+   
+    document.getElementById("selectedNotes").textContent = prettyMusic(
+      userAnswer.join(" "),
     );
 
-ROOTS.forEach(note => {
+    document.getElementById("quizStatus").textContent =
+      userAnswer.length +
+      " of " +
+      currentQuestion.answer.length +
+      " notes selected";
+  });
 
-    const button =
-        document.createElement(
-            "button"
-        );
-
-    button.textContent =
-        prettyMusic(note);
-
-    button.addEventListener(
-        "click",
-        function () {
-
-            userAnswer.push(note);
-
-            document
-                .getElementById(
-                    "selectedNotes"
-                )
-                .textContent =
-                prettyMusic(
-                    userAnswer.join(" ")
-                );
-        }
-    );
-
-    quizNoteContainer
-        .appendChild(button);
+  quizNoteContainer.appendChild(button);
 });
+
 
 // ===================================================
 // Check Answer
 // ===================================================
 
 document
-    .getElementById("checkAnswerBtn")
-    .addEventListener(
-        "click",
-        function () {
+  .getElementById("checkAnswerBtn")
+  .addEventListener("click", function () {
+    const correct = checkAnswer(currentQuestion.answer, userAnswer);
 
-            const correct =
-                checkAnswer(
-                    currentQuestion.answer,
-                    userAnswer
-                );
-
-            if (correct) {
-
-                document
-                    .getElementById(
-                        "quizFeedback"
-                    )
-                    .innerHTML =
-                    "<h3>Correct!</h3>";
-
-            } else {
-
-                document
-                    .getElementById(
-                        "quizFeedback"
-                    )
-                    .innerHTML =
-
-                    "<h3>Incorrect</h3>" +
-
-                    "<p>Correct Answer:<br>" +
-
-                    prettyMusic(
-                        currentQuestion.answer.join(" ")
-                    ) +
-
-                    "</p>";
-            }
-        }
-    );
+    if (correct) {
+      document.getElementById("quizFeedback").innerHTML = "<h3>Correct!</h3>";
+    } else {
+      document.getElementById("quizFeedback").innerHTML =
+        "<h3>Incorrect</h3>" +
+        "<p>Correct Answer:<br>" +
+        prettyMusic(currentQuestion.answer.join(" ")) +
+        "</p>";
+    }
+  });
 
 // ===================================================
 // Clear Answer
 // ===================================================
 
 document
-    .getElementById("clearAnswerBtn")
-    .addEventListener(
-        "click",
-        function () {
+  .getElementById("clearAnswerBtn")
+  .addEventListener("click", function () {
+    userAnswer = [];
 
-            userAnswer = [];
+    document.getElementById("selectedNotes").textContent = "";
 
-            document
-                .getElementById(
-                    "selectedNotes"
-                )
-                .textContent = "";
-
-            document
-                .getElementById(
-                    "quizFeedback"
-                )
-                .textContent = "";
-        }
-    );
+    document.getElementById("quizFeedback").textContent = "";
+  });

@@ -185,6 +185,12 @@ document
                 currentQuestion;
 
             userAnswer = [];
+            
+            document
+                .getElementById(
+                    "quizFeedback"
+                )
+                .textContent = "";
 
             document
                 .getElementById("selectedNotes")
@@ -294,5 +300,31 @@ document
 
                     "</p>";
             }
+        }
+    );
+
+// ===================================================
+// Clear Answer
+// ===================================================
+
+document
+    .getElementById("clearAnswerBtn")
+    .addEventListener(
+        "click",
+        function () {
+
+            userAnswer = [];
+
+            document
+                .getElementById(
+                    "selectedNotes"
+                )
+                .textContent = "";
+
+            document
+                .getElementById(
+                    "quizFeedback"
+                )
+                .textContent = "";
         }
     );

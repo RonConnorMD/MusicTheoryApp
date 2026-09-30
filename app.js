@@ -179,6 +179,9 @@ document
             const q =
                 buildQuestion();
 
+            const answerCount =
+                q.answer.length;
+
             document
                 .getElementById("quizQuestion")
                 .innerHTML =
@@ -190,8 +193,11 @@ document
                         q.type
                     )
                 ) +
-                "</h3>";
+                "</h3>" +
+
+                "<p>Enter " +
+                answerCount +
+                " notes</p>";
         }
     );
 
-    

@@ -340,29 +340,44 @@
         </div>
       </div>
 
-      <h2>Quiz Mode</h2>
+ <section class="quiz-card">
 
-      <div id="scoreBoard">Score: 0 / 0</div>
+  <h2>Quiz Mode</h2>
 
-      <button id="newQuestionBtn">New Question</button>
+  <div id="scoreBoard">Score: 0 / 0</div>
 
-      <div id="quizQuestion"></div>
-      <div id="quizStatus"></div>
-      <div id="quizAnswer"></div>
+  <button id="newQuestionBtn">New Question</button>
 
-      <h3>Selected Notes</h3>
-      <div id="selectedNotes"></div>
+  <div class="question-area">
+    <div class="question-label">Build This Chord</div>
 
-      <div id="quizFeedback"></div>
+    <div id="quizQuestion"></div>
+    <div id="quizAnswer"></div>
+    <div id="quizStatus"></div>
 
-      <h3>Available Notes</h3>
-      <div id="quizNoteButtons"></div>
+  </div>
 
-      <button id="checkAnswerBtn" disabled>Check Answer</button>
+  <h3>Selected Notes</h3>
 
-      <button id="clearAnswerBtn">Clear Answer</button>
+  <div id="selectedNotes"></div>
 
-      <div id="quizFeedback"></div>
+  <div id="quizFeedback"></div>
+
+  <h3>Available Notes</h3>
+
+  <div id="quizNoteButtons"></div>
+
+  <div class="quiz-actions">
+    <button id="checkAnswerBtn" disabled>
+      Check Answer
+    </button>
+
+    <button id="clearAnswerBtn">
+      Clear Answer
+    </button>
+  </div>
+
+</section>
 
       <script src="musicTheory.js"></script>
       <script src="app.js"></script>

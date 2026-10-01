@@ -196,13 +196,13 @@ document
 
     const answerCount = q.answer.length;
 
-    document.getElementById("quizQuestion").innerHTML =
-      "<h3>" +
-      prettyMusic(chordSymbol(q.root, q.type)) +
-      "</h3>" +
-      "<p>Enter " +
-      answerCount +
-      " notes</p>";
+    const displayChord = chordSymbol(q.root, q.type);
+
+    document.getElementById("quizQuestion").textContent =
+      prettyMusic(displayChord);
+
+    document.getElementById("quizAnswer").textContent =
+      "Enter " + answerCount + " notes";
   });
 
 // ===================================================
@@ -286,8 +286,9 @@ document
 function getSelectedRoots() {
   const selectedRoots = [];
 
+  document;
   document
-    .querySelectorAll("#rootFilters input[type='checkbox']")
+    .querySelectorAll("#rootFilters input[type='checkbox'][value]")
     .forEach(function (checkbox) {
       if (checkbox.checked && checkbox.value) {
         selectedRoots.push(checkbox.value);

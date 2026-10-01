@@ -125,3 +125,56 @@ button {
   font-weight: 700;
   margin-bottom: 10px;
 }
+/* ---------- Quiz Card ---------- */
+
+.quiz-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 20px;
+}
+
+.question-area {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.question-label {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 12px;
+}
+#quizQuestion {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 15px 0;
+}
+#selectedNotes {
+  min-height: 60px;
+  padding: 10px;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.quiz-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+#quizAnswer {
+  font-size: 1.4rem;
+  text-align: center;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+#quizStatus {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 15px;
+}

@@ -178,3 +178,40 @@ button {
   color: #666;
   margin-bottom: 15px;
 }
+
+.info-card {
+  background: white;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.card-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.card-value.notes {
+  letter-spacing: 0.08em;
+}
+
+#result {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.chord-symbol {
+  font-size: 2.2rem;
+  font-weight: 700;
+}

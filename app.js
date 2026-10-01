@@ -114,19 +114,27 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
 
   const intervals = chordIntervals(selectedChordType);
 
-  document.getElementById("result").innerHTML =
-    "<h3>Chord: " +
-    prettySymbol +
-    "</h3>" +
-    "<p><strong>Notes:</strong><br>" +
-    prettyNotes +
-    "</p>" +
-    "<p><strong>Formula:</strong><br>" +
-    degrees +
-    "</p>" +
-    "<p><strong>Intervals:</strong><br>" +
-    intervals +
-    "</p>";
+  document.getElementById("result").innerHTML = `
+  <div class="info-card">
+    <div class="card-title">Chord</div>
+    <div class="card-value chord-symbol">${prettySymbol}</div>
+  </div>
+
+  <div class="info-card">
+    <div class="card-title">Notes</div>
+    <div class="card-value notes">${prettyNotes}</div>
+  </div>
+
+  <div class="info-card">
+    <div class="card-title">Formula</div>
+    <div class="card-value">${degrees}</div>
+  </div>
+
+  <div class="info-card">
+    <div class="card-title">Intervals</div>
+    <div class="card-value">${intervals}</div>
+  </div>
+  `;
 });
 
 // ===================================================
@@ -318,13 +326,6 @@ function displaySelectedNotes() {
   });
 }
 
-// ===================================================
-// Quiz Filter Groups
-// ===================================================
-
-function setupGroupCheckbox(groupId, memberClass) {
-  const groupCheckbox = document.getElementById(groupId);
-}
 // ===================================================
 // Quiz Filter Groups
 // ===================================================

@@ -9,10 +9,6 @@ let questionsCorrect = 0;
 // Builder UI
 // ===================================================
 
-// ===================================================
-// Builder UI
-// ===================================================
-
 function updateLookupButton() {
   document.getElementById("lookupBtn").disabled = !(
     selectedRoot && selectedChordType
@@ -40,6 +36,12 @@ updateLookupButton();
 function updateScoreBoard() {
   document.getElementById("scoreBoard").textContent =
     "Score: " + questionsCorrect + " / " + questionsAsked;
+}
+
+function setQuizNoteButtonsEnabled(enabled) {
+  document.querySelectorAll("#quizNoteButtons button").forEach((button) => {
+    button.disabled = !enabled;
+  });
 }
 
 const DISPLAY_NAMES = {
@@ -245,6 +247,11 @@ document
     document.getElementById("quizAnswer").textContent =
       "Enter " + answerCount + " notes";
   });
+document
+  .getElementById("nextQuestionBtn")
+  .addEventListener("click", function () {
+    document.getElementById("newQuestionBtn").click();
+  });
 
 // ===================================================
 // Quiz Note Buttons
@@ -272,6 +279,8 @@ ROOTS.forEach((note) => {
       " notes selected";
     if (userAnswer.length === currentQuestion.answer.length) {
       document.getElementById("checkAnswerBtn").disabled = false;
+
+      setQuizNoteButtonsEnabled(false);
     }
   });
 
@@ -302,6 +311,9 @@ document
         "</p>";
     }
     document.getElementById("checkAnswerBtn").disabled = true;
+
+    document.getElementById("nextQuestionBtn").disabled = false;
+
     updateScoreBoard();
   });
 
@@ -313,11 +325,12 @@ document
   .getElementById("clearAnswerBtn")
   .addEventListener("click", function () {
     userAnswer = [];
-
+    setQuizNoteButtonsEnabled(true);
     displaySelectedNotes();
 
     document.getElementById("quizFeedback").textContent = "";
     document.getElementById("checkAnswerBtn").disabled = true;
+    document.getElementById("nextQuestionBtn").disabled = true;
   });
 
 // ===================================================

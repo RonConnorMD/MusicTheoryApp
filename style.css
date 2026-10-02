@@ -152,36 +152,59 @@ button:disabled {
   margin-top: 12px;
 }
 
+/* ==========================================
+   Quiz Question Card
+   Primary visual focus of quiz mode
+   ========================================== */
+
 .question-area {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.question-card {
+  width: 100%;
+  max-width: 500px;
+
+  background: white;
+
+  border: 2px solid #d9d9d9;
+  border-radius: 14px;
+
+  padding: 28px;
+
   text-align: center;
-  margin: 12px 0;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .question-label {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: #666;
-  margin-bottom: 6px;
+
+  margin-bottom: 12px;
 }
 
 #quizQuestion {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 8px 0;
+  font-size: 3.5rem;
+  font-weight: 700;
+
+  margin-bottom: 12px;
 }
 
 #quizAnswer {
-  font-size: 1.1rem;
-  text-align: center;
+  font-size: 1.4rem;
   color: #444;
+
   margin-bottom: 10px;
 }
 
 #quizStatus {
-  text-align: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #666;
-  margin-bottom: 8px;
 }
 
 #selectedNotes {
@@ -317,4 +340,36 @@ button:disabled {
     flex-direction: column;
     gap: 12px;
   }
+}
+
+/* ==========================================
+   Quiz Feedback Cards
+   ========================================== */
+
+#quizFeedback {
+  margin: 18px 0;
+  min-height: 70px;
+}
+
+.feedback-card {
+  padding: 16px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.feedback-correct {
+  background: #eaf8ec;
+  border: 2px solid #8fd19e;
+  color: #1f6b2d;
+}
+
+.feedback-incorrect {
+  background: #fdecec;
+  border: 2px solid #e0a0a0;
+  color: #8b1f1f;
+}
+
+.feedback-title {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
 }

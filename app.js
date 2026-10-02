@@ -297,25 +297,39 @@ document
     questionsAsked++;
     if (correct) {
       questionsCorrect++;
+
       const displayChord = prettyMusic(
         chordSymbol(currentQuestion.root, currentQuestion.type),
       );
 
-      document.getElementById("quizFeedback").innerHTML =
-        "<h3>✅ Correct!</h3>" +
-        "<p>You built <strong>" +
-        displayChord +
-        "</strong> correctly.</p>";
+      document.getElementById("quizFeedback").innerHTML = `
+    <div class="feedback-card feedback-correct">
+      <div class="feedback-title">✅ Correct!</div>
+      <div>
+        You built <strong>${displayChord}</strong> correctly.
+      </div>
+    </div>
+  `;
     } else {
-      document.getElementById("quizFeedback").innerHTML =
-        "<h3>❌ Incorrect</h3>" +
-        "<p><strong>Your Answer:</strong><br>" +
-        prettyMusic(userAnswer.join(" ")) +
-        "</p>" +
-        "<p><strong>Correct Answer:</strong><br>" +
-        prettyMusic(currentQuestion.answer.join(" ")) +
-        "</p>";
+      document.getElementById("quizFeedback").innerHTML = `
+    <div class="feedback-card feedback-incorrect">
+      <div class="feedback-title">❌ Incorrect</div>
+
+      <div>
+        <strong>Your Answer:</strong><br>
+        ${prettyMusic(userAnswer.join(" "))}
+      </div>
+
+      <br>
+
+      <div>
+        <strong>Correct Answer:</strong><br>
+        ${prettyMusic(currentQuestion.answer.join(" "))}
+      </div>
+    </div>
+  `;
     }
+
     document.getElementById("checkAnswerBtn").disabled = true;
 
     updateScoreBoard();

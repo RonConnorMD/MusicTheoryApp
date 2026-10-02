@@ -375,3 +375,33 @@ setupGroupCheckbox("naturalRootsGroup", "naturalRoot");
 setupGroupCheckbox("sharpRootsGroup", "sharpRoot");
 
 setupGroupCheckbox("flatRootsGroup", "flatRoot");
+
+const homeScreen = document.getElementById("homeScreen");
+
+const builderSection = document.getElementById("builderSection");
+
+const quizSection = document.getElementById("quizSection");
+
+document
+  .getElementById("showBuilderBtn")
+  .addEventListener("click", function () {
+    homeScreen.style.display = "none";
+    builderSection.style.display = "block";
+    quizSection.style.display = "none";
+  });
+
+document.getElementById("showQuizBtn").addEventListener("click", function () {
+  homeScreen.style.display = "none";
+  builderSection.style.display = "none";
+  quizSection.style.display = "block";
+});
+
+document.getElementById("builderHomeBtn").addEventListener("click", showHome);
+
+document.getElementById("quizHomeBtn").addEventListener("click", showHome);
+
+function showHome() {
+  homeScreen.style.display = "block";
+  builderSection.style.display = "none";
+  quizSection.style.display = "none";
+}

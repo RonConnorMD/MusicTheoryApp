@@ -71,26 +71,57 @@ button:disabled {
    Quiz Filters
    ========================================== */
 
+/* ==========================================
+   Quiz Filters Layout
+   Keep filters compact so the quiz remains
+   the primary focus of the page.
+   ========================================== */
+
 #rootFilters {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 #quizFilters {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
   gap: 12px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .filter-group {
-  min-width: 160px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
 }
 
 .filter-group > label,
 .filter-group h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+
+.filter-options label {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.filter-options br {
+  display: none;
+}
+
   display: block;
   font-size: 1rem;
   font-weight: 700;

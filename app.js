@@ -229,6 +229,10 @@ document
     const q = currentQuestion;
 
     userAnswer = [];
+    // Re-enable note buttons for new question
+    document.querySelectorAll("#quizNoteButtons button").forEach((button) => {
+      button.disabled = false;
+    });
 
     document.getElementById("quizFeedback").textContent = "";
     document.getElementById("checkAnswerBtn").disabled = true;
@@ -246,11 +250,6 @@ document
 
     document.getElementById("quizAnswer").textContent =
       "Enter " + answerCount + " notes";
-  });
-document
-  .getElementById("nextQuestionBtn")
-  .addEventListener("click", function () {
-    document.getElementById("newQuestionBtn").click();
   });
 
 // ===================================================
@@ -319,8 +318,6 @@ document
     }
     document.getElementById("checkAnswerBtn").disabled = true;
 
-    document.getElementById("nextQuestionBtn").disabled = false;
-
     updateScoreBoard();
   });
 
@@ -337,7 +334,6 @@ document
 
     document.getElementById("quizFeedback").textContent = "";
     document.getElementById("checkAnswerBtn").disabled = true;
-    document.getElementById("nextQuestionBtn").disabled = true;
   });
 
 // ===================================================

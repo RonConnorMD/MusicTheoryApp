@@ -298,8 +298,15 @@ document
     questionsAsked++;
     if (correct) {
       questionsCorrect++;
+      const displayChord = prettyMusic(
+        chordSymbol(currentQuestion.root, currentQuestion.type),
+      );
+
       document.getElementById("quizFeedback").innerHTML =
-        "<h3>✅ Correct!</h3>";
+        "<h3>✅ Correct!</h3>" +
+        "<p>You built <strong>" +
+        displayChord +
+        "</strong> correctly.</p>";
     } else {
       document.getElementById("quizFeedback").innerHTML =
         "<h3>❌ Incorrect</h3>" +

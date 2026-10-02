@@ -215,3 +215,14 @@ button {
   font-size: 2.2rem;
   font-weight: 700;
 }
+
+@media (max-width: 768px) {
+  #quizFilters {
+    grid-template-columns: 1fr;
+  }
+
+  #rootFilters {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

@@ -5,6 +5,20 @@ let userAnswer = [];
 let questionsAsked = 0;
 let questionsCorrect = 0;
 
+// ===================================================
+// Builder UI
+// ===================================================
+
+function updateLookupButton() {
+  document.getElementById("lookupBtn").disabled = !(
+    selectedRoot && selectedChordType
+  );
+}
+updateLookupButton();
+
+// ===================================================
+// Scoreboard
+// ===================================================
 function updateScoreBoard() {
   document.getElementById("scoreBoard").textContent =
     "Score: " + questionsCorrect + " / " + questionsAsked;
@@ -45,6 +59,8 @@ ROOTS.forEach((root) => {
     button.classList.add("selected");
 
     selectedRoot = root;
+
+    updateLookupButton();
 
     document.getElementById("result").textContent = "Root: " + root;
   });
@@ -89,6 +105,8 @@ const chordContainer = document.getElementById("chordButtons");
 
     selectedChordType = type;
 
+    updateLookupButton();
+
     document.getElementById("result").textContent =
       "Root: " + selectedRoot + "   Type: " + selectedChordType;
   });
@@ -110,9 +128,9 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
 
   const prettySymbol = prettyMusic(symbol);
 
-  const degrees = chordDegrees(selectedChordType);
+  const degrees = prettyMusic(chordDegrees(selectedChordType));
 
-  const intervals = chordIntervals(selectedChordType);
+  const intervals = prettyMusic(chordIntervals(selectedChordType));
 
   document.getElementById("result").innerHTML = `
   <div class="info-card">

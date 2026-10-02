@@ -376,11 +376,21 @@ setupGroupCheckbox("sharpRootsGroup", "sharpRoot");
 
 setupGroupCheckbox("flatRootsGroup", "flatRoot");
 
+// ===================================================
+// Navigation
+// ===================================================
+
 const homeScreen = document.getElementById("homeScreen");
 
 const builderSection = document.getElementById("builderSection");
 
 const quizSection = document.getElementById("quizSection");
+
+const appHeader = document.querySelector(".app-header");
+
+// ---------------------------------------------------
+// Builder Screen
+// ---------------------------------------------------
 
 document
   .getElementById("showBuilderBtn")
@@ -388,20 +398,55 @@ document
     homeScreen.style.display = "none";
     builderSection.style.display = "block";
     quizSection.style.display = "none";
+
+    appHeader.style.display = "none";
+
+    builderSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   });
+
+// ---------------------------------------------------
+// Quiz Screen
+// ---------------------------------------------------
 
 document.getElementById("showQuizBtn").addEventListener("click", function () {
   homeScreen.style.display = "none";
   builderSection.style.display = "none";
   quizSection.style.display = "block";
+
+  appHeader.style.display = "none";
+
+  quizSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 });
+
+// ---------------------------------------------------
+// Home Buttons
+// ---------------------------------------------------
 
 document.getElementById("builderHomeBtn").addEventListener("click", showHome);
 
 document.getElementById("quizHomeBtn").addEventListener("click", showHome);
 
+// ---------------------------------------------------
+// Return To Home
+// ---------------------------------------------------
+
 function showHome() {
   homeScreen.style.display = "block";
+
   builderSection.style.display = "none";
+
   quizSection.style.display = "none";
+
+  appHeader.style.display = "block";
+
+  homeScreen.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 }

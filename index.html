@@ -9,11 +9,21 @@
   <body>
     <div class="app-container">
       <div id="homeScreen">
-        <h2>What would you like to do?</h2>
+        <h2 class="home-title">What would you like to do?</h2>
 
-        <button id="showBuilderBtn">Build a Chord</button>
+        <div class="home-cards">
+          <button id="showBuilderBtn" class="home-card">
+            <span class="card-title">Build a Chord</span>
+            <span class="card-subtitle">
+              View notes, formulas, and intervals
+            </span>
+          </button>
 
-        <button id="showQuizBtn">Take a Quiz</button>
+          <button id="showQuizBtn" class="home-card">
+            <span class="card-title">Take a Quiz</span>
+            <span class="card-subtitle"> Practice chord construction </span>
+          </button>
+        </div>
       </div>
       <header class="app-header">
         <h1>Music Theory App</h1>

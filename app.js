@@ -9,11 +9,29 @@ let questionsCorrect = 0;
 // Builder UI
 // ===================================================
 
+// ===================================================
+// Builder UI
+// ===================================================
+
 function updateLookupButton() {
   document.getElementById("lookupBtn").disabled = !(
     selectedRoot && selectedChordType
   );
 }
+
+function updateSelectedChordDisplay() {
+  const display = document.getElementById("selectedChordDisplay");
+
+  if (!selectedRoot || !selectedChordType) {
+    display.textContent = "Select a root and chord type";
+    return;
+  }
+
+  const symbol = chordSymbol(selectedRoot, selectedChordType);
+
+  display.textContent = prettyMusic(symbol);
+}
+
 updateLookupButton();
 
 // ===================================================
@@ -61,8 +79,7 @@ ROOTS.forEach((root) => {
     selectedRoot = root;
 
     updateLookupButton();
-
-    document.getElementById("result").textContent = "Root: " + root;
+    updateSelectedChordDisplay();
   });
 
   rootContainer.appendChild(button);
@@ -106,9 +123,7 @@ const chordContainer = document.getElementById("chordButtons");
     selectedChordType = type;
 
     updateLookupButton();
-
-    document.getElementById("result").textContent =
-      "Root: " + selectedRoot + "   Type: " + selectedChordType;
+    updateSelectedChordDisplay();
   });
 
   chordContainer.appendChild(button);

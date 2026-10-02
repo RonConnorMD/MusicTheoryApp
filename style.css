@@ -276,3 +276,13 @@ button {
   color: #666;
   font-size: 0.95rem;
 }
+
+.selected-chord-card {
+  margin: 15px 0;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+}

@@ -258,7 +258,7 @@ document
 
 const quizNoteContainer = document.getElementById("quizNoteButtons");
 
-ROOTS.forEach((note) => {
+QUIZ_NOTES.forEach((note) => {
   const button = document.createElement("button");
 
   button.textContent = prettyMusic(note);

@@ -2,7 +2,6 @@
 // Music Theory Engine
 // =====================================================
 
-
 // ===============================================================
 // Constants
 // ===============================================================
@@ -13,13 +12,15 @@ const LETTERS = ["C", "D", "E", "F", "G", "A", "B"];
 // Natural Pitches (C = 0 system)
 // ===============================================================
 const NATURAL_PITCHES = {
+  C: 0,
+  D: 2,
+  E: 4,
+  F: 5,
 
-    C: 0, D: 2, E: 4, F: 5,
-
-    G: 7, A: 9, B: 11
-
+  G: 7,
+  A: 9,
+  B: 11,
 };
-
 
 // ===============================================================
 // Quiz Settings
@@ -33,302 +34,302 @@ let questionNumber = 1;
 // Chord definitions
 //===============================================================
 const CHORDS = {
+  major: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+  ],
 
-    major: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" }
-    ],
+  minor: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+  ],
 
-    minor: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" }
-    ],
+  diminished: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+    { semitones: 6, letterSteps: 4, degree: "b5", interval: "Diminished 5th" },
+  ],
 
-    diminished: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
-        { semitones: 6, letterSteps: 4, degree: "b5", interval: "Diminished 5th" }
-    ],
+  augmented: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 8, letterSteps: 4, degree: "#5", interval: "Augmented 5th" },
+  ],
 
-    augmented: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
-        { semitones: 8, letterSteps: 4, degree: "#5", interval: "Augmented 5th" }
-    ],
+  sus2: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 2, letterSteps: 1, degree: "2", interval: "Major 2nd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+  ],
 
-    sus2: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 2, letterSteps: 1, degree: "2", interval: "Major 2nd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" }
-    ],
+  sus4: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 5, letterSteps: 3, degree: "4", interval: "Perfect 4th" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+  ],
 
-    sus4: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 5, letterSteps: 3, degree: "4", interval: "Perfect 4th" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" }
-    ],
+  add9: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" },
+  ],
 
-    add9: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
-        { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" }
-    ],
+  major7: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 11, letterSteps: 6, degree: "7", interval: "Major 7th" },
+  ],
 
-    major7: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
-        { semitones: 11, letterSteps: 6, degree: "7", interval: "Major 7th" }
-    ],
+  dominant7: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+  ],
 
-    dominant7: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" }
-    ],
+  minor7: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+  ],
 
-    minor7: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" }
-    ],
+  halfDiminished7: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+    { semitones: 6, letterSteps: 4, degree: "b5", interval: "Diminished 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+  ],
 
-    halfDiminished7: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
-        { semitones: 6, letterSteps: 4, degree: "b5", interval: "Diminished 5th" },
-        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" }
-    ],
+  diminished7: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+    { semitones: 6, letterSteps: 4, degree: "b5", interval: "Diminished 5th" },
+    { semitones: 9, letterSteps: 6, degree: "bb7", interval: "Diminished 7th" },
+  ],
 
-    diminished7: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
-        { semitones: 6, letterSteps: 4, degree: "b5", interval: "Diminished 5th" },
-        { semitones: 9, letterSteps: 6, degree: "bb7", interval: "Diminished 7th" }
-    ],
+  major9: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 11, letterSteps: 6, degree: "7", interval: "Major 7th" },
+    { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" },
+  ],
 
-    major9: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
-        { semitones: 11, letterSteps: 6, degree: "7", interval: "Major 7th" },
-        { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" }
-    ],
+  dominant9: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+    { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" },
+  ],
 
-    dominant9: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
-        { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" }
-    ],
+  minor9: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+    { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" },
+  ],
 
-    minor9: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
-        { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" }
-    ],
+  dominant7b9: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+    { semitones: 13, letterSteps: 8, degree: "b9", interval: "Flat 9th" },
+  ],
 
-    dominant7b9: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
-        { semitones: 13, letterSteps: 8, degree: "b9", interval: "Flat 9th" }
-    ],
-
-    dominant7sharp9: [
-        { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
-        { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
-        { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
-        { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
-        { semitones: 15, letterSteps: 8, degree: "#9", interval: "Sharp 9th" }
-    ]
+  dominant7sharp9: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+    { semitones: 15, letterSteps: 8, degree: "#9", interval: "Sharp 9th" },
+  ],
 };
 // ===============================================================
 // End of chord definitions
 // ===============================================================
 
-
 // ===============================================================
 // Chord symbol definitions
 // ===============================================================
 const CHORD_SYMBOLS = {
+  major: "",
+  minor: "m",
 
-    major: "",
-    minor: "m",
+  diminished: "dim",
+  augmented: "aug",
 
-    diminished: "dim",
-    augmented: "aug",
+  sus2: "sus2",
+  sus4: "sus4",
+  add9: "add9",
 
-    sus2: "sus2",
-    sus4: "sus4",
-    add9: "add9",
+  major7: "maj7",
+  dominant7: "7",
+  minor7: "m7",
 
-    major7: "maj7",
-    dominant7: "7",
-    minor7: "m7",
+  halfDiminished7: "m7b5",
+  diminished7: "dim7",
 
-    halfDiminished7: "m7b5",
-    diminished7: "dim7",
+  major9: "maj9",
+  dominant9: "9",
+  minor9: "m9",
 
-    major9: "maj9",
-    dominant9: "9",
-    minor9: "m9",
-
-    dominant7b9: "7b9",
-    dominant7sharp9: "7#9"
-
+  dominant7b9: "7b9",
+  dominant7sharp9: "7#9",
 };
-
 
 // ===============================================================
 // Roots
 // ===============================================================
 
 const ROOTS = [
-    "C", "C#", "Db", "D", "D#", "Eb",
-    "E", "F", "F#", "Gb", "G", "G#",
-    "Ab", "A", "A#", "Bb", "B"
+  "C",
+  "C#",
+  "Db",
+  "D",
+  "D#",
+  "Eb",
+  "E",
+  "F",
+  "F#",
+  "Gb",
+  "G",
+  "G#",
+  "Ab",
+  "A",
+  "A#",
+  "Bb",
+  "B",
 ];
 
+const QUIZ_NOTES = [
+  "C",
+  "C#",
+  "Db",
+  "D",
+  "D#",
+  "Eb",
+  "E",
+  "E#",
+  "Fb",
+  "F",
+  "F#",
+  "Gb",
+  "G",
+  "G#",
+  "Ab",
+  "A",
+  "A#",
+  "Bb",
+  "B",
+  "B#",
+  "Cb",
+];
 
-const CHORD_TYPES =
-    Object.keys(CHORDS);
+const CHORD_TYPES = Object.keys(CHORDS);
 
 // ===============================================================
 // Quiz Levels
 // ===============================================================
 
 const QUIZ_LEVELS = {
+  beginner: ["major", "minor"],
+  intermediate: [
+    "major",
+    "minor",
+    "diminished",
+    "augmented",
 
-    beginner: [
-        "major",
-        "minor"
-    ],
-    intermediate: [
+    "sus2",
+    "sus4",
+    "add9",
 
-        "major",
-        "minor",
-        "diminished",
-        "augmented",
-
-        "sus2",
-        "sus4",
-        "add9",
-
-        "major7",
-        "dominant7",
-        "minor7"
-    ],
-    advanced:
-        CHORD_TYPES
+    "major7",
+    "dominant7",
+    "minor7",
+  ],
+  advanced: CHORD_TYPES,
 };
-
-
-
-
 
 // ===============================================================
 // Current Quiz Settings
 // ===============================================================
 
-let currentChordTypes =
-
-    QUIZ_LEVELS.advanced;
-
+let currentChordTypes = QUIZ_LEVELS.advanced;
 
 // ===============================================================
 // Convert text to note object
 // ===============================================================
 
 function parseNote(noteText) {
+  const letter = noteText[0].toUpperCase();
 
-    const letter = noteText[0].toUpperCase();
+  let accidental = 0;
 
-    let accidental = 0;
-
-    for (let i = 1; i < noteText.length; i++) {
-
-        if (noteText[i] === "#") {
-            accidental++;
-        }
-
-        if (noteText[i] === "b") {
-            accidental--;
-        }
+  for (let i = 1; i < noteText.length; i++) {
+    if (noteText[i] === "#") {
+      accidental++;
     }
 
-    return {
-        letter: letter,
-        accidental: accidental
-    };
-}
+    if (noteText[i] === "b") {
+      accidental--;
+    }
+  }
 
+  return {
+    letter: letter,
+    accidental: accidental,
+  };
+}
 
 // -----------------------------------------------------
 // Convert Note object to text
 // -----------------------------------------------------
 
 function noteToString(note) {
+  let accidentalText = "";
 
-    let accidentalText = "";
+  if (note.accidental > 0) {
+    accidentalText = "#".repeat(note.accidental);
+  }
 
-    if (note.accidental > 0) {
-        accidentalText =
-            "#".repeat(note.accidental);
-    }
+  if (note.accidental < 0) {
+    accidentalText = "b".repeat(-note.accidental);
+  }
 
-    if (note.accidental < 0) {
-        accidentalText =
-            "b".repeat(-note.accidental);
-    }
-
-    return note.letter + accidentalText;
+  return note.letter + accidentalText;
 }
-
 
 // -----------------------------------------------------
 // Move through musical alphabet
 // -----------------------------------------------------
 
 function nextLetter(letter, steps) {
+  const index = LETTERS.indexOf(letter);
 
-    const index =
-        LETTERS.indexOf(letter);
-
-    return LETTERS[
-        (index + steps) % 7
-    ];
+  return LETTERS[(index + steps) % 7];
 }
-
 
 // -----------------------------------------------------
 // Natural pitch lookup
 // -----------------------------------------------------
 
 function naturalPitch(letter) {
-
-    return NATURAL_PITCHES[letter];
+  return NATURAL_PITCHES[letter];
 }
 
 //________________________________________________________
 //  Find pitch of note
 // _______________________________________________________
 function pitchOf(note) {
-
-    return (
-        naturalPitch(note.letter)
-        + note.accidental
-        + 12
-    ) % 12;
+  return (naturalPitch(note.letter) + note.accidental + 12) % 12;
 }
 
 // -----------------------------------------------------
@@ -337,22 +338,21 @@ function pitchOf(note) {
 // -----------------------------------------------------
 
 function accidentalNeeded(letter, desiredPitch) {
+  const natural = naturalPitch(letter);
 
-    const natural = naturalPitch(letter);
+  let accidental = desiredPitch - natural;
 
-    let accidental = desiredPitch - natural;
+  // Normalize to smallest distance
 
-    // Normalize to smallest distance
+  if (accidental > 6) {
+    accidental -= 12;
+  }
 
-    if (accidental > 6) {
-        accidental -= 12;
-    }
+  if (accidental < -6) {
+    accidental += 12;
+  }
 
-    if (accidental < -6) {
-        accidental += 12;
-    }
-
-    return accidental;
+  return accidental;
 }
 
 // -----------------------------------------------------
@@ -361,57 +361,35 @@ function accidentalNeeded(letter, desiredPitch) {
 // -----------------------------------------------------
 
 function spellNote(letter, desiredPitch) {
-
-    return {
-        letter: letter,
-        accidental: accidentalNeeded(
-            letter,
-            desiredPitch
-        )
-    };
+  return {
+    letter: letter,
+    accidental: accidentalNeeded(letter, desiredPitch),
+  };
 }
-
-
 
 // ===============================================================
 // buildChord - build a chord based on input provided
 // ===============================================================
 function buildChord(rootText, chordType) {
+  const tones = CHORDS[chordType];
 
-    const tones =
-        CHORDS[chordType];
+  const root = parseNote(rootText);
 
-    const root =
-        parseNote(rootText);
+  const rootPitch = pitchOf(root);
 
-    const rootPitch =
-        pitchOf(root);
+  const chord = [];
 
-    const chord = [];
+  for (const tone of tones) {
+    const desiredPitch = (rootPitch + tone.semitones) % 12;
 
+    const desiredLetter = nextLetter(root.letter, tone.letterSteps);
 
-    for (const tone of tones) {
+    const note = spellNote(desiredLetter, desiredPitch);
 
-        const desiredPitch =
-            (rootPitch + tone.semitones) % 12;
+    chord.push(note);
+  }
 
-        const desiredLetter =
-            nextLetter(
-                root.letter,
-                tone.letterSteps
-            );
-
-        const note =
-            spellNote(
-                desiredLetter,
-                desiredPitch
-            );
-
-        chord.push(note);
-    }
-
-    return chord;
-
+  return chord;
 }
 
 // ===============================================================
@@ -419,10 +397,7 @@ function buildChord(rootText, chordType) {
 // ===============================================================
 
 function chordDegrees(chordType) {
-
-    return CHORDS[chordType]
-        .map(tone => tone.degree)
-        .join(" ");
+  return CHORDS[chordType].map((tone) => tone.degree).join(" ");
 }
 
 // ===============================================================
@@ -430,83 +405,48 @@ function chordDegrees(chordType) {
 // ===============================================================
 
 function chordIntervals(chordType) {
-
-    return CHORDS[chordType]
-        .map(tone => tone.interval)
-        .join(", ");
+  return CHORDS[chordType].map((tone) => tone.interval).join(", ");
 }
 
 // ===============================================================
 // Chord to string
 // ===============================================================
 function chordToString(chord) {
-
-    return chord
-        .map(noteToString)
-        .join(" ");
+  return chord.map(noteToString).join(" ");
 }
 
 // ===============================================================
 // Chord Notes
 // ===============================================================
 function chordNotes(chord) {
-
-    return chord.map(
-        noteToString
-    );
+  return chord.map(noteToString);
 }
-
 
 // ===============================================================
 // Random Item Generator
 // ===============================================================
 function randomItem(array) {
-
-    return array[
-        Math.floor(
-            Math.random() * array.length
-        )
-    ];
+  return array[Math.floor(Math.random() * array.length)];
 }
-
-
-
-
-
 
 // ===============================================================
 // Build Question Object
 // ===============================================================
 
 function buildQuestion() {
+  const root = randomItem(ROOTS);
 
-    const root =
+  const type = randomItem(currentChordTypes);
 
-        randomItem(ROOTS);
+  const answer = chordNotes(buildChord(root, type));
 
-    const type =
+  return {
+    root,
 
-        randomItem(currentChordTypes);
+    type,
 
-    const answer =
-
-        chordNotes(
-            buildChord(
-                root,
-                type
-            )
-        );
-
-    return {
-
-        root,
-
-        type,
-
-        answer
-
-    };
-
+    answer,
+  };
 }
 
 // ===============================================================
@@ -514,277 +454,178 @@ function buildQuestion() {
 // ===============================================================
 
 function buildReverseQuestion() {
+  const q = buildQuestion();
 
-    const q =
-        buildQuestion();
+  return {
+    notes: q.answer,
 
-    return {
-
-        notes:
-            q.answer,
-
-        answer:
-            chordSymbol(
-                q.root,
-                q.type
-            )
-    };
+    answer: chordSymbol(q.root, q.type),
+  };
 }
-
-
 
 // ===============================================================
 // Check Answer
 // ===============================================================
 
-function checkAnswer(
-    correctAnswer,
-    userAnswer
-) {
+function checkAnswer(correctAnswer, userAnswer) {
+  if (correctAnswer.length !== userAnswer.length) {
+    return false;
+  }
 
-    if (
-        correctAnswer.length !==
-        userAnswer.length
-    ) {
-        return false;
+  for (let i = 0; i < correctAnswer.length; i++) {
+    if (correctAnswer[i] !== userAnswer[i]) {
+      return false;
     }
+  }
 
-    for (
-        let i = 0;
-        i < correctAnswer.length;
-        i++
-    ) {
-
-        if (
-            correctAnswer[i] !==
-            userAnswer[i]
-        ) {
-            return false;
-        }
-    }
-
-    return true;
+  return true;
 }
-
 
 // ===============================================================
 // Normalize Note Text
 // ===============================================================
 
 function normalizeNoteText(noteText) {
+  if (noteText.length === 0) {
+    return noteText;
+  }
 
-    if (noteText.length === 0) {
+  const letter = noteText[0].toUpperCase();
 
-        return noteText;
-    }
+  const accidental = noteText.slice(1).toLowerCase();
 
-    const letter =
-
-        noteText[0].toUpperCase();
-
-    const accidental =
-
-        noteText
-            .slice(1)
-            .toLowerCase();
-
-    return letter + accidental;
+  return letter + accidental;
 }
-
 
 // ===============================================================
 // Parse User Answer
 // ===============================================================
 
 function parseAnswer(text) {
-
-    return text
-        .trim()
-        .split(/\s+/)
-        .map(normalizeNoteText);
+  return text.trim().split(/\s+/).map(normalizeNoteText);
 }
-
 
 // ===============================================================
 // Run Quiz Round
 // ===============================================================
 
 function runQuizRound() {
+  const q = buildQuestion();
 
-    const q =
-        buildQuestion();
+  console.log();
 
-    console.log();
+  console.log("QUESTION:");
 
-    console.log(
-        "QUESTION:"
-    );
+  console.log(chordSymbol(q.root, q.type));
 
-    console.log(
-        chordSymbol(
-            q.root,
-            q.type
-        )
-    );
-
-    return q;
+  return q;
 }
-
 
 // ===============================================================
 // Reverse Quiz Round
 // ===============================================================
 
 function reverseQuizRound() {
+  const q = buildReverseQuestion();
 
-    const q =
-        buildReverseQuestion();
+  console.log();
 
-    console.log();
+  console.log("QUESTION:");
 
-    console.log(
-        "QUESTION:"
-    );
+  console.log(q.notes.join(" "));
 
-    console.log(
-        q.notes.join(" ")
-    );
-
-    return q;
+  return q;
 }
-
 
 // ===============================================================
 // Interactive Reverse Quiz Round
 // ===============================================================
 
 function interactiveReverseQuizRound() {
+  const q = buildReverseQuestion();
 
-    const q =
-        buildReverseQuestion();
+  console.log();
 
-    console.log();
+  console.log("QUESTION:");
 
-    console.log(
-        "QUESTION:"
-    );
+  console.log(q.notes.join(" "));
 
-    console.log(
-        q.notes.join(" ")
-    );
+  console.log();
 
-    console.log();
+  rl.question(
+    "Enter chord: ",
 
-    rl.question(
+    function (answerText) {
+      const userAnswer = answerText.trim().toLowerCase();
 
-        "Enter chord: ",
+      const correctAnswer = q.answer.toLowerCase();
 
-        function (answerText) {
+      console.log();
 
-            const userAnswer =
-                answerText
-                    .trim()
-                    .toLowerCase();
+      if (userAnswer === correctAnswer) {
+        console.log("Correct!");
+      } else {
+        console.log("Incorrect.");
 
-            const correctAnswer =
-                q.answer
-                    .toLowerCase();
+        console.log("Correct answer:", q.answer);
+      }
 
-            console.log();
-
-            if (
-                userAnswer === correctAnswer
-            ) {
-
-                console.log(
-                    "Correct!"
-                );
-
-            } else {
-
-                console.log(
-                    "Incorrect."
-                );
-
-                console.log(
-                    "Correct answer:",
-                    q.answer
-                );
-            }
-
-            rl.close();
-        }
-    );
+      rl.close();
+    },
+  );
 }
-
 
 // ===============================================================
 // Parse Chord Name
 // ===============================================================
 function parseChordName(chordName) {
+  chordName = chordName.trim();
 
-    chordName = chordName.trim();
+  const match = chordName.match(/^([A-G][b#]?)(.*)$/);
 
-    const match =
-        chordName.match(
-            /^([A-G][b#]?)(.*)$/
-        );
+  if (!match) {
+    throw new Error("Invalid chord name");
+  }
 
-    if (!match) {
+  const root = match[1];
 
-        throw new Error(
-            "Invalid chord name"
-        );
-    }
+  const suffix = match[2];
 
-    const root =
-        match[1];
+  const suffixMap = {
+    "": "major",
+    m: "minor",
+    dim: "diminished",
+    aug: "augmented",
 
-    const suffix =
-        match[2];
+    sus2: "sus2",
+    sus4: "sus4",
+    add9: "add9",
 
-    const suffixMap = {
+    maj7: "major7",
+    7: "dominant7",
+    m7: "minor7",
+    m7b5: "halfDiminished7",
+    dim7: "diminished7",
 
-        "": "major",
-        "m": "minor",
-        "dim": "diminished",
-        "aug": "augmented",
+    maj9: "major9",
+    9: "dominant9",
+    m9: "minor9",
 
-        "sus2": "sus2",
-        "sus4": "sus4",
-        "add9": "add9",
+    "7b9": "dominant7b9",
+    "7#9": "dominant7sharp9",
+  };
 
-        "maj7": "major7",
-        "7": "dominant7",
-        "m7": "minor7",
-        "m7b5": "halfDiminished7",
-        "dim7": "diminished7",
+  const type = suffixMap[suffix];
 
-        "maj9": "major9",
-        "9": "dominant9",
-        "m9": "minor9",
+  if (!type) {
+    throw new Error("Unknown chord type");
+  }
 
-        "7b9": "dominant7b9",
-        "7#9": "dominant7sharp9"
+  return {
+    root: root,
 
-    };
-
-    const type =
-        suffixMap[suffix];
-
-    if (!type) {
-
-        throw new Error(
-            "Unknown chord type"
-        );
-    }
-
-    return {
-
-        root: root,
-
-        type: type
-    };
+    type: type,
+  };
 }
 
 // ===============================================================
@@ -792,85 +633,51 @@ function parseChordName(chordName) {
 // ===============================================================
 
 function chordLookupMode() {
+  console.log();
+  console.log("CHORD LOOKUP MODE");
+  console.log();
 
-    console.log();
-    console.log("CHORD LOOKUP MODE");
-    console.log();
+  rl.question(
+    "Enter chord name: ",
 
-    rl.question(
+    function (chordName) {
+      try {
+        const chord = parseChordName(chordName);
 
-        "Enter chord name: ",
+        const notes = buildChord(chord.root, chord.type);
 
-        function (chordName) {
+        console.log();
 
-            try {
+        console.log("Chord: " + chordName);
 
-                const chord =
-                    parseChordName(
-                        chordName
-                    );
+        console.log();
 
-                const notes =
-                    buildChord(
-                        chord.root,
-                        chord.type
-                    );
+        console.log("Notes:");
 
-                console.log();
+        console.log(notes.map(noteToString).join(" "));
 
-                console.log(
-                    "Chord: " +
-                    chordName
-                );
+        console.log();
 
-                console.log();
+        console.log("Formula:");
 
-                console.log(
-                    "Notes:"
-                );
+        console.log(chordDegrees(chord.type));
 
-                console.log(
-                    notes.map(noteToString).join(" ")
-                );
+        console.log();
 
-                console.log();
+        console.log("Intervals:");
 
-                console.log(
-                    "Formula:"
-                );
+        console.log(chordIntervals(chord.type));
 
-                console.log(
-                    chordDegrees(
-                        chord.type
-                    )
-                );
+        console.log();
+      } catch (error) {
+        console.log();
+        console.log("Unknown chord.");
+        console.log();
+      }
 
-                console.log();
-
-                console.log(
-                    "Intervals:"
-                );
-
-                console.log(
-                    chordIntervals(
-                        chord.type
-                    )
-                );
-
-                console.log();
-
-            } catch (error) {
-
-                console.log();
-                console.log(
-                    "Unknown chord."
-                );
-                console.log();
-            }
-
-            showMainMenu();
-        }
-    );
+      showMainMenu();
+    },
+  );
 }
 
 // ===============================================================
@@ -878,72 +685,42 @@ function chordLookupMode() {
 // ===============================================================
 
 function showMainMenu() {
+  console.log();
+  console.log("1 - Quiz");
+  console.log("2 - Reverse Quiz");
+  console.log("3 - Chord Lookup");
+  console.log("Q - Quit");
+  console.log();
 
-    console.log();
-    console.log("1 - Quiz");
-    console.log("2 - Reverse Quiz");
-    console.log("3 - Chord Lookup");
-    console.log("Q - Quit");
-    console.log();
+  rl.question(
+    "Select option: ",
 
-    rl.question(
+    function (answer) {
+      answer = answer.trim().toUpperCase();
 
-        "Select option: ",
+      if (answer === "1") {
+        chooseDifficulty(interactiveQuizRound);
+      } else if (answer === "2") {
+        chooseDifficulty(interactiveReverseQuizRound);
+      } else if (answer === "3") {
+        chordLookupMode();
+      } else if (answer === "Q") {
+        rl.close();
+      } else {
+        console.log("Invalid choice.");
 
-        function (answer) {
-
-            answer =
-                answer.trim()
-                    .toUpperCase();
-
-            if (answer === "1") {
-
-                chooseDifficulty(
-                    interactiveQuizRound
-                );
-
-            } else if (
-                answer === "2"
-            ) {
-
-                chooseDifficulty(
-                    interactiveReverseQuizRound
-                );
-            } else if (
-                answer === "3"
-            ) {
-
-                chordLookupMode();
-
-            } else if (
-                answer === "Q"
-            ) {
-
-                rl.close();
-
-            } else {
-
-                console.log(
-                    "Invalid choice."
-                );
-
-                showMainMenu();
-            }
-        }
-    );
+        showMainMenu();
+      }
+    },
+  );
 }
 
 // ===============================================================
 // Chord Symbol Display
 // ===============================================================
 function chordSymbol(root, chordType) {
-
-    return (
-        root +
-        CHORD_SYMBOLS[chordType]
-    );
+  return root + CHORD_SYMBOLS[chordType];
 }
-
 
 // ===============================================================
 
@@ -952,11 +729,11 @@ function chordSymbol(root, chordType) {
 // ===============================================================
 
 function prettyMusic(text) {
-    return text
-        .replaceAll("bb", "♭♭")
-        .replaceAll("##", "♯♯")
-        .replaceAll("b", "♭")
-        .replaceAll("#", "♯");
+  return text
+    .replaceAll("bb", "♭♭")
+    .replaceAll("##", "♯♯")
+    .replaceAll("b", "♭")
+    .replaceAll("#", "♯");
 }
 
 // ===============================================================
@@ -964,105 +741,57 @@ function prettyMusic(text) {
 // ===============================================================
 
 function interactiveQuizRound() {
+  const q = buildQuestion();
 
-    
-    const q =
-        buildQuestion();
+  console.log();
 
-    console.log();
+  console.log("QUESTION:");
 
-    console.log(
-        "QUESTION:"
-    );
+  console.log(chordSymbol(q.root, q.type));
 
-    console.log(
-        chordSymbol(
-            q.root,
-            q.type
-        )
-    );
+  console.log();
 
-    console.log();
+  rl.question(
+    "Enter chord: ",
 
-    rl.question(
+    function (answerText) {
+      const userAnswer = parseAnswer(answerText);
 
-        "Enter chord: ",
+      const correct = checkAnswer(q.answer, userAnswer);
 
-        function (answerText) {
+      console.log();
 
-            const userAnswer =
+      totalCount++;
 
-                parseAnswer(
-                    answerText
-                );
+      if (correct) {
+        correctCount++;
 
-            const correct =
+        console.log("Correct!");
+      } else {
+        console.log("Incorrect.");
 
-                checkAnswer(
-                    q.answer,
-                    userAnswer
-                );
+        console.log("Correct answer:", q.answer.join(" "));
+      }
 
-            console.log();
+      console.log();
 
-            totalCount++;
+      console.log("Score:", correctCount, "/", totalCount);
 
-            if (correct) {
+      if (questionNumber >= QUIZ_LENGTH) {
+        console.log();
 
-                correctCount++;
+        console.log("Quiz Complete!");
 
-                console.log(
-                    "Correct!"
-                );
+        console.log("Final Score:", correctCount, "/", totalCount);
 
-            } else {
+        rl.close();
+      } else {
+        questionNumber++;
 
-                console.log(
-                    "Incorrect."
-                );
-
-                console.log(
-                    "Correct answer:",
-                    q.answer.join(" ")
-                );
-            }
-
-            console.log();
-
-            console.log(
-                "Score:",
-                correctCount,
-                "/",
-                totalCount
-            );
-
-            if (
-                questionNumber >= QUIZ_LENGTH
-            ) {
-
-                console.log();
-
-                console.log(
-                    "Quiz Complete!"
-                );
-
-                console.log(
-                    "Final Score:",
-                    correctCount,
-                    "/",
-                    totalCount
-                );
-
-                rl.close();
-
-            } else {
-
-                questionNumber++;
-
-                askToContinue();
-            }
-        }
-    );
+        askToContinue();
+      }
+    },
+  );
 }
 
 // ===============================================================
@@ -1070,62 +799,43 @@ function interactiveQuizRound() {
 // ===============================================================
 
 function askToContinue() {
+  rl.question(
+    "Press Enter for next question or Q to quit: ",
 
-    rl.question(
+    function (answer) {
+      if (answer.trim().toUpperCase() === "Q") {
+        console.log();
 
-        "Press Enter for next question or Q to quit: ",
+        console.log("Final Score:", correctCount, "/", totalCount);
 
-        function (answer) {
-
-            if (
-                answer.trim().toUpperCase() === "Q"
-            ) {
-
-                console.log();
-
-                console.log(
-                    "Final Score:",
-                    correctCount,
-                    "/",
-                    totalCount
-                );
-
-                rl.close();
-
-            } else {
-
-                interactiveQuizRound();
-            }
-        }
-    );
+        rl.close();
+      } else {
+        interactiveQuizRound();
+      }
+    },
+  );
 }
-
 
 // ===============================================================
 // Test User Input
 // ===============================================================
 
 function testInput() {
+  rl.question(
+    "What is your name? ",
 
-    rl.question(
+    function (answer) {
+      console.log();
 
-        "What is your name? ",
+      console.log(
+        "Hello",
 
-        function (answer) {
+        answer,
+      );
 
-            console.log();
-
-            console.log(
-
-                "Hello",
-
-                answer
-
-            );
-
-            rl.close();
-        }
-    );
+      rl.close();
+    },
+  );
 }
 
 // ===============================================================
@@ -1133,78 +843,54 @@ function testInput() {
 // ===============================================================
 
 function chooseDifficulty(callback) {
+  console.log();
 
-    console.log();
+  console.log("Choose Difficulty");
 
-    console.log(
-        "Choose Difficulty"
-    );
+  console.log();
 
-    console.log();
+  console.log("1 - Beginner");
 
-    console.log(
-        "1 - Beginner"
-    );
+  console.log("2 - Intermediate");
 
-    console.log(
-        "2 - Intermediate"
-    );
+  console.log("3 - Advanced");
 
-    console.log(
-        "3 - Advanced"
-    );
+  console.log();
 
-    console.log();
+  rl.question(
+    "Select option: ",
 
-    rl.question(
+    function (choice) {
+      switch (choice) {
+        case "1":
+          currentChordTypes = QUIZ_LEVELS.beginner;
 
-        "Select option: ",
+          break;
 
-        function (choice) {
+        case "2":
+          currentChordTypes = QUIZ_LEVELS.intermediate;
 
-            switch (choice) {
+          break;
 
-                case "1":
+        case "3":
+          currentChordTypes = QUIZ_LEVELS.advanced;
 
-                    currentChordTypes =
-                        QUIZ_LEVELS.beginner;
+          break;
 
-                    break;
+        default:
+          console.log();
 
-                case "2":
+          console.log("Invalid selection.");
 
-                    currentChordTypes =
-                        QUIZ_LEVELS.intermediate;
+          chooseDifficulty(callback);
 
-                    break;
+          return;
+      }
 
-                case "3":
-
-                    currentChordTypes =
-                        QUIZ_LEVELS.advanced;
-
-                    break;
-
-                default:
-
-                    console.log();
-
-                    console.log(
-                        "Invalid selection."
-                    );
-
-                    chooseDifficulty(
-                        callback
-                    );
-
-                    return;
-            }
-
-            callback();
-        }
-    );
+      callback();
+    },
+  );
 }
-
 
 // ===============================================================
 // Main Program    ---    main menu
@@ -1212,8 +898,6 @@ function chooseDifficulty(callback) {
 
 //  showMainMenu();
 
-
 // ===============================================================
 // Test Code
 // ==============================================================
-

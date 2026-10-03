@@ -390,10 +390,11 @@ document
       <hr>
 
 <div>
-  <strong>Why?</strong><br><br>
+ <strong>Why?</strong><br><br>
 
-  <strong>Formula:</strong><br>
-  ${analysis.formula}
+${prettyMusic(analysis.chord)} is built from:<br><br>
+
+${analysis.formula}
 </div>
 
 <br>

@@ -368,6 +368,10 @@ document
     </div>
   `;
     } else {
+      const analysis = getChordAnalysis(
+        currentQuestion.root,
+        currentQuestion.type,
+      );
       document.getElementById("quizFeedback").innerHTML = `
     <div class="feedback-card feedback-incorrect">
       <div class="feedback-title">❌ Incorrect</div>
@@ -383,6 +387,23 @@ document
         <strong>Correct Answer:</strong><br>
         ${prettyMusic(currentQuestion.answer.join(" "))}
       </div>
+      <hr>
+
+<div>
+  <strong>Why?</strong><br><br>
+
+  <strong>Formula:</strong><br>
+  ${analysis.formula}
+</div>
+
+<br>
+
+<div>
+  <strong>Intervals:</strong>
+  <ul>
+    ${analysis.intervals.map((interval) => `<li>${interval}</li>`).join("")}
+  </ul>
+</div>
     </div>
   `;
     }

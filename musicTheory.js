@@ -393,9 +393,76 @@ function buildChord(rootText, chordType) {
 }
 
 // ===============================================================
-// Chord Degree Display
+// Build Major Scale
+// ===============================================================
+function buildMajorScale(rootText) {
+  const root = parseNote(rootText);
+
+  const rootPitch = pitchOf(root);
+
+  const intervals = [0, 2, 4, 5, 7, 9, 11];
+
+  const scale = [];
+
+  intervals.forEach((semitones, degree) => {
+    const desiredPitch = (rootPitch + semitones) % 12;
+
+    const desiredLetter = nextLetter(root.letter, degree);
+
+    scale.push(spellNote(desiredLetter, desiredPitch));
+  });
+
+  return scale;
+}
+
+// ===============================================================
+// Get Enharmonic Equivalents
+// ===============================================================
+function getEnharmonics(noteText) {
+  const targetPitch = pitchOf(parseNote(noteText));
+
+  return QUIZ_NOTES.filter((candidate) => {
+    if (candidate === noteText) return false;
+
+    return pitchOf(parseNote(candidate)) === targetPitch;
+  });
+}
+
+// ===============================================================
+// Smart Note Pool
 // ===============================================================
 
+function getSmartNotePool(root, chordType, difficulty) {
+  // Advanced = all notes
+  if (difficulty === "advanced") {
+    return [...QUIZ_NOTES];
+  }
+
+  const pool = new Set();
+
+  // Add chord tones
+  chordNotes(buildChord(root, chordType)).forEach((note) => pool.add(note));
+
+  // Add major scale notes
+  chordNotes(buildMajorScale(root)).forEach((note) => pool.add(note));
+
+  // Intermediate adds enharmonic equivalents
+  if (difficulty === "intermediate") {
+    const notesSoFar = [...pool];
+
+    notesSoFar.forEach((note) => {
+      getEnharmonics(note).forEach((enharmonic) => {
+        pool.add(enharmonic);
+      });
+    });
+  }
+
+  return [...pool];
+}
+
+// ===============================================================
+// Chord Degree Display
+// ===============================================================
 function chordDegrees(chordType) {
   return CHORDS[chordType].map((tone) => tone.degree).join(" ");
 }

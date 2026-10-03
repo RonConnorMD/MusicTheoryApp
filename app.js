@@ -184,10 +184,18 @@ function getSelectedChordTypes() {
   ].map((checkbox) => checkbox.value);
 }
 
+// ===============================================================
+// Selected Note Pool Difficulty
+// ===============================================================
+
+function getSelectedNotePoolDifficulty() {
+  return document.querySelector("input[name='notePoolDifficulty']:checked")
+    .value;
+}
+
 // ===================================================
 // Build Filtered Question
 // ===================================================
-
 function buildFilteredQuestion() {
   const selectedTypes = getSelectedChordTypes();
   const selectedRoots = getSelectedRoots();
@@ -208,10 +216,13 @@ function buildFilteredQuestion() {
 
   const answer = chordNotes(buildChord(root, type));
 
+  const notePoolDifficulty = getSelectedNotePoolDifficulty();
+
   return {
     root,
     type,
     answer,
+    notePool: getSmartNotePool(root, type, notePoolDifficulty),
   };
 }
 
@@ -227,6 +238,8 @@ document
       return;
     }
     const q = currentQuestion;
+
+    renderQuizNoteButtons();
 
     userAnswer = [];
     // Re-enable note buttons for new question
@@ -252,39 +265,83 @@ document
       "Enter " + answerCount + " notes";
   });
 
-// ===================================================
-// Quiz Note Buttons
-// ===================================================
+// =========================================================
+// Render Quiz Note Buttons
+// =========================================================
+
+function renderQuizNoteButtons() {
+  const quizNoteContainer = document.getElementById("quizNoteButtons");
+
+  quizNoteContainer.innerHTML = "";
+
+  if (!currentQuestion) {
+    return;
+  }
+
+  currentQuestion.notePool.forEach((note) => {
+    const button = document.createElement("button");
+
+    button.textContent = prettyMusic(note);
+
+    button.addEventListener("click", function () {
+      if (userAnswer.length >= currentQuestion.answer.length) {
+        return;
+      }
+
+      userAnswer.push(note);
+
+      displaySelectedNotes();
+
+      document.getElementById("quizStatus").textContent =
+        userAnswer.length +
+        " of " +
+        currentQuestion.answer.length +
+        " notes selected";
+
+      if (userAnswer.length === currentQuestion.answer.length) {
+        document.getElementById("checkAnswerBtn").disabled = false;
+
+        setQuizNoteButtonsEnabled(false);
+      }
+    });
+
+    quizNoteContainer.appendChild(button);
+  });
+}
 
 const quizNoteContainer = document.getElementById("quizNoteButtons");
 
-QUIZ_NOTES.forEach((note) => {
-  const button = document.createElement("button");
+if (currentQuestion) {
+  currentQuestion.notePool.forEach((note) => {
+    const button = document.createElement("button");
 
-  button.textContent = prettyMusic(note);
+    button.textContent = prettyMusic(note);
 
-  button.addEventListener("click", function () {
-    if (userAnswer.length >= currentQuestion.answer.length) {
-      return;
-    }
-    userAnswer.push(note);
+    button.addEventListener("click", function () {
+      if (userAnswer.length >= currentQuestion.answer.length) {
+        return;
+      }
 
-    displaySelectedNotes();
+      userAnswer.push(note);
 
-    document.getElementById("quizStatus").textContent =
-      userAnswer.length +
-      " of " +
-      currentQuestion.answer.length +
-      " notes selected";
-    if (userAnswer.length === currentQuestion.answer.length) {
-      document.getElementById("checkAnswerBtn").disabled = false;
+      displaySelectedNotes();
 
-      setQuizNoteButtonsEnabled(false);
-    }
+      document.getElementById("quizStatus").textContent =
+        userAnswer.length +
+        " of " +
+        currentQuestion.answer.length +
+        " notes selected";
+
+      if (userAnswer.length === currentQuestion.answer.length) {
+        document.getElementById("checkAnswerBtn").disabled = false;
+
+        setQuizNoteButtonsEnabled(false);
+      }
+    });
+
+    quizNoteContainer.appendChild(button);
   });
-
-  quizNoteContainer.appendChild(button);
-});
+}
 
 // ===================================================
 // Check Answer

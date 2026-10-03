@@ -392,6 +392,30 @@ function buildChord(rootText, chordType) {
   return chord;
 }
 
+// =====================================================
+// Chord Analysis
+// Returns all information needed to display
+// a chord explanation anywhere in the app.
+// Used by:
+//   • Build a Chord
+//   • Quiz feedback / teaching mode
+// =====================================================
+
+function getChordAnalysis(root, chordType) {
+  const notes = buildChord(root, chordType);
+
+  const formula = CHORDS[chordType].map((tone) => tone.degree).join(" ");
+
+  const intervals = CHORDS[chordType].map((tone) => tone.interval);
+
+  return {
+    chord: chordSymbol(root, chordType),
+    notes,
+    formula,
+    intervals,
+  };
+}
+
 // ===============================================================
 // Build Major Scale
 // ===============================================================

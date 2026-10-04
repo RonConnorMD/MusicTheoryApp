@@ -121,8 +121,8 @@ button:disabled {
 .filter-options br {
   display: none;
 }
-
-  display: block;
+.filter-group summary {
+  display: list-item;
   font-size: 1rem;
   font-weight: 700;
   margin-top: 0;
@@ -393,7 +393,6 @@ button:disabled {
   background: white;
 }
 
-
 .question-launch {
   text-align: center;
   margin: 12px 0 16px 0;
@@ -405,9 +404,9 @@ button:disabled {
 }
 
 #nextQuestionContainer {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 12px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 12px;
 }
 
 #nextQuestionBtn {
@@ -443,3 +442,10 @@ button:disabled {
   margin-bottom: 12px;
 }
 
+.filter-group summary {
+  cursor: pointer;
+}
+
+.filter-group summary::marker {
+  font-size: 1.2em;
+}

@@ -389,11 +389,14 @@
         </div>
 
         <section class="quiz-card">
-          <h2>Quiz Mode</h2>
+          <div class="quiz-toolbar">
+            <h2>Quiz Mode</h2>
+            <div id="scoreBoard">Score: 0 / 0</div>
+          </div>
 
-          <div id="scoreBoard">Score: 0 / 0</div>
-
-          <button id="newQuestionBtn">New Question</button>
+          <div class="question-launch">
+            <button id="newQuestionBtn">Generate New Question</button>
+          </div>
 
           <div class="question-area">
             <div class="question-card">
@@ -412,6 +415,10 @@
           <div id="selectedNotes"></div>
 
           <div id="quizFeedback"></div>
+
+          <div id="nextQuestionContainer" style="display: none">
+            <button id="nextQuestionBtn">Next Question</button>
+          </div>
 
           <h3>Available Notes</h3>
 

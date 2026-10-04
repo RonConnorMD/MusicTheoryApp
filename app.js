@@ -237,6 +237,7 @@ document
     if (!currentQuestion) {
       return;
     }
+    document.getElementById("newQuestionBtn").style.display = "none";
     const q = currentQuestion;
 
     renderQuizNoteButtons();
@@ -278,40 +279,6 @@ function renderQuizNoteButtons() {
     return;
   }
 
-  currentQuestion.notePool.forEach((note) => {
-    const button = document.createElement("button");
-
-    button.textContent = prettyMusic(note);
-
-    button.addEventListener("click", function () {
-      if (userAnswer.length >= currentQuestion.answer.length) {
-        return;
-      }
-
-      userAnswer.push(note);
-
-      displaySelectedNotes();
-
-      document.getElementById("quizStatus").textContent =
-        userAnswer.length +
-        " of " +
-        currentQuestion.answer.length +
-        " notes selected";
-
-      if (userAnswer.length === currentQuestion.answer.length) {
-        document.getElementById("checkAnswerBtn").disabled = false;
-
-        setQuizNoteButtonsEnabled(false);
-      }
-    });
-
-    quizNoteContainer.appendChild(button);
-  });
-}
-
-const quizNoteContainer = document.getElementById("quizNoteButtons");
-
-if (currentQuestion) {
   currentQuestion.notePool.forEach((note) => {
     const button = document.createElement("button");
 
@@ -394,7 +361,12 @@ document
 
 ${prettyMusic(analysis.chord)} is built from:<br><br>
 
-${analysis.formula}
+<div class="formula-pills">
+  ${analysis.formula
+    .split(" ")
+    .map((degree) => `<span class="degree-pill">${prettyMusic(degree)}</span>`)
+    .join("")}
+  </div>
 </div>
 
 <br>
@@ -402,16 +374,66 @@ ${analysis.formula}
 <div>
   <strong>Intervals:</strong>
   <ul>
-    ${analysis.intervals.map((interval) => `<li>${interval}</li>`).join("")}
+  ${analysis.intervals
+    .map((interval) => `<li>${prettyMusic(interval)}</li>`)
+    .join("")}
   </ul>
 </div>
     </div>
   `;
     }
 
+    document.getElementById("nextQuestionContainer").style.display = "block";
+
     document.getElementById("checkAnswerBtn").disabled = true;
 
     updateScoreBoard();
+  });
+
+/* ==========================================
+
+   Next Question Button
+
+   Generates a new quiz question after the
+
+   previous question has been graded.
+
+   ========================================== */
+
+document
+
+  .getElementById("nextQuestionBtn")
+
+  .addEventListener("click", function () {
+    currentQuestion = buildFilteredQuestion();
+
+    if (!currentQuestion) {
+      return;
+    }
+
+    const q = currentQuestion;
+
+    renderQuizNoteButtons();
+
+    userAnswer = [];
+
+    displaySelectedNotes();
+
+    document.getElementById("quizFeedback").innerHTML = "";
+
+    document.getElementById("nextQuestionContainer").style.display = "none";
+
+    document.getElementById("checkAnswerBtn").disabled = true;
+
+    document.getElementById("quizQuestion").innerHTML = prettyMusic(
+      chordSymbol(q.root, q.type),
+    );
+
+    document.getElementById("quizAnswer").textContent =
+      `Enter ${q.answer.length} notes`;
+
+    document.getElementById("quizStatus").textContent =
+      `0 of ${q.answer.length} notes selected`;
   });
 
 // ===================================================

@@ -115,6 +115,31 @@ const chordContainer = document.getElementById("chordButtons");
 
   button.textContent = DISPLAY_NAMES[type];
 
+  // ======================================================
+  // Quiz Filter Groups
+  //
+  // Phase 1:
+  //   - Show Triads by default
+  //   - Hide all other chord families
+  //
+  // Future:
+  //   - Suspended/Add9 group
+  //   - 7th Chords group
+  //   - 9th Chords group
+  //   - Expand/Collapse controls
+  // ======================================================
+  //  document
+  //   .getElementById("selectAllChordsBtn")
+  //   .addEventListener("click", selectAllChords);
+
+  //document
+  //   .getElementById("clearAllChordsBtn")
+  //   .addEventListener("click", clearAllChords);
+
+  // document
+  //   .getElementById("coreChordsBtn")
+  //   .addEventListener("click", selectCoreChords);
+
   button.addEventListener("click", function () {
     document
       .querySelectorAll("#chordButtons button")
@@ -383,6 +408,15 @@ document
 
     updateScoreBoard();
   });
+
+// ===================================================
+// Difficulty Info
+// ===================================================
+const difficultyInfoBtn = document.getElementById("difficultyInfoBtn");
+const difficultyInfo = document.getElementById("difficultyInfo");
+difficultyInfoBtn.addEventListener("click", () => {
+  difficultyInfo.hidden = !difficultyInfo.hidden;
+});
 
 /* ==========================================
 

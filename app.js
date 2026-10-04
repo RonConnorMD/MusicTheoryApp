@@ -327,11 +327,11 @@ document
       );
 
       document.getElementById("quizFeedback").innerHTML = `
-    <div class="feedback-card feedback-correct">
-      <div class="feedback-title">✅ Correct!</div>
-      <div>
-        You built <strong>${displayChord}</strong> correctly.
-      </div>
+   <div class="feedback-card feedback-correct">
+  <div class="feedback-title">
+    ✅ Correct! ${displayChord}
+  </div>
+</div>
     </div>
   `;
     } else {

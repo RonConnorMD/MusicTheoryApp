@@ -343,23 +343,22 @@ document
     <div class="feedback-card feedback-incorrect">
       <div class="feedback-title">❌ Incorrect</div>
 
-      <div>
-        <strong>Your Answer:</strong><br>
-        ${prettyMusic(userAnswer.join(" "))}
-      </div>
+      <div class="answer-row">
+  <strong>Your Answer:</strong>
+  ${prettyMusic(userAnswer.join(" "))}
 
-      <br>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
 
-      <div>
-        <strong>Correct Answer:</strong><br>
-        ${prettyMusic(currentQuestion.answer.join(" "))}
-      </div>
+  <strong>Correct Answer:</strong>
+  ${prettyMusic(currentQuestion.answer.join(" "))}
+</div>
       <hr>
 
 <div>
- <strong>Why?</strong><br><br>
-
-${prettyMusic(analysis.chord)} is built from:<br><br>
+ 
+<div class="formula-heading">
+  <strong>${prettyMusic(analysis.chord)} is comprised of:</strong>
+</div>
 
 <div class="formula-pills">
   ${analysis.formula
@@ -373,13 +372,8 @@ ${prettyMusic(analysis.chord)} is built from:<br><br>
 
 <div>
   <strong>Intervals:</strong>
-  <ul>
-  ${analysis.intervals
-    .map((interval) => `<li>${prettyMusic(interval)}</li>`)
-    .join("")}
-  </ul>
+  ${analysis.intervals.map((interval) => prettyMusic(interval)).join(" • ")}
 </div>
-    </div>
   `;
     }
 

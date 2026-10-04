@@ -374,7 +374,10 @@ button:disabled {
 }
 
 .formula-pills {
-  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .degree-pill {
@@ -400,8 +403,9 @@ button:disabled {
 }
 
 #nextQuestionContainer {
-  text-align: center;
-  margin: 12px 0;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 12px;
 }
 
 #nextQuestionBtn {
@@ -428,3 +432,12 @@ button:disabled {
   font-size: 1.1rem;
   font-weight: 600;
 }
+
+.feedback-card {
+  text-align: center;
+}
+
+.formula-heading {
+  margin-bottom: 12px;
+}
+

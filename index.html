@@ -185,14 +185,20 @@
           </label>
         </div>
 
+        <div id="filterActions">
+          <button id="selectAllChordsBtn">Select All</button>
+          <button id="clearAllChordsBtn">Clear All</button>
+          <button id="coreChordsBtn">Core Chords</button>
+        </div>
+
         <div id="quizFilters">
-          <div class="filter-group">
-            <h3>
+          <details class="filter-group" open>
+            <summary>
               <label>
                 <input type="checkbox" id="triadsGroup" checked />
                 All Triads
               </label>
-            </h3>
+            </summary>
 
             <div class="filter-options">
               <label
@@ -232,7 +238,7 @@
                 Augmented</label
               >
             </div>
-          </div>
+          </details>
 
           <div class="filter-group">
             <h3>

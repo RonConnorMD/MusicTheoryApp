@@ -51,9 +51,12 @@ function clearAllChords() {
 }
 
 function selectCoreChords() {
-  // we'll implement this next
+  document
+    .querySelectorAll('#quizFilters input[type="checkbox"]')
+    .forEach((cb) => {
+      cb.checked = CORE_CHORDS.includes(cb.value);
+    });
 }
-// Wire up filter action buttons
 
 document
   .getElementById("selectAllChordsBtn")
@@ -81,6 +84,24 @@ function setQuizNoteButtonsEnabled(enabled) {
     button.disabled = !enabled;
   });
 }
+
+// =====================================================
+// Core Chord Set
+// =====================================================
+const CORE_CHORDS = [
+  "major",
+  "minor",
+  "diminished",
+  "augmented",
+
+  "sus2",
+  "sus4",
+  "add9",
+
+  "major7",
+  "dominant7",
+  "minor7",
+];
 
 const DISPLAY_NAMES = {
   major: "Major",

@@ -30,6 +30,44 @@ function updateSelectedChordDisplay() {
 
 updateLookupButton();
 
+// =====================================================
+// Quiz Filter Controls
+// =====================================================
+
+function selectAllChords() {
+  document
+    .querySelectorAll('#quizFilters input[type="checkbox"]')
+    .forEach((cb) => {
+      cb.checked = true;
+    });
+}
+
+function clearAllChords() {
+  document
+    .querySelectorAll('#quizFilters input[type="checkbox"]')
+    .forEach((cb) => {
+      cb.checked = false;
+    });
+}
+
+function selectCoreChords() {
+  // we'll implement this next
+}
+// Wire up filter action buttons
+
+document
+  .getElementById("selectAllChordsBtn")
+  .addEventListener("click", selectAllChords);
+document
+  .getElementById("clearAllChordsBtn")
+  .addEventListener("click", clearAllChords);
+document
+  .getElementById("coreChordsBtn")
+  .addEventListener("click", selectCoreChords);
+
+// ===================================================
+// Quiz User Interface
+// ===================================================
 // ===================================================
 // Scoreboard
 // ===================================================
@@ -63,6 +101,10 @@ const DISPLAY_NAMES = {
   dominant7b9: "7♭9",
   dominant7sharp9: "7♯9",
 };
+
+const selectAllBtn = document.getElementById("selectAllChords");
+const clearAllBtn = document.getElementById("clearAllChords");
+const coreChordsBtn = document.getElementById("coreChords");
 
 const rootContainer = document.getElementById("rootButtons");
 
@@ -115,30 +157,17 @@ const chordContainer = document.getElementById("chordButtons");
 
   button.textContent = DISPLAY_NAMES[type];
 
-  // ======================================================
-  // Quiz Filter Groups
-  //
-  // Phase 1:
-  //   - Show Triads by default
-  //   - Hide all other chord families
+  // =====================================================
+  // Quiz Filter Roadmap
+  // =====================================================
   //
   // Future:
   //   - Suspended/Add9 group
   //   - 7th Chords group
   //   - 9th Chords group
   //   - Expand/Collapse controls
-  // ======================================================
-  //  document
-  //   .getElementById("selectAllChordsBtn")
-  //   .addEventListener("click", selectAllChords);
-
-  //document
-  //   .getElementById("clearAllChordsBtn")
-  //   .addEventListener("click", clearAllChords);
-
-  // document
-  //   .getElementById("coreChordsBtn")
-  //   .addEventListener("click", selectCoreChords);
+  //
+  // =====================================================
 
   button.addEventListener("click", function () {
     document
@@ -419,13 +448,9 @@ difficultyInfoBtn.addEventListener("click", () => {
 });
 
 /* ==========================================
-
    Next Question Button
-
    Generates a new quiz question after the
-
    previous question has been graded.
-
    ========================================== */
 
 document

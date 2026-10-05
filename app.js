@@ -361,8 +361,14 @@ document
     document.getElementById("checkAnswerBtn").disabled = true;
     displaySelectedNotes();
 
-    document.getElementById("quizStatus").textContent =
-      "0 of " + q.answer.length + " notes selected";
+    document.getElementById("quizAnswer").textContent =
+      "Enter " +
+      q.answer.length +
+      " notes • 0 of " +
+      q.answer.length +
+      " selected";
+
+    document.getElementById("quizStatus").textContent = "";
 
     const answerCount = q.answer.length;
 
@@ -402,11 +408,14 @@ function renderQuizNoteButtons() {
 
       displaySelectedNotes();
 
-      document.getElementById("quizStatus").textContent =
+      document.getElementById("quizAnswer").textContent =
+        "Enter " +
+        currentQuestion.answer.length +
+        " notes • " +
         userAnswer.length +
         " of " +
         currentQuestion.answer.length +
-        " notes selected";
+        " selected";
 
       if (userAnswer.length === currentQuestion.answer.length) {
         document.getElementById("checkAnswerBtn").disabled = false;
@@ -550,10 +559,9 @@ document
     );
 
     document.getElementById("quizAnswer").textContent =
-      `Enter ${q.answer.length} notes`;
+      `Enter ${q.answer.length} notes • 0 of ${q.answer.length} selected`;
 
-    document.getElementById("quizStatus").textContent =
-      `0 of ${q.answer.length} notes selected`;
+    document.getElementById("quizStatus").textContent = "";
   });
 
 // ===================================================

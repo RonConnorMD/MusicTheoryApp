@@ -375,6 +375,17 @@ button:disabled {
   margin-bottom: 6px;
 }
 
+.feedback-actions {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.feedback-next-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 .formula-pills {
   display: flex;
   justify-content: center;

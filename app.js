@@ -402,10 +402,14 @@ document
       );
 
       document.getElementById("quizFeedback").innerHTML = `
-   <div class="feedback-card feedback-correct">
+  <div class="feedback-card feedback-correct">
   <div class="feedback-title">
     ✅ Correct! ${displayChord}
   </div>
+
+  <button class="feedback-next-btn">
+    Next Question
+  </button>
 </div>
     </div>
   `;
@@ -428,7 +432,6 @@ document
   ${prettyMusic(currentQuestion.answer.join(" "))}
 </div>
       <hr>
-
 <div>
  
 <div class="formula-heading">
@@ -442,21 +445,30 @@ document
     .join("")}
   </div>
 </div>
-
 <br>
-
 <div>
   <strong>Intervals:</strong>
   ${analysis.intervals.map((interval) => prettyMusic(interval)).join(" • ")}
 </div>
-  `;
+
+<div class="feedback-actions">
+  <button class="feedback-next-btn">
+    Next Question
+  </button>
+</div>
+
+   `;
+
+      document
+        .querySelector(".feedback-next-btn")
+        ?.addEventListener("click", () => {
+          document.getElementById("newQuestionBtn").click();
+        });
+
+      document.getElementById("checkAnswerBtn").disabled = true;
+
+      updateScoreBoard();
     }
-
-    document.getElementById("nextQuestionContainer").style.display = "block";
-
-    document.getElementById("checkAnswerBtn").disabled = true;
-
-    updateScoreBoard();
   });
 
 // ===================================================

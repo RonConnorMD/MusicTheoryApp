@@ -4,6 +4,7 @@ let currentQuestion = null;
 let userAnswer = [];
 let questionsAsked = 0;
 let questionsCorrect = 0;
+let selectedNotePoolDifficulty = "intermediate";
 
 // ===================================================
 // Builder UI
@@ -58,15 +59,29 @@ function selectCoreChords() {
     });
 }
 
+// ===============================================================
+// Event Listeners
+// ===============================================================
+
+// Filter Action Buttons
 document
   .getElementById("selectAllChordsBtn")
   .addEventListener("click", selectAllChords);
+
 document
   .getElementById("clearAllChordsBtn")
   .addEventListener("click", clearAllChords);
+
 document
   .getElementById("coreChordsBtn")
   .addEventListener("click", selectCoreChords);
+
+// Difficulty Level Buttons
+document.querySelectorAll(".difficulty-btn").forEach((button) => {
+  button.addEventListener("click", () => {
+    setDifficulty(button.dataset.difficulty);
+  });
+});
 
 // ===================================================
 // Quiz User Interface
@@ -260,12 +275,31 @@ function getSelectedChordTypes() {
 }
 
 // ===============================================================
+// Difficulty State
+// ===============================================================
+
+let selectedDifficulty = "intermediate";
+
+// ===============================================================
+// Set Difficulty
+// Updates selected difficulty and button highlighting
+// ===============================================================
+
+function setDifficulty(difficulty) {
+  selectedDifficulty = difficulty;
+
+  document.querySelectorAll(".difficulty-btn").forEach((btn) => {
+    btn.classList.toggle("selected", btn.dataset.difficulty === difficulty);
+  });
+}
+
+// ===============================================================
 // Selected Note Pool Difficulty
+// Returns current difficulty setting
 // ===============================================================
 
 function getSelectedNotePoolDifficulty() {
-  return document.querySelector("input[name='notePoolDifficulty']:checked")
-    .value;
+  return selectedDifficulty;
 }
 
 // ===================================================

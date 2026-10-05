@@ -152,20 +152,31 @@
 
         </div>
 
-        <label>
-          <input type="radio" name="notePoolDifficulty" value="beginner" />
-          Beginner
-        </label>
+        <div class="difficulty-buttons">
+  <button
+    type="button"
+    class="difficulty-btn"
+    data-difficulty="beginner"
+  >
+    Beginner
+  </button>
 
-        <label>
-          <input type="radio" name="notePoolDifficulty" value="intermediate" checked />
-          Intermediate
-        </label>
+  <button
+    type="button"
+    class="difficulty-btn selected"
+    data-difficulty="intermediate"
+  >
+    Intermediate
+  </button>
 
-        <label>
-          <input type="radio" name="notePoolDifficulty" value="advanced" />
-          Advanced
-        </label>
+  <button
+    type="button"
+    class="difficulty-btn"
+    data-difficulty="advanced"
+  >
+    Advanced
+  </button>
+</div>
       </div>
 
 
@@ -191,7 +202,7 @@
           </div>
         </details>
 
-        <details class="filter-group" open>
+        <details class="filter-group">
           <summary>
             <label>
               <input type="checkbox" id="suspendedGroup" checked />
@@ -209,7 +220,7 @@
           </div>
         </details>
 
-        <details class="filter-group" open>
+        <details class="filter-group">
           <summary>
             <label>
               <input type="checkbox" id="seventhGroup" checked />
@@ -230,7 +241,7 @@
               dim7</label </div>
         </details>
 
-        <details class="filter-group" open>
+        <details class="filter-group">
           <summary>
             <label>
               <input type="checkbox" id="ninthGroup" checked />

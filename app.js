@@ -388,6 +388,8 @@ function renderQuizNoteButtons() {
     return;
   }
 
+  document.getElementById("quizHelp").open = false;
+
   currentQuestion.notePool.forEach((note) => {
     const button = document.createElement("button");
 

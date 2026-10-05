@@ -60,7 +60,38 @@
 
     <section id="quizSection" style="display: none">
       <button id="quizHomeBtn">← Home</button>
+
+
       <h2>Quiz Filters</h2>
+        
+<details id="quizHelp" open>
+    <summary>How to Use Quiz Mode</summary>
+
+  <ol>
+    <li>Select the roots and chord types you want to practice.</li>
+
+    <li>
+      Choose a difficulty level:
+      <ul>
+        <li>
+          <strong>Beginner</strong> - shows chord tones plus notes from the
+          root's major scale.
+        </li>
+        <li>
+          <strong>Intermediate</strong> - adds related enharmonic spellings.
+        </li>
+        <li>
+          <strong>Advanced</strong> - uses the full note pool (all available note spellings).
+        </li>
+      </ul>
+    </li>
+
+    <li>Click <strong>Start Quiz</strong>.</li>
+    <li>Build the chord by selecting notes in the correct order.</li>
+    <li>Click <strong>Check Answer</strong>.</li>
+    <li>Review the feedback and continue with the next question.</li>
+  </ol>
+</details>
 
       <div id="filterActions">
         <button id="selectAllChordsBtn">Select All Chords</button>
@@ -264,6 +295,8 @@
         </details>
       </div>
 
+
+
       <section class="quiz-card">
         <div class="quiz-toolbar">
           <h2>Quiz Mode</h2>
@@ -271,7 +304,7 @@
         </div>
 
         <div class="question-launch">
-          <button id="newQuestionBtn">Generate New Question</button>
+          <button id="newQuestionBtn">Start Quiz</button>
         </div>
 
         <div class="question-area">

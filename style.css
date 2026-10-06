@@ -414,14 +414,11 @@ button:disabled {
   background: white;
 }
 
-.question-launch {
-  text-align: center;
-  margin: 12px 0 16px 0;
-}
-
 #newQuestionBtn {
-  padding: 10px 20px;
-  font-weight: 600;
+  background: #e8f2ff;
+  border: 2px solid #2563eb;
+  color: #111;
+  font-weight: 700;
 }
 
 #nextQuestionContainer {
@@ -441,9 +438,9 @@ button:disabled {
 
 .quiz-toolbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .quiz-toolbar h2 {

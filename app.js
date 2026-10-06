@@ -90,8 +90,13 @@ document.querySelectorAll(".difficulty-btn").forEach((button) => {
 // Scoreboard
 // ===================================================
 function updateScoreBoard() {
+  const accuracy =
+    questionsAsked === 0
+      ? 0
+      : Math.round((questionsCorrect / questionsAsked) * 100);
+
   document.getElementById("scoreBoard").textContent =
-    "Score: " + questionsCorrect + " / " + questionsAsked;
+    `Score: ${questionsCorrect}/${questionsAsked} • ${accuracy}%`;
 }
 
 function setQuizNoteButtonsEnabled(enabled) {

@@ -454,8 +454,18 @@ document
     Next Question
   </button>
 </div>
-    </div>
+
   `;
+
+      document
+        .querySelector(".feedback-next-btn")
+        ?.addEventListener("click", () => {
+          document.getElementById("newQuestionBtn").click();
+        });
+
+      document.getElementById("checkAnswerBtn").disabled = true;
+
+      updateScoreBoard();
     } else {
       const analysis = getChordAnalysis(
         currentQuestion.root,
@@ -716,13 +726,16 @@ document.getElementById("showQuizBtn").addEventListener("click", function () {
   });
 });
 
-// ---------------------------------------------------
+// ===================================================
 // Home Buttons
-// ---------------------------------------------------
+// ===================================================
+document
+  .getElementById("learnChordsHomeBtn")
+  .addEventListener("click", showHome);
 
-document.getElementById("builderHomeBtn").addEventListener("click", showHome);
-
-document.getElementById("quizHomeBtn").addEventListener("click", showHome);
+document
+  .getElementById("practiceChordsHomeBtn")
+  .addEventListener("click", showHome);
 
 // ---------------------------------------------------
 // Return To Home

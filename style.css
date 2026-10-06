@@ -265,10 +265,10 @@ button:disabled {
 }
 
 .card-title {
-  font-size: 0.85rem;
+  font-size: 2rem;
   font-weight: 600;
-  color: #666;
-  text-transform: uppercase;
+  color: #333;
+  text-transform: none;
   margin-bottom: 6px;
 }
 
@@ -311,7 +311,7 @@ button:disabled {
 .home-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 
   padding: 20px;
 
@@ -320,7 +320,7 @@ button:disabled {
   border: 1px solid #ddd;
   border-radius: 12px;
 
-  text-align: left;
+  text-align: center;
 
   cursor: pointer;
 
@@ -334,7 +334,7 @@ button:disabled {
 .card-subtitle {
   margin-top: 8px;
   color: #666;
-  font-size: 0.95rem;
+  font-size: 1.25rem;
 }
 
 /* ==========================================

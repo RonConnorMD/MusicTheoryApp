@@ -31,9 +31,9 @@ function updateSelectedChordDisplay() {
 
 updateLookupButton();
 
-// =====================================================
-// Quiz Filter Controls
-// =====================================================
+// ==================================================================
+// Settings for chord practice - select all, clear all, select core
+// ==================================================================
 
 function selectAllChords() {
   document
@@ -41,6 +41,9 @@ function selectAllChords() {
     .forEach((cb) => {
       cb.checked = true;
     });
+  document.querySelectorAll("#quizFilters details").forEach((group) => {
+    group.open = true;
+  });
 }
 
 function clearAllChords() {
@@ -57,6 +60,13 @@ function selectCoreChords() {
     .forEach((cb) => {
       cb.checked = CORE_CHORDS.includes(cb.value);
     });
+  document.querySelectorAll("#quizFilters details").forEach((group) => {
+    const hasSelectedChord = group.querySelector(
+      'input[type="checkbox"]:checked',
+    );
+
+    group.open = !!hasSelectedChord;
+  });
 }
 
 // ===============================================================
@@ -540,7 +550,7 @@ difficultyInfoBtn.addEventListener("click", () => {
 
 /* ==========================================
    Next Question Button
-   Generates a new quiz question after the
+   Creates a new question after the
    previous question has been graded.
    ========================================== */
 
@@ -696,7 +706,7 @@ const quizSection = document.getElementById("quizSection");
 const appHeader = document.querySelector(".app-header");
 
 // ---------------------------------------------------
-// Builder Screen
+// Learn Chords Screen - example: how do I play B maj7
 // ---------------------------------------------------
 
 document
@@ -715,7 +725,7 @@ document
   });
 
 // ---------------------------------------------------
-// Quiz Screen
+// Practice Chords Screen
 // ---------------------------------------------------
 
 document.getElementById("showQuizBtn").addEventListener("click", function () {

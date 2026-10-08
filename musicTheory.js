@@ -541,20 +541,6 @@ function buildQuestion() {
 }
 
 // ===============================================================
-// Build Reverse Question
-// ===============================================================
-
-function buildReverseQuestion() {
-  const q = buildQuestion();
-
-  return {
-    notes: q.answer,
-
-    answer: chordSymbol(q.root, q.type),
-  };
-}
-
-// ===============================================================
 // Check Answer
 // ===============================================================
 
@@ -610,60 +596,6 @@ function runQuizRound() {
   console.log(chordSymbol(q.root, q.type));
 
   return q;
-}
-
-// ===============================================================
-// Reverse Quiz Round
-// ===============================================================
-
-function reverseQuizRound() {
-  const q = buildReverseQuestion();
-
-  console.log();
-
-  console.log("QUESTION:");
-
-  console.log(q.notes.join(" "));
-
-  return q;
-}
-
-// ===============================================================
-// Interactive Reverse Quiz Round
-// ===============================================================
-
-function interactiveReverseQuizRound() {
-  const q = buildReverseQuestion();
-
-  console.log();
-
-  console.log("QUESTION:");
-
-  console.log(q.notes.join(" "));
-
-  console.log();
-
-  rl.question(
-    "Enter chord: ",
-
-    function (answerText) {
-      const userAnswer = answerText.trim().toLowerCase();
-
-      const correctAnswer = q.answer.toLowerCase();
-
-      console.log();
-
-      if (userAnswer === correctAnswer) {
-        console.log("Correct!");
-      } else {
-        console.log("Incorrect.");
-
-        console.log("Correct answer:", q.answer);
-      }
-
-      rl.close();
-    },
-  );
 }
 
 // ===============================================================

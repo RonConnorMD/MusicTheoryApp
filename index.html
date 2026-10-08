@@ -11,7 +11,6 @@
       <div id="homeScreen">
         <header class="app-header">
           <h1>Music Theory App</h1>
-          <!---- <p>Chord Builder & Trainer</p>   Perhaps add subtitle later -->
         </header>
         <h2 class="home-title">What would you like to do?</h2>
 
@@ -31,8 +30,12 @@
       </div>
 
       <section id="builderSection" style="display: none">
+      <div class="builder-header">
         <button id="learnChordsHomeBtn">← Home</button>
-        <h2>Root Note</h2>
+        <span id="builderInstruction">Select a root and chord type</span>
+      </div>
+
+<h2>Root Note</h2>
         <div id="rootButtons"></div>
 
         <h2>Chord Type</h2>
@@ -40,10 +43,7 @@
 
         <hr />
 
-        <h2>Selected Chord</h2>
-
         <div id="selectedChordDisplay" class="selected-chord-card">
-          Select a root and chord type
         </div>
 
         <button id="lookupBtn">Lookup Chord</button>

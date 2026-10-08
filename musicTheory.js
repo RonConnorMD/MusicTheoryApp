@@ -451,6 +451,20 @@ function getEnharmonics(noteText) {
     return pitchOf(parseNote(candidate)) === targetPitch;
   });
 }
+// ===============================================================
+//  Shuffle the answer choices
+// ===============================================================
+function shuffleArray(array) {
+  const shuffled = [...array];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  return shuffled;
+}
 
 // ===============================================================
 // Smart Note Pool
@@ -459,7 +473,7 @@ function getEnharmonics(noteText) {
 function getSmartNotePool(root, chordType, difficulty) {
   // Advanced = all notes
   if (difficulty === "advanced") {
-    return [...QUIZ_NOTES];
+    return shuffleArray([...QUIZ_NOTES]);
   }
 
   const pool = new Set();
@@ -481,7 +495,7 @@ function getSmartNotePool(root, chordType, difficulty) {
     });
   }
 
-  return [...pool];
+  return shuffleArray([...pool]);
 }
 
 // ===============================================================

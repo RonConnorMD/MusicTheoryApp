@@ -583,22 +583,6 @@ function parseAnswer(text) {
 }
 
 // ===============================================================
-// Run Quiz Round
-// ===============================================================
-
-function runQuizRound() {
-  const q = buildQuestion();
-
-  console.log();
-
-  console.log("QUESTION:");
-
-  console.log(chordSymbol(q.root, q.type));
-
-  return q;
-}
-
-// ===============================================================
 // Parse Chord Name
 // ===============================================================
 function parseChordName(chordName) {

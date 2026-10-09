@@ -1,38 +1,39 @@
-// =====================================================
-// Music Theory Engine
-// =====================================================
+// ===============================================================
+// MUSIC THEORY ENGINE
+//
+// Core music theory functions shared by the application.
+// Includes chord definitions, note spelling, chord construction,
+// music notation, and quiz logic.
+//
+// This file contains music theory logic, not browser UI code.
+// ===============================================================
 
 // ===============================================================
-// Constants
+// 1. CONSTANTS AND MUSICAL DEFINITIONS
 // ===============================================================
 
 const LETTERS = ["C", "D", "E", "F", "G", "A", "B"];
 
 // ===============================================================
-// Natural Pitches (C = 0 system)
+// NATURAL PITCHES
+// Uses C = 0, with pitch values measured in semitones.
 // ===============================================================
 const NATURAL_PITCHES = {
   C: 0,
   D: 2,
   E: 4,
   F: 5,
-
   G: 7,
   A: 9,
   B: 11,
 };
 
 // ===============================================================
-// Quiz Settings
+// 2. CHORD DEFINITIONS
+//
+// Defines the semitone distances, note-letter steps, scale degrees,
+// and interval names for each supported chord type.
 // ===============================================================
-const QUIZ_LENGTH = 10;
-let correctCount = 0;
-let totalCount = 0;
-let questionNumber = 1;
-
-//===============================================================
-// Chord definitions
-//===============================================================
 const CHORDS = {
   major: [
     { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
@@ -157,7 +158,10 @@ const CHORDS = {
 // ===============================================================
 
 // ===============================================================
-// Chord symbol definitions
+// 3. CHORD SYMBOL DEFINITIONS
+//
+// Maps internal chord types to their standard chord symbols.
+// Examples: minor7 → m7, dominant7 → 7, major7 → maj7.
 // ===============================================================
 const CHORD_SYMBOLS = {
   major: "",
@@ -186,7 +190,9 @@ const CHORD_SYMBOLS = {
 };
 
 // ===============================================================
-// Roots
+// 4. CHORD ROOTS
+//
+// All supported root-note spellings, including enharmonic pairs.
 // ===============================================================
 
 const ROOTS = [
@@ -209,6 +215,11 @@ const ROOTS = [
   "B",
 ];
 
+// ===============================================================
+// QUIZ NOTE POOL
+//
+// All note spellings that may appear as quiz answer choices.
+// ===============================================================
 const QUIZ_NOTES = [
   "C",
   "C#",
@@ -236,7 +247,12 @@ const QUIZ_NOTES = [
 const CHORD_TYPES = Object.keys(CHORDS);
 
 // ===============================================================
-// Quiz Levels
+// 5. QUIZ CONFIGURATION
+//
+// Defines available chord types for each difficulty level.
+// Beginner: major and minor chords.
+// Intermediate: core triads, suspended chords, add9, and 7th chords.
+// Advanced: all chord types defined in CHORDS.
 // ===============================================================
 
 const QUIZ_LEVELS = {
@@ -259,15 +275,21 @@ const QUIZ_LEVELS = {
 };
 
 // ===============================================================
-// Current Quiz Settings
+// CURRENT QUIZ SELECTION
 // ===============================================================
 
 let currentChordTypes = QUIZ_LEVELS.advanced;
 
 // ===============================================================
-// Convert text to note object
+// 6. NOTE UTILITIES AND NOTE SPELLING
+//
+// Convert note names into structured data, calculate pitches,
+// navigate note letters, and determine correct note spellings.
 // ===============================================================
 
+// ===============================================================
+// Convert text to note object (parseNote function)
+// ===============================================================
 function parseNote(noteText) {
   const letter = noteText[0].toUpperCase();
 
@@ -326,7 +348,7 @@ function naturalPitch(letter) {
 }
 
 //________________________________________________________
-//  Find pitch of note
+//  Find the pitch of a note
 // _______________________________________________________
 function pitchOf(note) {
   return (naturalPitch(note.letter) + note.accidental + 12) % 12;
@@ -451,6 +473,12 @@ function getEnharmonics(noteText) {
     return pitchOf(parseNote(candidate)) === targetPitch;
   });
 }
+
+// ===============================================================
+// 8. QUIZ NOTE SELECTION UTILITIES
+//
+// Prepare and shuffle the note choices presented to the user.
+// ===============================================================
 // ===============================================================
 //  Shuffle the answer choices
 // ===============================================================
@@ -669,7 +697,3 @@ function prettyMusic(text) {
     .replaceAll("b", "♭")
     .replaceAll("#", "♯");
 }
-
-// ===============================================================
-// Test Code
-// ==============================================================

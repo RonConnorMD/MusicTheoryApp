@@ -9,7 +9,7 @@
 // ===============================================================
 
 // ===============================================================
-// 1. CONSTANTS AND MUSICAL DEFINITIONS
+//    CONSTANTS AND MUSICAL DEFINITIONS
 // ===============================================================
 
 const LETTERS = ["C", "D", "E", "F", "G", "A", "B"];
@@ -29,7 +29,7 @@ const NATURAL_PITCHES = {
 };
 
 // ===============================================================
-// 2. CHORD DEFINITIONS
+//    CHORD DEFINITIONS
 //
 // Defines the semitone distances, note-letter steps, scale degrees,
 // and interval names for each supported chord type.
@@ -158,7 +158,7 @@ const CHORDS = {
 // ===============================================================
 
 // ===============================================================
-// 3. CHORD SYMBOL DEFINITIONS
+//    CHORD SYMBOL DEFINITIONS
 //
 // Maps internal chord types to their standard chord symbols.
 // Examples: minor7 → m7, dominant7 → 7, major7 → maj7.
@@ -190,7 +190,7 @@ const CHORD_SYMBOLS = {
 };
 
 // ===============================================================
-// 4. CHORD ROOTS
+//    CHORD ROOTS
 //
 // All supported root-note spellings, including enharmonic pairs.
 // ===============================================================
@@ -247,7 +247,7 @@ const QUIZ_NOTES = [
 const CHORD_TYPES = Object.keys(CHORDS);
 
 // ===============================================================
-// 5. QUIZ CONFIGURATION
+//    QUIZ CONFIGURATION
 //
 // Defines available chord types for each difficulty level.
 // Beginner: major and minor chords.
@@ -281,7 +281,7 @@ const QUIZ_LEVELS = {
 let currentChordTypes = QUIZ_LEVELS.advanced;
 
 // ===============================================================
-// 6. NOTE UTILITIES AND NOTE SPELLING
+//    NOTE UTILITIES AND NOTE SPELLING
 //
 // Convert note names into structured data, calculate pitches,
 // navigate note letters, and determine correct note spellings.
@@ -475,7 +475,7 @@ function getEnharmonics(noteText) {
 }
 
 // ===============================================================
-// 8. QUIZ NOTE SELECTION UTILITIES
+//    QUIZ NOTE SELECTION UTILITIES
 //
 // Prepare and shuffle the note choices presented to the user.
 // ===============================================================

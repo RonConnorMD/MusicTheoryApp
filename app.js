@@ -8,7 +8,7 @@
 // ===============================================================
 
 // ===============================================================
-// 1. APPLICATION STATE
+//    APPLICATION STATE
 //
 // Tracks the user's selections and the current quiz.
 // ===============================================================
@@ -22,7 +22,7 @@ let questionsCorrect = 0;
 let selectedNotePoolDifficulty = "intermediate";
 
 // ===============================================================
-// 2. LEARN CHORDS — CHORD SELECTION AND DISPLAY
+//    LEARN CHORDS — CHORD SELECTION AND DISPLAY
 //
 // Update the selected chord and control the Lookup button.
 // ===============================================================
@@ -49,7 +49,7 @@ function updateSelectedChordDisplay() {
 updateLookupButton();
 
 // ===============================================================
-// 3. PRACTICE SETTINGS — CHORD FILTER ACTIONS
+//    PRACTICE SETTINGS — CHORD FILTER ACTIONS
 //
 // Select all chord types, clear all selections, or select core chords.
 // ===============================================================
@@ -89,7 +89,7 @@ function selectCoreChords() {
 }
 
 // ===============================================================
-// 4. EVENT LISTENERS — PRACTICE SETTINGS
+//    EVENT LISTENERS — PRACTICE SETTINGS
 //
 // Connect filter action buttons and difficulty controls to their
 // corresponding functions.
@@ -116,7 +116,7 @@ document.querySelectorAll(".difficulty-btn").forEach((button) => {
 });
 
 // ===============================================================
-// 5. PRACTICE CHORDS — INTERFACE
+//    PRACTICE CHORDS — INTERFACE
 //
 // Handle answer selection, scoring, and quiz feedback.
 // ===============================================================
@@ -137,7 +137,7 @@ function setQuizNoteButtonsEnabled(enabled) {
 }
 
 // ===============================================================
-// 6. CORE CHORDS AND DISPLAY NAMES
+//    CORE CHORDS AND DISPLAY NAMES
 //
 // Define the chord types included in Core Chords mode and their
 // labels in the user interface.
@@ -178,14 +178,14 @@ const DISPLAY_NAMES = {
 };
 
 // ===============================================================
-// 7. PRACTICE SETTINGS — BUTTON REFERENCES
+//    PRACTICE SETTINGS — BUTTON REFERENCES
 // ===============================================================
 const selectAllBtn = document.getElementById("selectAllChords");
 const clearAllBtn = document.getElementById("clearAllChords");
 const coreChordsBtn = document.getElementById("coreChords");
 
 // ===============================================================
-// 8. LEARN CHORDS — ROOT SELECTION
+//    LEARN CHORDS — ROOT SELECTION
 //
 // Create the root-note buttons and handle the user's selection.
 // ===============================================================
@@ -213,7 +213,7 @@ ROOTS.forEach((root) => {
 });
 
 // ===============================================================
-// 9. LEARN CHORDS — CHORD TYPE SELECTION
+//    LEARN CHORDS — CHORD TYPE SELECTION
 //
 // Create the chord-type buttons and handle the user's selection.
 // ===============================================================
@@ -263,7 +263,7 @@ const chordContainer = document.getElementById("chordButtons");
 });
 
 // ===============================================================
-// 10. LEARN CHORDS — CHORD LOOKUP
+//     LEARN CHORDS — CHORD LOOKUP
 // ===============================================================
 document.getElementById("lookupBtn").addEventListener("click", function () {
   const chord = buildChord(selectedRoot, selectedChordType);
@@ -304,7 +304,7 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
 });
 
 // ===============================================================
-// 11. PRACTICE CHORDS — SELECTED CHORD TYPES
+//     PRACTICE CHORDS — SELECTED CHORD TYPES
 //
 // Return the chord types selected in Practice Settings.
 // ===============================================================
@@ -317,7 +317,7 @@ function getSelectedChordTypes() {
 }
 
 // ===============================================================
-// 12. PRACTICE CHORDS — DIFFICULTY SETTING
+//     PRACTICE CHORDS — DIFFICULTY SETTING
 //
 // Store the selected difficulty level.
 // ===============================================================
@@ -343,7 +343,7 @@ function getSelectedNotePoolDifficulty() {
 }
 
 // ===============================================================
-// 13. PRACTICE CHORDS — QUESTION GENERATION
+//     PRACTICE CHORDS — QUESTION GENERATION
 //
 // Select a random chord from the chosen roots and chord types,
 // then generate its answer and available note pool.
@@ -379,7 +379,7 @@ function buildFilteredQuestion() {
 }
 
 // ===============================================================
-// 14. PRACTICE CHORDS — NEW QUESTION
+//     PRACTICE CHORDS — NEW QUESTION
 //
 // Initialize a new question, reset the answer selection, and
 // display the chord to identify.
@@ -427,7 +427,7 @@ document
   });
 
 // ===============================================================
-// 15. PRACTICE CHORDS — NOTE BUTTONS
+//     PRACTICE CHORDS — NOTE BUTTONS
 //
 // Create note buttons from the available note pool and handle
 // the user's answer selection.
@@ -477,7 +477,7 @@ function renderQuizNoteButtons() {
 }
 
 // ===============================================================
-// 16. PRACTICE CHORDS — CHECK ANSWER
+//     PRACTICE CHORDS — CHECK ANSWER
 //
 // Evaluate the selected notes, update the score, and display
 // feedback showing whether the answer is correct.
@@ -575,7 +575,7 @@ document
   });
 
 // ===============================================================
-// 17. PRACTICE CHORDS — DIFFICULTY HELP
+//     PRACTICE CHORDS — DIFFICULTY HELP
 //     Show or hide the explanation of the difficulty levels.
 // ===============================================================
 const difficultyInfoBtn = document.getElementById("difficultyInfoBtn");
@@ -585,7 +585,7 @@ difficultyInfoBtn.addEventListener("click", () => {
 });
 
 // =======================================================================
-// 18. PRACTICE CHORDS — NEXT QUESTION
+//     PRACTICE CHORDS — NEXT QUESTION
 //     Generate a new question and reset the answer-selection interface.
 // =======================================================================
 
@@ -625,7 +625,7 @@ document
   });
 
 // ===============================================================
-// 19. PRACTICE CHORDS — CLEAR ANSWER
+//     PRACTICE CHORDS — CLEAR ANSWER
 //     Clear the selected notes and allow the user to try again.
 // ===============================================================
 document
@@ -640,7 +640,7 @@ document
   });
 
 // ===============================================================
-// 20. PRACTICE CHORDS — SELECTED ROOTS
+//     PRACTICE CHORDS — SELECTED ROOTS
 //     Return the root notes selected in Practice Settings.
 // ===============================================================
 
@@ -660,7 +660,7 @@ function getSelectedRoots() {
 }
 
 // ===============================================================
-// 21. PRACTICE CHORDS — SELECTED NOTES DISPLAY
+//     PRACTICE CHORDS — SELECTED NOTES DISPLAY
 //     Display the notes the user has selected for the current answer.
 // ===============================================================
 
@@ -681,7 +681,7 @@ function displaySelectedNotes() {
 }
 
 // ===============================================================
-// 22. PRACTICE SETTINGS — CHORD TYPE GROUPS
+//  PRACTICE SETTINGS — CHORD TYPE GROUPS
 //
 // Keep group checkboxes synchronized with their individual chord
 // type selections.
@@ -710,7 +710,7 @@ function setupGroupCheckbox(groupId, memberClass) {
   });
 }
 // ===============================================================
-// 23. PRACTICE SETTINGS — CHORD TYPE GROUPS
+// PRACTICE SETTINGS — CHORD TYPE GROUPS
 //
 // Connect each chord-type group checkbox to its member checkboxes.
 // ===============================================================
@@ -723,7 +723,7 @@ setupGroupCheckbox("seventhGroup", "seventhChord");
 setupGroupCheckbox("ninthGroup", "ninthChord");
 
 // ===============================================================
-// 24. PRACTICE SETTINGS — ROOT GROUPS
+// PRACTICE SETTINGS — ROOT GROUPS
 //
 // Connect the natural, sharp, and flat root group checkboxes
 // to their individual root selections.
@@ -733,7 +733,7 @@ setupGroupCheckbox("sharpRootsGroup", "sharpRoot");
 setupGroupCheckbox("flatRootsGroup", "flatRoot");
 
 // ===============================================================
-// 25. APP NAVIGATION
+//   APP NAVIGATION
 //     Control movement between the home screen and app sections.
 // ===============================================================
 const homeScreen = document.getElementById("homeScreen");
@@ -745,7 +745,7 @@ const quizSection = document.getElementById("quizSection");
 const appHeader = document.querySelector(".app-header");
 
 // ===============================================================
-// 26. APP NAVIGATION — LEARN CHORDS
+//   APP NAVIGATION — LEARN CHORDS
 //     The home-screen button labeled "Learn Chords" uses the ID
 //     showBuilderBtn.
 // ===============================================================
@@ -765,7 +765,7 @@ document
   });
 
 // ===============================================================
-// 27. APP NAVIGATION — PRACTICE CHORDS
+// APP NAVIGATION — PRACTICE CHORDS
 // ===============================================================
 document.getElementById("showQuizBtn").addEventListener("click", function () {
   homeScreen.style.display = "none";
@@ -781,7 +781,7 @@ document.getElementById("showQuizBtn").addEventListener("click", function () {
 });
 
 // ===============================================================
-// 28. APP NAVIGATION — HOME BUTTONS
+// APP NAVIGATION — HOME BUTTONS
 //     Return to the home screen from either app section.
 // ===============================================================
 document
@@ -793,7 +793,7 @@ document
   .addEventListener("click", showHome);
 
 // ===============================================================
-// 29. APP NAVIGATION — RETURN HOME
+// APP NAVIGATION — RETURN HOME
 //     Display the home screen and hide the other app sections.
 // ===============================================================
 

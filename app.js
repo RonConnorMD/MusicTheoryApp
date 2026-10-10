@@ -766,6 +766,8 @@ document
 
 // ===============================================================
 // APP NAVIGATION — PRACTICE CHORDS
+//     The home-screen button labeled "Practice Chords" uses the ID
+//     showQuizBtn.
 // ===============================================================
 document.getElementById("showQuizBtn").addEventListener("click", function () {
   homeScreen.style.display = "none";

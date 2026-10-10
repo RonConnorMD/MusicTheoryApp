@@ -685,9 +685,7 @@ function chordSymbol(root, chordType) {
 }
 
 // ===============================================================
-
 // Pretty Music Display
-
 // ===============================================================
 
 function prettyMusic(text) {
@@ -696,4 +694,82 @@ function prettyMusic(text) {
     .replaceAll("##", "♯♯")
     .replaceAll("b", "♭")
     .replaceAll("#", "♯");
+}
+
+// ===============================================================
+// CHORD PROGRESSIONS
+// ===============================================================
+const CHORD_PROGRESSIONS = {
+  "I-IV-V-I": {
+    name: "I – IV – V – I",
+    description: "Fundamental major-key progression",
+    chords: [
+      { degree: 1, type: "major" },
+      { degree: 4, type: "major" },
+      { degree: 5, type: "major" },
+      { degree: 1, type: "major" },
+    ],
+  },
+
+  "I-V-vi-IV": {
+    name: "I – V – vi – IV",
+    description: "Extremely common in popular music",
+    chords: [
+      { degree: 1, type: "major" },
+      { degree: 5, type: "major" },
+      { degree: 6, type: "minor" },
+      { degree: 4, type: "major" },
+    ],
+  },
+
+  "I-vi-IV-V": {
+    name: "I – vi – IV – V",
+    description: "Classic pop progression",
+    chords: [
+      { degree: 1, type: "major" },
+      { degree: 6, type: "minor" },
+      { degree: 4, type: "major" },
+      { degree: 5, type: "major" },
+    ],
+  },
+
+  "ii-V-I": {
+    name: "ii – V – I",
+    description: "Fundamental jazz progression",
+    chords: [
+      { degree: 2, type: "minor" },
+      { degree: 5, type: "major" },
+      { degree: 1, type: "major" },
+    ],
+  },
+
+  "I-IV-I-V": {
+    name: "I – IV – I – V",
+    description: "Familiar traditional and popular pattern",
+    chords: [
+      { degree: 1, type: "major" },
+      { degree: 4, type: "major" },
+      { degree: 1, type: "major" },
+      { degree: 5, type: "major" },
+    ],
+  },
+};
+
+// ===============================================================
+// Build Chord Progression
+// ===============================================================
+function buildChordProgression(key, progressionId) {
+  const progression = CHORD_PROGRESSIONS[progressionId];
+
+  if (!progression) {
+    throw new Error("Unknown chord progression");
+  }
+
+  const majorScale = buildMajorScale(key);
+
+  return progression.chords.map((chord) => {
+    const root = noteToString(majorScale[chord.degree - 1]);
+
+    return chordSymbol(root, chord.type);
+  });
 }

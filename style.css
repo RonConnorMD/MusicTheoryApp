@@ -577,3 +577,32 @@ button:disabled {
   font-size: 1.5rem;
   font-weight: 700;
 }
+
+#progressionsInstruction {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* ===============================================================
+   LEARN PROGRESSIONS — RESULTS
+   =============================================================== */
+
+.progression-results {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.progression-results h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.progression-results p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}

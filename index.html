@@ -50,7 +50,7 @@
               Explore and practice chord sequences.
             </p>
 
-            <button class="home-card progression-card" disabled>
+           <button id="learnProgressionsHomeBtn" class="home-card progression-card">
               <span class="card-title">Learn Progressions</span>
               <span class="card-subtitle">
                 Explore common progressions in all 12 keys
@@ -70,6 +70,72 @@
 
         </div>
       </div>
+
+<!-- ========================================================= -->
+<!-- LEARN PROGRESSIONS -->
+<!-- ========================================================= -->
+<section id="progressionsSection" style="display: none">
+  <div class="builder-header">
+    <button id="progressionsHomeBtn">← Home</button>
+    <span id="progressionsInstruction">
+      Select a key and a chord progression
+    </span>
+  </div>
+
+  <!-- KEY SELECTION -->
+  <h2>Key</h2>
+
+  <div id="progressionKeyButtons" class="progression-key-buttons">
+    <button data-key="C">C</button>
+    <button data-key="Db">D♭</button>
+    <button data-key="D">D</button>
+    <button data-key="Eb">E♭</button>
+    <button data-key="E">E</button>
+    <button data-key="F">F</button>
+    <button data-key="Gb">G♭</button>
+    <button data-key="G">G</button>
+    <button data-key="Ab">A♭</button>
+    <button data-key="A">A</button>
+    <button data-key="Bb">B♭</button>
+    <button data-key="B">B</button>
+  </div>
+
+  <!-- PROGRESSION SELECTION -->
+<h2>Chord Progression</h2>
+
+<div id="progressionButtons" class="progression-buttons">
+  <button data-progression="I-IV-V-I">
+    <strong>I – IV – V – I</strong>
+    <span>Fundamental major-key progression</span>
+  </button>
+
+  <button data-progression="I-V-vi-IV">
+    <strong>I – V – vi – IV</strong>
+    <span>Extremely common in popular music</span>
+  </button>
+
+  <button data-progression="I-vi-IV-V">
+    <strong>I – vi – IV – V</strong>
+    <span>Classic pop progression</span>
+  </button>
+
+  <button data-progression="ii-V-I">
+    <strong>ii – V – I</strong>
+    <span>Fundamental jazz progression</span>
+  </button>
+
+  <button data-progression="I-IV-I-V">
+    <strong>I – IV – I – V</strong>
+    <span>Familiar traditional and popular pattern</span>
+  </button>
+</div>
+
+<!-- PROGRESSION RESULTS -->
+<div id="progressionResults" class="progression-results">
+  <p>Select a key and a chord progression to see the chords.</p>
+</div>
+
+</section>
 
       <section id="builderSection" style="display: none">
       <div class="builder-header">

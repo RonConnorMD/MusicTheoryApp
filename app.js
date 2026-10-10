@@ -783,6 +783,102 @@ document.getElementById("showQuizBtn").addEventListener("click", function () {
 });
 
 // ===============================================================
+// APP NAVIGATION — LEARN PROGRESSIONS
+// ===============================================================
+document
+  .getElementById("learnProgressionsHomeBtn")
+  .addEventListener("click", function () {
+    homeScreen.style.display = "none";
+    builderSection.style.display = "none";
+    quizSection.style.display = "none";
+    appHeader.style.display = "none";
+
+    progressionsSection.style.display = "block";
+
+    progressionsSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+
+// ===============================================================
+// LEARN PROGRESSIONS — KEY SELECTION
+// ===============================================================
+let selectedProgressionKey = null;
+document.querySelectorAll("#progressionKeyButtons button").forEach((button) => {
+  button.addEventListener("click", function () {
+    selectedProgressionKey = this.dataset.key;
+
+    document
+      .querySelectorAll("#progressionKeyButtons button")
+      .forEach((keyButton) => {
+        keyButton.classList.remove("selected");
+      });
+    this.classList.add("selected");
+    updateProgressionResults();
+  });
+});
+
+// ===============================================================
+// LEARN PROGRESSIONS — PROGRESSION SELECTION
+// ===============================================================
+let selectedProgression = null;
+document.querySelectorAll("#progressionButtons button").forEach((button) => {
+  button.addEventListener("click", function () {
+    selectedProgression = this.dataset.progression;
+
+    document
+      .querySelectorAll("#progressionButtons button")
+      .forEach((progressionButton) => {
+        progressionButton.classList.remove("selected");
+      });
+
+    this.classList.add("selected");
+    updateProgressionResults();
+  });
+});
+
+// ===============================================================
+// LEARN PROGRESSIONS — UPDATE RESULTS
+// ===============================================================
+function updateProgressionResults() {
+  const results = document.getElementById("progressionResults");
+
+  if (!selectedProgressionKey || !selectedProgression) {
+    results.innerHTML =
+      "<p>Select a key and a chord progression to see the chords.</p>";
+    return;
+  }
+
+  const progression = CHORD_PROGRESSIONS[selectedProgression];
+  const chords = buildChordProgression(
+    selectedProgressionKey,
+    selectedProgression,
+  );
+
+  results.innerHTML = `
+    <h2>${prettyMusic(progression.name)}</h2>
+    <p>${prettyMusic(chords.join(" – "))}</p>
+  `;
+}
+
+// ===============================================================
+// APP NAVIGATION — RETURN HOME FROM LEARN PROGRESSIONS
+// ===============================================================
+document
+  .getElementById("progressionsHomeBtn")
+  .addEventListener("click", function () {
+    progressionsSection.style.display = "none";
+    homeScreen.style.display = "block";
+    appHeader.style.display = "block";
+
+    homeScreen.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+
+// ===============================================================
 // APP NAVIGATION — HOME BUTTONS
 //     Return to the home screen from either app section.
 // ===============================================================

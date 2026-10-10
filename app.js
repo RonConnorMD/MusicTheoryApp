@@ -793,6 +793,22 @@ document
     quizSection.style.display = "none";
     appHeader.style.display = "none";
 
+    // Reset selections
+    selectedProgressionKey = null;
+    selectedProgression = null;
+
+    // Clear selected button styling
+    document
+      .querySelectorAll(
+        "#progressionKeyButtons button, #progressionButtons button",
+      )
+      .forEach((button) => {
+        button.classList.remove("selected");
+      });
+
+    // Clear previous results
+    document.getElementById("progressionResults").innerHTML = "";
+
     progressionsSection.style.display = "block";
 
     progressionsSection.scrollIntoView({
@@ -845,8 +861,7 @@ function updateProgressionResults() {
   const results = document.getElementById("progressionResults");
 
   if (!selectedProgressionKey || !selectedProgression) {
-    results.innerHTML =
-      "<p>Select a key and a chord progression to see the chords.</p>";
+    results.innerHTML = "";
     return;
   }
 
